@@ -252,32 +252,6 @@ export default function BottomSheet({
                 <button onClick={() => updateParams('travellers', tripParams.travellers + 1)} style={{ width: 32, height: 32, borderRadius: 8, border: '1px solid rgba(0,0,0,0.1)', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}><Plus size={16} /></button>
               </div>
             </div>
-            {/* Travel Style Toggle */}
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <span style={{ fontSize: 14, fontWeight: 600, color: '#283618' }}>Style</span>
-              <div style={{ display: 'flex', background: 'rgba(0,0,0,0.05)', padding: 4, borderRadius: 10 }}>
-                {(['budget', 'standard', 'luxury'] as const).map(s => (
-                  <button 
-                    key={s}
-                    onClick={() => updateParams('travelStyle', s)}
-                    style={{ 
-                      padding: '6px 12px', 
-                      borderRadius: 8, 
-                      border: 'none', 
-                      background: tripParams.travelStyle === s ? '#fff' : 'transparent',
-                      color: '#283618',
-                      fontSize: 11,
-                      fontWeight: 700,
-                      cursor: 'pointer',
-                      boxShadow: tripParams.travelStyle === s ? '0 2px 4px rgba(0,0,0,0.05)' : 'none'
-                    }}
-                  >
-                    {s.charAt(0).toUpperCase() + s.slice(1)}
-                  </button>
-                ))}
-              </div>
-            </div>
-
             {/* Breakdown */}
             <div style={{ marginTop: 12, padding: 16, background: 'rgba(0,0,0,0.02)', borderRadius: 16 }}>
               {[

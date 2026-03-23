@@ -141,6 +141,33 @@ export default function ContextRail({
           </div>
         </section>
 
+        {/* Travel Style Toggle */}
+        <section style={{ marginBottom: 24 }}>
+          <h3 style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: '#283618', marginBottom: 12 }}>Travel Style</h3>
+          <div style={{ display: 'flex', background: 'rgba(0,0,0,0.05)', padding: 4, borderRadius: 10 }}>
+            {(['budget', 'standard', 'luxury'] as const).map(s => (
+              <button 
+                key={s}
+                onClick={() => onTripParamsChange({ ...tripParams, travelStyle: s })}
+                style={{ 
+                  flex: 1,
+                  padding: '6px 12px', 
+                  borderRadius: 8, 
+                  border: 'none', 
+                  background: tripParams.travelStyle === s ? '#fff' : 'transparent',
+                  color: '#283618',
+                  fontSize: 11,
+                  fontWeight: 700,
+                  cursor: 'pointer',
+                  boxShadow: tripParams.travelStyle === s ? '0 2px 4px rgba(0,0,0,0.05)' : 'none'
+                }}
+              >
+                {s.charAt(0).toUpperCase() + s.slice(1)}
+              </button>
+            ))}
+          </div>
+        </section>
+
         {/* Best Timing Picks */}
         <section>
           <h3 style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: '#283618', marginBottom: 12 }}>Best Timing Now</h3>
