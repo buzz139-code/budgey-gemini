@@ -53,6 +53,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Vietnam": {
     id: 'VNM',
+    flag: '🇻🇳',
     name: 'Vietnam',
     region: 'South/Southeast Asia',
     avgHotelCost: 50,
@@ -127,6 +128,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Japan": {
     id: 'JPN',
+    flag: '🇯🇵',
     name: 'Japan',
     region: 'East Asia',
     avgHotelCost: 175,
@@ -151,6 +153,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Indonesia": {
     id: 'IDN',
+    flag: '🇮🇩',
     name: 'Indonesia',
     region: 'South/Southeast Asia',
     avgHotelCost: 75,
@@ -175,6 +178,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Turkey": {
     id: 'TUR',
+    flag: '🇹🇷',
     name: 'Turkey',
     region: 'Middle East',
     avgHotelCost: 80,
@@ -199,6 +203,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Colombia": {
     id: 'COL',
+    flag: '🇨🇴',
     name: 'Colombia',
     region: 'South America',
     avgHotelCost: 60,
@@ -223,6 +228,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Morocco": {
     id: 'MAR',
+    flag: '🇲🇦',
     name: 'Morocco',
     region: 'Africa',
     avgHotelCost: 75,
@@ -247,6 +253,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Spain": {
     id: 'ESP',
+    flag: '🇪🇸',
     name: 'Spain',
     region: 'Western Europe',
     avgHotelCost: 135,
@@ -271,6 +278,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Italy": {
     id: 'ITA',
+    flag: '🇮🇹',
     name: 'Italy',
     region: 'Western Europe',
     avgHotelCost: 150,
@@ -295,6 +303,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "France": {
     id: 'FRA',
+    flag: '🇫🇷',
     name: 'France',
     region: 'Western Europe',
     avgHotelCost: 175,
@@ -319,6 +328,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Egypt": {
     id: 'EGY',
+    flag: '🇪🇬',
     name: 'Egypt',
     region: 'Africa',
     avgHotelCost: 70,
@@ -343,6 +353,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "India": {
     id: 'IND',
+    flag: '🇮🇳',
     name: 'India',
     region: 'South/Southeast Asia',
     avgHotelCost: 55,
@@ -367,6 +378,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Brazil": {
     id: 'BRA',
+    flag: '🇧🇷',
     name: 'Brazil',
     region: 'South America',
     avgHotelCost: 90,
@@ -391,6 +403,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Argentina": {
     id: 'ARG',
+    flag: '🇦🇷',
     name: 'Argentina',
     region: 'South America',
     avgHotelCost: 80,
@@ -415,6 +428,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "South Africa": {
     id: 'ZAF',
+    flag: '🇿🇦',
     name: 'South Africa',
     region: 'Africa',
     avgHotelCost: 85,
@@ -439,6 +453,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Australia": {
     id: 'AUS',
+    flag: '🇦🇺',
     name: 'Australia',
     region: 'Oceania',
     avgHotelCost: 185,
@@ -463,6 +478,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "New Zealand": {
     id: 'NZL',
+    flag: '🇳🇿',
     name: 'New Zealand',
     region: 'Oceania',
     avgHotelCost: 160,
@@ -487,6 +503,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Singapore": {
     id: 'SGP',
+    flag: '🇸🇬',
     name: 'Singapore',
     region: 'South/Southeast Asia',
     avgHotelCost: 195,
@@ -511,6 +528,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Malaysia": {
     id: 'MYS',
+    flag: '🇲🇾',
     name: 'Malaysia',
     region: 'South/Southeast Asia',
     avgHotelCost: 65,
@@ -535,6 +553,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Philippines": {
     id: 'PHL',
+    flag: '🇵🇭',
     name: 'Philippines',
     region: 'South/Southeast Asia',
     avgHotelCost: 60,
@@ -559,6 +578,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "South Korea": {
     id: 'KOR',
+    flag: '🇰🇷',
     name: 'South Korea',
     region: 'East Asia',
     avgHotelCost: 130,
@@ -583,6 +603,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Taiwan": {
     id: 'TWN',
+    flag: '🇹🇼',
     name: 'Taiwan',
     region: 'East Asia',
     avgHotelCost: 110,
@@ -607,6 +628,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Cambodia": {
     id: 'KHM',
+    flag: '🇰🇭',
     name: 'Cambodia',
     region: 'South/Southeast Asia',
     avgHotelCost: 45,
@@ -631,6 +653,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Nepal": {
     id: 'NPL',
+    flag: '🇳🇵',
     name: 'Nepal',
     region: 'South/Southeast Asia',
     avgHotelCost: 40,
@@ -655,6 +678,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Sri Lanka": {
     id: 'LKA',
+    flag: '🇱🇰',
     name: 'Sri Lanka',
     region: 'South/Southeast Asia',
     avgHotelCost: 55,
@@ -679,6 +703,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Jordan": {
     id: 'JOR',
+    flag: '🇯🇴',
     name: 'Jordan',
     region: 'Middle East',
     avgHotelCost: 90,
@@ -703,6 +728,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Kenya": {
     id: 'KEN',
+    flag: '🇰🇪',
     name: 'Kenya',
     region: 'Africa',
     avgHotelCost: 95,
@@ -727,6 +753,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Tanzania": {
     id: 'TZA',
+    flag: '🇹🇿',
     name: 'Tanzania',
     region: 'Africa',
     avgHotelCost: 100,
@@ -751,6 +778,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Iceland": {
     id: 'ISL',
+    flag: '🇮🇸',
     name: 'Iceland',
     region: 'Western Europe',
     avgHotelCost: 200,
@@ -775,6 +803,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Norway": {
     id: 'NOR',
+    flag: '🇳🇴',
     name: 'Norway',
     region: 'Western Europe',
     avgHotelCost: 210,
@@ -799,6 +828,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Sweden": {
     id: 'SWE',
+    flag: '🇸🇪',
     name: 'Sweden',
     region: 'Western Europe',
     avgHotelCost: 180,
@@ -823,6 +853,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Peru": {
     id: 'PER',
+    flag: '🇵🇪',
     name: 'Peru',
     region: 'South America',
     avgHotelCost: 70,
@@ -847,6 +878,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Costa Rica": {
     id: 'CRI',
+    flag: '🇨🇷',
     name: 'Costa Rica',
     region: 'Central America',
     avgHotelCost: 95,
@@ -871,6 +903,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "United Arab Emirates": {
     id: 'ARE',
+    flag: '🇦🇪',
     name: 'United Arab Emirates',
     region: 'Middle East',
     avgHotelCost: 170,
@@ -895,6 +928,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Czechia": {
     id: 'CZE',
+    flag: '🇨🇿',
     name: 'Czechia',
     region: 'Eastern Europe',
     avgHotelCost: 100,
@@ -919,6 +953,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Hungary": {
     id: 'HUN',
+    flag: '🇭🇺',
     name: 'Hungary',
     region: 'Eastern Europe',
     avgHotelCost: 90,
@@ -943,6 +978,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Croatia": {
     id: 'HRV',
+    flag: '🇭🇷',
     name: 'Croatia',
     region: 'Eastern Europe',
     avgHotelCost: 130,
@@ -967,6 +1003,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Poland": {
     id: 'POL',
+    flag: '🇵🇱',
     name: 'Poland',
     region: 'Eastern Europe',
     avgHotelCost: 85,
@@ -991,6 +1028,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Austria": {
     id: 'AUT',
+    flag: '🇦🇹',
     name: 'Austria',
     region: 'Western Europe',
     avgHotelCost: 155,
@@ -1015,6 +1053,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Germany": {
     id: 'DEU',
+    flag: '🇩🇪',
     name: 'Germany',
     region: 'Western Europe',
     avgHotelCost: 145,
@@ -1039,6 +1078,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Netherlands": {
     id: 'NLD',
+    flag: '🇳🇱',
     name: 'Netherlands',
     region: 'Western Europe',
     avgHotelCost: 165,
@@ -1063,6 +1103,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Switzerland": {
     id: 'CHE',
+    flag: '🇨🇭',
     name: 'Switzerland',
     region: 'Western Europe',
     avgHotelCost: 240,
@@ -1087,6 +1128,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Chile": {
     id: 'CHL',
+    flag: '🇨🇱',
     name: 'Chile',
     region: 'South America',
     avgHotelCost: 95,
@@ -1111,6 +1153,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Ecuador": {
     id: 'ECU',
+    flag: '🇪🇨',
     name: 'Ecuador',
     region: 'South America',
     avgHotelCost: 60,
@@ -1135,6 +1178,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Panama": {
     id: 'PAN',
+    flag: '🇵🇦',
     name: 'Panama',
     region: 'Central America',
     avgHotelCost: 80,
@@ -1159,6 +1203,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Guatemala": {
     id: 'GTM',
+    flag: '🇬🇹',
     name: 'Guatemala',
     region: 'Central America',
     avgHotelCost: 50,
@@ -1183,6 +1228,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Cuba": {
     id: 'CUB',
+    flag: '🇨🇺',
     name: 'Cuba',
     region: 'North America / Caribbean',
     avgHotelCost: 70,
@@ -1207,6 +1253,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Jamaica": {
     id: 'JAM',
+    flag: '🇯🇲',
     name: 'Jamaica',
     region: 'North America / Caribbean',
     avgHotelCost: 100,
@@ -1231,6 +1278,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Dominican Republic": {
     id: 'DOM',
+    flag: '🇩🇴',
     name: 'Dominican Republic',
     region: 'North America / Caribbean',
     avgHotelCost: 85,
@@ -1255,6 +1303,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Georgia": {
     id: 'GEO',
+    flag: '🇬🇪',
     name: 'Georgia',
     region: 'Eastern Europe',
     avgHotelCost: 55,
@@ -1279,6 +1328,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Armenia": {
     id: 'ARM',
+    flag: '🇦🇲',
     name: 'Armenia',
     region: 'Eastern Europe',
     avgHotelCost: 50,
@@ -1303,6 +1353,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Montenegro": {
     id: 'MNE',
+    flag: '🇲🇪',
     name: 'Montenegro',
     region: 'Eastern Europe',
     avgHotelCost: 80,
@@ -1327,6 +1378,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Serbia": {
     id: 'SRB',
+    flag: '🇷🇸',
     name: 'Serbia',
     region: 'Eastern Europe',
     avgHotelCost: 70,
@@ -1351,6 +1403,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Albania": {
     id: 'ALB',
+    flag: '🇦🇱',
     name: 'Albania',
     region: 'Eastern Europe',
     avgHotelCost: 55,
@@ -1375,6 +1428,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Slovenia": {
     id: 'SVN',
+    flag: '🇸🇮',
     name: 'Slovenia',
     region: 'Eastern Europe',
     avgHotelCost: 110,
@@ -1399,6 +1453,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Estonia": {
     id: 'EST',
+    flag: '🇪🇪',
     name: 'Estonia',
     region: 'Eastern Europe',
     avgHotelCost: 100,
@@ -1423,6 +1478,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Latvia": {
     id: 'LVA',
+    flag: '🇱🇻',
     name: 'Latvia',
     region: 'Eastern Europe',
     avgHotelCost: 90,
@@ -1447,6 +1503,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Lithuania": {
     id: 'LTU',
+    flag: '🇱🇹',
     name: 'Lithuania',
     region: 'Eastern Europe',
     avgHotelCost: 85,
@@ -1471,6 +1528,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Bulgaria": {
     id: 'BGR',
+    flag: '🇧🇬',
     name: 'Bulgaria',
     region: 'Eastern Europe',
     avgHotelCost: 70,
@@ -1495,6 +1553,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Romania": {
     id: 'ROU',
+    flag: '🇷🇴',
     name: 'Romania',
     region: 'Eastern Europe',
     avgHotelCost: 75,
@@ -1519,6 +1578,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Slovakia": {
     id: 'SVK',
+    flag: '🇸🇰',
     name: 'Slovakia',
     region: 'Eastern Europe',
     avgHotelCost: 80,
@@ -1543,6 +1603,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Denmark": {
     id: 'DNK',
+    flag: '🇩🇰',
     name: 'Denmark',
     region: 'Western Europe',
     avgHotelCost: 190,
@@ -1567,6 +1628,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Finland": {
     id: 'FIN',
+    flag: '🇫🇮',
     name: 'Finland',
     region: 'Western Europe',
     avgHotelCost: 175,
@@ -1591,6 +1653,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Israel": {
     id: 'ISR',
+    flag: '🇮🇱',
     name: 'Israel',
     region: 'Middle East',
     avgHotelCost: 145,
@@ -1615,6 +1678,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Oman": {
     id: 'OMN',
+    flag: '🇴🇲',
     name: 'Oman',
     region: 'Middle East',
     avgHotelCost: 110,
@@ -1639,6 +1703,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Rwanda": {
     id: 'RWA',
+    flag: '🇷🇼',
     name: 'Rwanda',
     region: 'Africa',
     avgHotelCost: 80,
@@ -1663,6 +1728,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Mauritius": {
     id: 'MUS',
+    flag: '🇲🇺',
     name: 'Mauritius',
     region: 'Africa',
     avgHotelCost: 160,
@@ -1687,6 +1753,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Seychelles": {
     id: 'SYC',
+    flag: '🇸🇨',
     name: 'Seychelles',
     region: 'Africa',
     avgHotelCost: 280,
@@ -1711,6 +1778,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Bolivia": {
     id: 'BOL',
+    flag: '🇧🇴',
     name: 'Bolivia',
     region: 'South America',
     avgHotelCost: 45,
@@ -1735,6 +1803,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Uruguay": {
     id: 'URY',
+    flag: '🇺🇾',
     name: 'Uruguay',
     region: 'South America',
     avgHotelCost: 90,
@@ -1759,6 +1828,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Ghana": {
     id: 'GHA',
+    flag: '🇬🇭',
     name: 'Ghana',
     region: 'Africa',
     avgHotelCost: 65,
@@ -1783,6 +1853,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Senegal": {
     id: 'SEN',
+    flag: '🇸🇳',
     name: 'Senegal',
     region: 'Africa',
     avgHotelCost: 70,
@@ -1807,6 +1878,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Ethiopia": {
     id: 'ETH',
+    flag: '🇪🇹',
     name: 'Ethiopia',
     region: 'Africa',
     avgHotelCost: 55,
@@ -1831,6 +1903,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Nigeria": {
     id: 'NGA',
+    flag: '🇳🇬',
     name: 'Nigeria',
     region: 'Africa',
     avgHotelCost: 80,
@@ -1855,6 +1928,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Paraguay": {
     id: 'PRY',
+    flag: '🇵🇾',
     name: 'Paraguay',
     region: 'South America',
     avgHotelCost: 45,
@@ -1879,6 +1953,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Bahamas": {
     id: 'BHS',
+    flag: '🇧🇸',
     name: 'Bahamas',
     region: 'North America / Caribbean',
     avgHotelCost: 180,
@@ -1903,6 +1978,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Barbados": {
     id: 'BRB',
+    flag: '🇧🇧',
     name: 'Barbados',
     region: 'North America / Caribbean',
     avgHotelCost: 150,
@@ -1927,6 +2003,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Belize": {
     id: 'BLZ',
+    flag: '🇧🇿',
     name: 'Belize',
     region: 'Central America',
     avgHotelCost: 85,
@@ -1951,6 +2028,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Saudi Arabia": {
     id: 'SAU',
+    flag: '🇸🇦',
     name: 'Saudi Arabia',
     region: 'Middle East',
     avgHotelCost: 130,
@@ -1975,6 +2053,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Qatar": {
     id: 'QAT',
+    flag: '🇶🇦',
     name: 'Qatar',
     region: 'Middle East',
     avgHotelCost: 150,
@@ -1999,6 +2078,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Azerbaijan": {
     id: 'AZE',
+    flag: '🇦🇿',
     name: 'Azerbaijan',
     region: 'Eastern Europe',
     avgHotelCost: 65,
@@ -2023,6 +2103,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Laos": {
     id: 'LAO',
+    flag: '🇱🇦',
     name: 'Laos',
     region: 'South/Southeast Asia',
     avgHotelCost: 40,
@@ -2047,6 +2128,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Myanmar": {
     id: 'MMR',
+    flag: '🇲🇲',
     name: 'Myanmar',
     region: 'South/Southeast Asia',
     avgHotelCost: 50,
@@ -2071,6 +2153,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Lebanon": {
     id: 'LBN',
+    flag: '🇱🇧',
     name: 'Lebanon',
     region: 'Middle East',
     avgHotelCost: 75,
@@ -2095,6 +2178,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "Canada": {
     id: 'CAN',
+    flag: '🇨🇦',
     name: 'Canada',
     region: 'North America / Caribbean',
     avgHotelCost: 160,
@@ -2119,6 +2203,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "United States of America": {
     id: 'USA',
+    flag: '🇺🇸',
     name: 'United States of America',
     region: 'North America / Caribbean',
     avgHotelCost: 155,
@@ -2143,6 +2228,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
   },
   "United Kingdom": {
     id: 'GBR',
+    flag: '🇬🇧',
     name: 'United Kingdom',
     region: 'Western Europe',
     avgHotelCost: 170,
@@ -2212,8 +2298,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     advisoryLevel: 4,
     travelAdvisory: 'Avoid all travel due to the impacts of the armed conflict with Ukraine.',
     lat: 55.8,
-    lon: 37.6,
-    recommendedCities: ['Moscow', 'Saint Petersburg', 'Kazan', 'Sochi', 'Vladivostok']
+    lon: 37.6
   },
   "Belgium": {
     id: 'BEL',
@@ -2269,7 +2354,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     id: 'PAK',
     name: 'Pakistan',
     flag: '🇵🇰',
-    region: 'South Asia',
+    region: 'South/Southeast Asia',
     avgHotelCost: 45,
     peakAvgCost: 72,
     offSeasonAvgCost: 29,
@@ -2312,8 +2397,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     advisoryLevel: 4,
     travelAdvisory: 'Avoid all travel due to the risk of arbitrary detention.',
     lat: 35.7,
-    lon: 51.4,
-    recommendedCities: ['Tehran', 'Isfahan', 'Shiraz', 'Yazd', 'Tabriz']
+    lon: 51.4
   },
   "Namibia": {
     id: 'NAM',
@@ -2394,7 +2478,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     id: 'AFG',
     name: 'Afghanistan',
     flag: '🇦🇫',
-    region: 'South Asia',
+    region: 'South/Southeast Asia',
     avgHotelCost: 40,
     peakAvgCost: 64,
     offSeasonAvgCost: 26,
@@ -2412,14 +2496,13 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     advisoryLevel: 4,
     travelAdvisory: 'Do not travel due to the extremely volatile security situation.',
     lat: 34.5,
-    lon: 69.2,
-    recommendedCities: ['Kabul', 'Herat', 'Mazar-i-Sharif', 'Kandahar', 'Jalalabad']
+    lon: 69.2
   },
   "Algeria": {
     id: 'DZA',
     name: 'Algeria',
     flag: '🇩🇿',
-    region: 'North Africa',
+    region: 'Africa',
     avgHotelCost: 70,
     peakAvgCost: 112,
     offSeasonAvgCost: 46,
@@ -2469,7 +2552,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     id: 'AGO',
     name: 'Angola',
     flag: '🇦🇴',
-    region: 'Central Africa',
+    region: 'Africa',
     avgHotelCost: 110,
     peakAvgCost: 176,
     offSeasonAvgCost: 72,
@@ -2494,7 +2577,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     id: 'ATG',
     name: 'Antigua and Barbuda',
     flag: '🇦🇬',
-    region: 'Caribbean',
+    region: 'North America / Caribbean',
     avgHotelCost: 250,
     peakAvgCost: 400,
     offSeasonAvgCost: 163,
@@ -2544,7 +2627,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     id: 'BGD',
     name: 'Bangladesh',
     flag: '🇧🇩',
-    region: 'South Asia',
+    region: 'South/Southeast Asia',
     avgHotelCost: 50,
     peakAvgCost: 80,
     offSeasonAvgCost: 33,
@@ -2587,14 +2670,13 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     advisoryLevel: 4,
     travelAdvisory: 'Do not travel.',
     lat: 53.9,
-    lon: 27.6,
-    recommendedCities: ['Minsk', 'Brest', 'Grodno', 'Vitebsk', 'Gomel']
+    lon: 27.6
   },
   "Benin": {
     id: 'BEN',
     name: 'Benin',
     flag: '🇧🇯',
-    region: 'West Africa',
+    region: 'Africa',
     avgHotelCost: 65,
     peakAvgCost: 104,
     offSeasonAvgCost: 42,
@@ -2619,7 +2701,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     id: 'BTN',
     name: 'Bhutan',
     flag: '🇧🇹',
-    region: 'South Asia',
+    region: 'South/Southeast Asia',
     avgHotelCost: 150,
     peakAvgCost: 240,
     offSeasonAvgCost: 98,
@@ -2644,7 +2726,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     id: 'BIH',
     name: 'Bosnia and Herzegovina',
     flag: '🇧🇦',
-    region: 'Southern Europe',
+    region: 'Eastern Europe',
     avgHotelCost: 75,
     peakAvgCost: 120,
     offSeasonAvgCost: 49,
@@ -2669,7 +2751,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     id: 'BRN',
     name: 'Brunei',
     flag: '🇧🇳',
-    region: 'Southeast Asia',
+    region: 'South/Southeast Asia',
     avgHotelCost: 100,
     peakAvgCost: 160,
     offSeasonAvgCost: 65,
@@ -2694,7 +2776,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     id: 'BFA',
     name: 'Burkina Faso',
     flag: '🇧🇫',
-    region: 'West Africa',
+    region: 'Africa',
     avgHotelCost: 60,
     peakAvgCost: 96,
     offSeasonAvgCost: 39,
@@ -2712,14 +2794,13 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     advisoryLevel: 4,
     travelAdvisory: 'Do not travel.',
     lat: 12.4,
-    lon: -1.5,
-    recommendedCities: ['Ouagadougou', 'Bobo-Dioulasso', 'Koudougou', 'Banfora', 'Ouahigouya']
+    lon: -1.5
   },
   "Burundi": {
     id: 'BDI',
     name: 'Burundi',
     flag: '🇧🇮',
-    region: 'East Africa',
+    region: 'Africa',
     avgHotelCost: 55,
     peakAvgCost: 88,
     offSeasonAvgCost: 36,
@@ -2744,7 +2825,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     id: 'CPV',
     name: 'Cabo Verde',
     flag: '🇨🇻',
-    region: 'West Africa',
+    region: 'Africa',
     avgHotelCost: 90,
     peakAvgCost: 144,
     offSeasonAvgCost: 59,
@@ -2769,7 +2850,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     id: 'CMR',
     name: 'Cameroon',
     flag: '🇨🇲',
-    region: 'Central Africa',
+    region: 'Africa',
     avgHotelCost: 75,
     peakAvgCost: 120,
     offSeasonAvgCost: 49,
@@ -2794,7 +2875,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     id: 'CAF',
     name: 'Central African Republic',
     flag: '🇨🇫',
-    region: 'Central Africa',
+    region: 'Africa',
     avgHotelCost: 80,
     peakAvgCost: 128,
     offSeasonAvgCost: 52,
@@ -2812,14 +2893,13 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     advisoryLevel: 4,
     travelAdvisory: 'Do not travel.',
     lat: 4.4,
-    lon: 18.6,
-    recommendedCities: ['Bangui', 'Berberati', 'Bimbo', 'Carnot', 'Bambari']
+    lon: 18.6
   },
   "Chad": {
     id: 'TCD',
     name: 'Chad',
     flag: '🇹🇩',
-    region: 'Central Africa',
+    region: 'Africa',
     avgHotelCost: 90,
     peakAvgCost: 144,
     offSeasonAvgCost: 59,
@@ -2837,14 +2917,13 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     advisoryLevel: 4,
     travelAdvisory: 'Do not travel.',
     lat: 12.1,
-    lon: 15.0,
-    recommendedCities: ['N\'Djamena', 'Moundou', 'Sarh', 'Abeche', 'Faya-Largeau']
+    lon: 15.0
   },
   "Comoros": {
     id: 'COM',
     name: 'Comoros',
     flag: '🇰🇲',
-    region: 'East Africa',
+    region: 'Africa',
     avgHotelCost: 85,
     peakAvgCost: 136,
     offSeasonAvgCost: 55,
@@ -2869,7 +2948,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     id: 'COG',
     name: 'Congo (Republic of the)',
     flag: '🇨🇬',
-    region: 'Central Africa',
+    region: 'Africa',
     avgHotelCost: 100,
     peakAvgCost: 160,
     offSeasonAvgCost: 65,
@@ -2894,7 +2973,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     id: 'COD',
     name: 'Congo (Democratic Republic of the)',
     flag: '🇨🇩',
-    region: 'Central Africa',
+    region: 'Africa',
     avgHotelCost: 110,
     peakAvgCost: 176,
     offSeasonAvgCost: 72,
@@ -2912,14 +2991,13 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     advisoryLevel: 4,
     travelAdvisory: 'Do not travel.',
     lat: -4.3,
-    lon: 15.3,
-    recommendedCities: ['Kinshasa', 'Lubumbashi', 'Goma', 'Kisangani', 'Bukavu']
+    lon: 15.3
   },
   "Côte d'Ivoire": {
     id: 'CIV',
     name: 'Côte d\'Ivoire',
     flag: '🇨🇮',
-    region: 'West Africa',
+    region: 'Africa',
     avgHotelCost: 95,
     peakAvgCost: 152,
     offSeasonAvgCost: 62,
@@ -2944,7 +3022,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     id: 'DJI',
     name: 'Djibouti',
     flag: '🇩🇯',
-    region: 'East Africa',
+    region: 'Africa',
     avgHotelCost: 120,
     peakAvgCost: 192,
     offSeasonAvgCost: 78,
@@ -2969,7 +3047,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     id: 'DMA',
     name: 'Dominica',
     flag: '🇩🇲',
-    region: 'Caribbean',
+    region: 'North America / Caribbean',
     avgHotelCost: 180,
     peakAvgCost: 288,
     offSeasonAvgCost: 117,
@@ -2994,7 +3072,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     id: 'GNQ',
     name: 'Equatorial Guinea',
     flag: '🇬🇶',
-    region: 'Central Africa',
+    region: 'Africa',
     avgHotelCost: 150,
     peakAvgCost: 240,
     offSeasonAvgCost: 98,
@@ -3019,7 +3097,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     id: 'ERI',
     name: 'Eritrea',
     flag: '🇪🇷',
-    region: 'East Africa',
+    region: 'Africa',
     avgHotelCost: 80,
     peakAvgCost: 128,
     offSeasonAvgCost: 52,
@@ -3037,14 +3115,13 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     advisoryLevel: 4,
     travelAdvisory: 'Do not travel.',
     lat: 15.3,
-    lon: 38.9,
-    recommendedCities: ['Asmara', 'Massawa', 'Keren', 'Assab', 'Mendefera']
+    lon: 38.9
   },
   "Eswatini": {
     id: 'SWZ',
     name: 'Eswatini',
     flag: '🇸🇿',
-    region: 'Southern Africa',
+    region: 'Africa',
     avgHotelCost: 85,
     peakAvgCost: 136,
     offSeasonAvgCost: 55,
@@ -3087,14 +3164,13 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     advisoryLevel: 4,
     travelAdvisory: 'Do not travel.',
     lat: 39.0,
-    lon: 125.7,
-    recommendedCities: ['Pyongyang', 'Kaesong', 'Wonsan', 'Nampo', 'Hamhung']
+    lon: 125.7
   },
   "Gabon": {
     id: 'GAB',
     name: 'Gabon',
     flag: '🇬🇦',
-    region: 'Central Africa',
+    region: 'Africa',
     avgHotelCost: 110,
     peakAvgCost: 176,
     offSeasonAvgCost: 72,
@@ -3119,7 +3195,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     id: 'GMB',
     name: 'Gambia',
     flag: '🇬🇲',
-    region: 'West Africa',
+    region: 'Africa',
     avgHotelCost: 60,
     peakAvgCost: 96,
     offSeasonAvgCost: 39,
@@ -3144,7 +3220,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     id: 'GIN',
     name: 'Guinea',
     flag: '🇬🇳',
-    region: 'West Africa',
+    region: 'Africa',
     avgHotelCost: 70,
     peakAvgCost: 112,
     offSeasonAvgCost: 46,
@@ -3169,7 +3245,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     id: 'GNB',
     name: 'Guinea-Bissau',
     flag: '🇬🇼',
-    region: 'West Africa',
+    region: 'Africa',
     avgHotelCost: 65,
     peakAvgCost: 104,
     offSeasonAvgCost: 42,
@@ -3219,7 +3295,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     id: 'KGZ',
     name: 'Kyrgyzstan',
     flag: '🇰🇬',
-    region: 'Central Asia',
+    region: 'Middle East',
     avgHotelCost: 50,
     peakAvgCost: 80,
     offSeasonAvgCost: 33,
@@ -3244,7 +3320,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     id: 'LSO',
     name: 'Lesotho',
     flag: '🇱🇸',
-    region: 'Southern Africa',
+    region: 'Africa',
     avgHotelCost: 70,
     peakAvgCost: 112,
     offSeasonAvgCost: 46,
@@ -3269,7 +3345,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     id: 'LBR',
     name: 'Liberia',
     flag: '🇱🇷',
-    region: 'West Africa',
+    region: 'Africa',
     avgHotelCost: 100,
     peakAvgCost: 160,
     offSeasonAvgCost: 65,
@@ -3294,7 +3370,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     id: 'LBY',
     name: 'Libya',
     flag: '🇱🇾',
-    region: 'North Africa',
+    region: 'Africa',
     avgHotelCost: 80,
     peakAvgCost: 128,
     offSeasonAvgCost: 52,
@@ -3312,8 +3388,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     advisoryLevel: 4,
     travelAdvisory: 'Do not travel.',
     lat: 32.9,
-    lon: 13.2,
-    recommendedCities: ['Tripoli', 'Benghazi', 'Misrata', 'Bayda', 'Zawiya']
+    lon: 13.2
   },
   "Liechtenstein": {
     id: 'LIE',
@@ -3369,7 +3444,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     id: 'MDG',
     name: 'Madagascar',
     flag: '🇲🇬',
-    region: 'East Africa',
+    region: 'Africa',
     avgHotelCost: 60,
     peakAvgCost: 96,
     offSeasonAvgCost: 39,
@@ -3394,7 +3469,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     id: 'MWI',
     name: 'Malawi',
     flag: '🇲🇼',
-    region: 'East Africa',
+    region: 'Africa',
     avgHotelCost: 75,
     peakAvgCost: 120,
     offSeasonAvgCost: 49,
@@ -3419,7 +3494,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     id: 'MLI',
     name: 'Mali',
     flag: '🇲🇱',
-    region: 'West Africa',
+    region: 'Africa',
     avgHotelCost: 70,
     peakAvgCost: 112,
     offSeasonAvgCost: 46,
@@ -3437,8 +3512,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     advisoryLevel: 4,
     travelAdvisory: 'Do not travel.',
     lat: 12.6,
-    lon: -8.0,
-    recommendedCities: ['Bamako', 'Sikasso', 'Mopti', 'Koutiala', 'Kayes']
+    lon: -8.0
   },
   "Marshall Islands": {
     id: 'MHL',
@@ -3469,7 +3543,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     id: 'MRT',
     name: 'Mauritania',
     flag: '🇲🇷',
-    region: 'West Africa',
+    region: 'Africa',
     avgHotelCost: 80,
     peakAvgCost: 128,
     offSeasonAvgCost: 52,
@@ -3519,7 +3593,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     id: 'MOZ',
     name: 'Mozambique',
     flag: '🇲🇿',
-    region: 'East Africa',
+    region: 'Africa',
     avgHotelCost: 90,
     peakAvgCost: 144,
     offSeasonAvgCost: 59,
@@ -3569,7 +3643,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     id: 'NER',
     name: 'Niger',
     flag: '🇳🇪',
-    region: 'West Africa',
+    region: 'Africa',
     avgHotelCost: 75,
     peakAvgCost: 120,
     offSeasonAvgCost: 49,
@@ -3587,8 +3661,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     advisoryLevel: 4,
     travelAdvisory: 'Do not travel.',
     lat: 13.5,
-    lon: 2.1,
-    recommendedCities: ['Niamey', 'Zinder', 'Maradi', 'Agadez', 'Tahoua']
+    lon: 2.1
   },
   "Palau": {
     id: 'PLW',

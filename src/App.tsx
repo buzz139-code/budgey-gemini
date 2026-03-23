@@ -95,6 +95,7 @@ export default function App() {
     return Object.values(COUNTRIES_DATA)
       .filter(c => {
         if (searchQuery && !c.name.toLowerCase().includes(searchQuery.toLowerCase())) return false;
+        if (c.advisoryLevel === 4) return false;
         return true;
       })
       .sort((a, b) => getTimingScore(b, tripParams.months).discount - getTimingScore(a, tripParams.months).discount);
@@ -104,6 +105,7 @@ export default function App() {
     return Object.values(COUNTRIES_DATA)
       .filter(c => {
         if (searchQuery && !c.name.toLowerCase().includes(searchQuery.toLowerCase())) return false;
+        if (c.advisoryLevel === 4) return false; // exclude Do Not Travel countries
         const score = getTimingScore(c, tripParams.months);
         return !score.isPeak;
       })
