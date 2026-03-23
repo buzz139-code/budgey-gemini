@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { X, Minus, Plus, Plane, Heart, Shield, Cloud, Train, Info } from 'lucide-react';
 import { type CountryData, type TripParams, type ExchangeRates, type TripEstimate } from '../types';
 import { fetchRestCountryMeta } from '../services/currencyService';
+import { SavingsCalendar } from './SavingsCalendar';
 
 interface BottomSheetProps {
   country: CountryData;
@@ -48,14 +49,6 @@ export default function BottomSheet({
     onTripParamsChange({ ...tripParams, [key]: value });
   };
 
-  const openGoogleFlights = () => {
-    const monthsStr = tripParams.months.map(m => MONTHS[m]).join('+');
-    const url = `https://www.google.com/search?q=flights+to+${encodeURIComponent(country.name)}+in+${encodeURIComponent(monthsStr)}`;
-    window.open(url, '_blank');
-  };
-
-  const calendarMonths = Array.from({ length: 12 }, (_, i) => i + 1);
-
   return (
     <motion.div
       initial={isDesktop ? { x: '100%' } : { y: '100%' }}
@@ -64,8 +57,8 @@ export default function BottomSheet({
       transition={{ type: 'spring', damping: 25, stiffness: 200 }}
       style={{
         position: 'fixed',
-        right: isDesktop ? 0 : 0,
-        bottom: isDesktop ? 0 : 0,
+        right: 0,
+        bottom: 0,
         width: isDesktop ? 420 : '100%',
         height: isDesktop ? '100%' : '85vh',
         background: '#fff',
@@ -85,86 +78,68 @@ export default function BottomSheet({
         </div>
       )}
 
-      {/* Close Button */}
-      <button 
-        onClick={onClose}
-        style={{ position: 'absolute', top: 16, right: 16, width: 32, height: 32, borderRadius: '50%', background: 'rgba(0,0,0,0.05)', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', zIndex: 10 }}
-      >
-        <X size={18} color="#283618" />
-      </button>
+      {/* Sticky Header */}
+      <div style={{ padding: '20px 24px', borderBottom: '1px solid rgba(0,0,0,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#fff', zIndex: 10 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          <span style={{ fontSize: 32 }}>{meta?.flag || country.flag || '📍'}</span>
+          <div>
+            <h2 style={{ fontSize: 20, fontWeight: 800, color: '#283618', margin: 0 }}>{country.name}</h2>
+            <div style={{ fontSize: 11, color: 'rgba(40,54,24,0.5)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{country.region}</div>
+          </div>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <button 
+            onClick={() => onCompare(country)}
+            style={{ width: 36, height: 36, borderRadius: '50%', background: isInCompare ? '#fefae0' : 'rgba(0,0,0,0.05)', border: isInCompare ? '1px solid #dda15e' : 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
+          >
+            <Heart size={18} fill={isInCompare ? '#bc6c25' : 'none'} color={isInCompare ? '#bc6c25' : '#283618'} />
+          </button>
+          <button 
+            onClick={onClose}
+            style={{ width: 36, height: 36, borderRadius: '50%', background: 'rgba(0,0,0,0.05)', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
+          >
+            <X size={20} color="#283618" />
+          </button>
+        </div>
+      </div>
 
       <div style={{ flex: 1, overflowY: 'auto', padding: '24px 24px 40px' }}>
-        {/* Header */}
-        <div style={{ marginBottom: 24 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 4 }}>
-            <span style={{ fontSize: 32 }}>{meta?.flag || country.flag || '📍'}</span>
-            <h2 style={{ fontSize: 24, fontWeight: 800, color: '#283618', margin: 0 }}>{country.name}</h2>
-          </div>
-          {meta?.capital && (
-            <div style={{ fontSize: 14, color: 'rgba(40,54,24,0.6)', fontWeight: 500 }}>Capital: {meta.capital}</div>
-          )}
-        </div>
-
-        {/* Timing Hero */}
-        <div style={{ background: '#283618', padding: 20, borderRadius: 20, color: '#fff', marginBottom: 24 }}>
-          <div style={{ fontSize: 13, fontWeight: 700, color: '#dda15e', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 8 }}>
-            {timing.label}
-          </div>
-          <div style={{ fontSize: 32, fontWeight: 800, marginBottom: 16 }}>
-            {formatCurrency(estimate.total, baseCurrency)}
-            <span style={{ fontSize: 14, fontWeight: 400, opacity: 0.7, marginLeft: 8 }}>total est.</span>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: 16 }}>
-            <div>
-              <div style={{ fontSize: 11, opacity: 0.6, textTransform: 'uppercase', marginBottom: 2 }}>Per person</div>
-              <div style={{ fontSize: 16, fontWeight: 700 }}>{formatCurrency(estimate.perPerson, baseCurrency)}</div>
+        {/* Timing Hero Card */}
+        {(() => {
+          const score = getTimingScore(country, tripParams.months);
+          const isGood = score.isOffSeason || (score.isShoulder && score.discount > 10);
+          return (
+            <div style={{ background: '#283618', borderRadius: 16, padding: '16px 20px', margin: '0 0 20px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
+                <div style={{ width: 7, height: 7, borderRadius: '50%', background: isGood ? '#a8d5a2' : 'rgba(240,200,152,0.4)' }} />
+                <span style={{ fontSize: 10, fontWeight: 700, color: isGood ? '#a8d5a2' : 'rgba(240,200,152,0.5)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                  {isGood ? `Good timing · ${score.label}` : `Peak season · higher prices`}
+                </span>
+              </div>
+              <div style={{ fontSize: 28, fontWeight: 700, color: '#f0c898', letterSpacing: '-0.02em', marginBottom: 4 }}>
+                {formatCurrency(estimate.total, baseCurrency)}
+              </div>
+              <div style={{ display: 'flex', gap: 16 }}>
+                <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)' }}>{formatCurrency(estimate.perPerson, baseCurrency)} per person</span>
+                <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)' }}>{formatCurrency(estimate.perDayExFlights, baseCurrency)}/day excl. flights</span>
+              </div>
             </div>
-            <div>
-              <div style={{ fontSize: 11, opacity: 0.6, textTransform: 'uppercase', marginBottom: 2 }}>Daily ex-flights</div>
-              <div style={{ fontSize: 16, fontWeight: 700 }}>{formatCurrency(estimate.perDayExFlights, baseCurrency)}</div>
-            </div>
-          </div>
-        </div>
+          );
+        })()}
 
         {/* Savings Calendar */}
-        <div style={{ marginBottom: 32 }}>
-          <h3 style={{ fontSize: 14, fontWeight: 700, color: '#283618', marginBottom: 12 }}>Savings Calendar</h3>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: 6 }}>
-            {calendarMonths.map(m => {
-              const isCheapest = country.cheapestMonths?.includes(m);
-              const isOff = country.offSeasonMonths?.includes(m);
-              const isPeak = country.peakSeasonMonths?.includes(m);
-              const isSelected = tripParams.months.includes(m - 1);
-              
-              let bg = '#fff';
-              let color = '#283618';
-              if (isCheapest) { bg = '#3B6D11'; color = '#fff'; }
-              else if (isOff) { bg = '#606c38'; color = '#fff'; }
-              else if (isPeak) { bg = '#dda15e'; color = '#fff'; }
-
-              return (
-                <div 
-                  key={m} 
-                  style={{ 
-                    aspectRatio: '1', 
-                    background: bg, 
-                    color: color, 
-                    borderRadius: 8, 
-                    display: 'flex', 
-                    flexDirection: 'column', 
-                    alignItems: 'center', 
-                    justifyContent: 'center', 
-                    fontSize: 10, 
-                    fontWeight: 700,
-                    border: isSelected ? '2px solid #bc6c25' : '1px solid rgba(0,0,0,0.05)',
-                    boxShadow: isSelected ? '0 0 0 2px #fff inset' : 'none'
-                  }}
-                >
-                  {MONTHS[m-1].substring(0, 3)}
-                </div>
-              );
-            })}
-          </div>
+        <div style={{ marginBottom: 20 }}>
+          <div style={{ fontSize: 10, fontWeight: 700, color: 'rgba(40,54,24,0.4)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 10 }}>Savings Calendar</div>
+          <SavingsCalendar
+            country={country}
+            selectedMonths={tripParams.months}
+            onMonthToggle={(month) => {
+              const newMonths = tripParams.months.includes(month)
+                ? tripParams.months.length > 1 ? tripParams.months.filter(m => m !== month) : tripParams.months
+                : [...tripParams.months, month].sort((a, b) => a - b);
+              onTripParamsChange({ ...tripParams, months: newMonths });
+            }}
+          />
         </div>
 
         {/* Stat Row */}
@@ -290,23 +265,15 @@ export default function BottomSheet({
           </div>
         )}
 
-        {/* Action Buttons */}
-        <div style={{ display: 'flex', gap: 12 }}>
-          <button 
-            onClick={openGoogleFlights}
-            style={{ flex: 2, height: 52, borderRadius: 16, background: '#283618', color: '#fff', border: 'none', fontSize: 15, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, cursor: 'pointer' }}
-          >
-            <Plane size={20} />
-            Find flights
-          </button>
-          <button 
-            onClick={() => onCompare(country)}
-            style={{ flex: 1, height: 52, borderRadius: 16, background: isInCompare ? '#fefae0' : '#fff', color: '#283618', border: '2px solid #283618', fontSize: 15, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, cursor: 'pointer' }}
-          >
-            <Heart size={20} fill={isInCompare ? '#bc6c25' : 'none'} color={isInCompare ? '#bc6c25' : '#283618'} />
-            {isInCompare ? 'Added' : 'Compare'}
-          </button>
-        </div>
+        {/* Find Flights Button */}
+        <button
+          onClick={() => {
+            window.open(`https://www.google.com/travel/flights/search?q=flights+to+${encodeURIComponent(country.name)}`, '_blank');
+          }}
+          style={{ width: '100%', padding: '14px 0', background: '#bc6c25', color: '#fff', border: 'none', borderRadius: 14, fontSize: 14, fontWeight: 700, cursor: 'pointer', marginTop: 24 }}
+        >
+          Find flights to {country.name}
+        </button>
       </div>
     </motion.div>
   );

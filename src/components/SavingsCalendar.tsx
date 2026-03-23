@@ -1,12 +1,6 @@
 import React from 'react';
 import { CountryData } from '../types';
 import { getMonthName } from '../utils/timing';
-import { clsx, type ClassValue } from 'clsx';
-import { twMerge } from 'tailwind-merge';
-
-function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
 
 interface SavingsCalendarProps {
   country: CountryData;
@@ -22,39 +16,70 @@ export const SavingsCalendar: React.FC<SavingsCalendarProps> = ({
   const months = Array.from({ length: 12 }, (_, i) => i + 1);
 
   return (
-    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: 8 }}>
       {months.map((month) => {
         const isCheapest = country.cheapestMonths?.includes(month);
         const isOffSeason = country.offSeasonMonths?.includes(month);
         const isPeak = country.peakSeasonMonths?.includes(month);
-        const isSelected = selectedMonths.includes(month);
+        const isSelected = selectedMonths.includes(month - 1); // months in tripParams are 0-indexed
+
+        let bgColor = '#fff';
+        let textColor = '#1a1a1a';
+        let borderColor = 'rgba(0,0,0,0.05)';
+
+        if (isSelected) {
+          bgColor = '#606c38';
+          textColor = '#fff';
+          borderColor = '#606c38';
+        }
 
         return (
           <button
             key={month}
-            onClick={() => onMonthToggle(month)}
-            className={cn(
-              "relative group p-4 rounded-2xl border transition-all duration-300 flex flex-col items-center gap-1",
-              isSelected 
-                ? "bg-emerald-500 border-emerald-500 text-white shadow-lg shadow-emerald-500/20" 
-                : "bg-white border-black/5 hover:border-zinc-300 text-zinc-900"
-            )}
+            onClick={() => onMonthToggle(month - 1)}
+            style={{
+              position: 'relative',
+              padding: '12px 4px',
+              borderRadius: 12,
+              border: `1px solid ${borderColor}`,
+              background: bgColor,
+              color: textColor,
+              transition: 'all 0.2s',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: 4,
+              cursor: 'pointer',
+              outline: 'none'
+            }}
           >
-            <span className="text-xs font-bold uppercase tracking-wider opacity-60">
-              {getMonthName(month)}
+            <span style={{ fontSize: 9, fontWeight: 800, uppercase: 'true', letterSpacing: '0.05em', opacity: isSelected ? 0.8 : 0.5 } as any}>
+              {getMonthName(month - 1).substring(0, 3)}
             </span>
             
-            <div className="flex gap-1 mt-1">
+            <div style={{ display: 'flex', gap: 2 }}>
               {isCheapest && (
-                <div className={cn("w-1.5 h-1.5 rounded-full", isSelected ? "bg-white" : "bg-emerald-500")} />
+                <div style={{ width: 4, height: 4, borderRadius: '50%', background: isSelected ? '#fff' : '#606c38' }} />
               )}
               {isPeak && (
-                <div className={cn("w-1.5 h-1.5 rounded-full", isSelected ? "bg-white" : "bg-rose-400")} />
+                <div style={{ width: 4, height: 4, borderRadius: '50%', background: isSelected ? '#fff' : '#bc6c25' }} />
               )}
             </div>
 
             {isCheapest && !isSelected && (
-              <span className="absolute -top-2 -right-2 bg-emerald-100 text-emerald-700 text-[8px] font-black px-1.5 py-0.5 rounded-full border border-emerald-200">
+              <span style={{ 
+                position: 'absolute', 
+                top: -6, 
+                right: -4, 
+                background: '#fefae0', 
+                color: '#bc6c25', 
+                fontSize: 8, 
+                fontWeight: 900, 
+                padding: '2px 4px', 
+                borderRadius: 4, 
+                border: '1px solid #dda15e',
+                boxShadow: '0 2px 4px rgba(188,108,37,0.1)'
+              }}>
                 SAVE
               </span>
             )}

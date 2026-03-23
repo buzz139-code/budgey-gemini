@@ -1,5 +1,7 @@
 import { type CountryData, type TimingScore } from '../types';
 
+export const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
 export function getTimingScore(country: CountryData, selectedMonths: number[]): TimingScore {
   const peak = country.peakAvgCost;
   const off = country.offSeasonAvgCost;

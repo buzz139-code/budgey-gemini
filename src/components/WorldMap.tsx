@@ -241,15 +241,28 @@ export default function WorldMap({
 
       {/* Destination Count Badge */}
       <div style={{ position: 'absolute', top: 24, left: '50%', transform: 'translateX(-50%)', display: 'flex', alignItems: 'center', gap: 8, background: '#fff', padding: '8px 16px', borderRadius: 100, boxShadow: '0 4px 12px rgba(40,54,24,0.1)', border: '1px solid rgba(0,0,0,0.06)', zIndex: 20 }}>
-        <motion.div 
-          animate={{ scale: [1, 1.5, 1], opacity: [1, 0.5, 1] }}
-          transition={{ repeat: Infinity, duration: 2 }}
-          style={{ width: 8, height: 8, borderRadius: '50%', background: '#606c38' }} 
-        />
+        {countries.length > 0 && (
+          <motion.div 
+            animate={{ scale: [1, 1.5, 1], opacity: [1, 0.5, 1] }}
+            transition={{ repeat: Infinity, duration: 2 }}
+            style={{ width: 8, height: 8, borderRadius: '50%', background: '#606c38' }} 
+          />
+        )}
         <span style={{ fontSize: 12, fontWeight: 700, color: '#283618' }}>
-          {countries.length} destinations match your months
+          {countries.length === 0 ? 'No destinations match your filters' : `${countries.length} destinations match your months`}
         </span>
       </div>
+
+      {/* Empty State Overlay */}
+      {countries.length === 0 && !loading && (
+        <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(254,250,224,0.4)', zIndex: 15, pointerEvents: 'none' }}>
+          <div style={{ background: '#fff', padding: '24px 32px', borderRadius: 24, boxShadow: '0 20px 40px rgba(40,54,24,0.1)', border: '1px solid rgba(0,0,0,0.05)', textAlign: 'center', maxWidth: 300, pointerEvents: 'auto' }}>
+            <div style={{ fontSize: 40, marginBottom: 16 }}>🏜️</div>
+            <h3 style={{ fontSize: 18, fontWeight: 800, color: '#283618', marginBottom: 8 }}>No matches found</h3>
+            <p style={{ fontSize: 14, color: 'rgba(40,54,24,0.6)', lineHeight: 1.5 }}>Try increasing your budget or selecting different months to see more destinations.</p>
+          </div>
+        </div>
+      )}
 
       {/* Map Legend */}
       <div style={{ position: 'absolute', bottom: 24, right: 24, background: '#fff', padding: 12, borderRadius: 12, boxShadow: '0 4px 12px rgba(40,54,24,0.1)', border: '1px solid rgba(0,0,0,0.06)', zIndex: 20 }}>
