@@ -149,10 +149,11 @@ export default function BottomSheet({
             country={country}
             selectedMonths={tripParams.months}
             onMonthToggle={(month) => {
-              const zeroIndexed = month - 1;
-              const newMonths = tripParams.months.includes(zeroIndexed)
-                ? tripParams.months.length > 1 ? tripParams.months.filter(m => m !== zeroIndexed) : tripParams.months
-                : [...tripParams.months, zeroIndexed].sort((a, b) => a - b);
+              const newMonths = tripParams.months.includes(month)
+                ? tripParams.months.length > 1
+                  ? tripParams.months.filter(m => m !== month)
+                  : tripParams.months
+                : [...tripParams.months, month].sort((a, b) => a - b);
               onTripParamsChange({ ...tripParams, months: newMonths });
             }}
           />

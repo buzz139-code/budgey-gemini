@@ -36,5 +36,5 @@ export const TIMING_FILLS: Record<TimingScore['colour'], string> = {
 };
 
 export function getMonthName(month: number): string {
-  return new Date(2024, month - 1).toLocaleString('default', { month: 'short' });
+  return new Date(2024, month).toLocaleString('default', { month: 'short' });
 }
