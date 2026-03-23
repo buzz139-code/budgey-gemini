@@ -1,49 +1,64 @@
-import { ExchangeRates } from '../types';
-
+const FRANKFURTER_API = 'https://api.frankfurter.app/latest';
+const EXCHANGERATE_API = 'https://api.exchangerate-api.com/v4/latest';
 const CACHE_KEY = 'budgey_exchange_rates';
-const CACHE_DURATION = 24 * 60 * 60 * 1000; // 24 hours
+const CACHE_TTL = 60 * 60 * 1000;
 
-export const fetchExchangeRates = async (): Promise<ExchangeRates> => {
-  const cached = localStorage.getItem(CACHE_KEY);
+import { type ExchangeRates } from '../types';
+
+export async function fetchExchangeRates(base: string = 'CAD'): Promise<ExchangeRates | null> {
+  const cacheKey = `${CACHE_KEY}_${base}`;
+  const cached = localStorage.getItem(cacheKey);
   if (cached) {
-    const parsed = JSON.parse(cached) as ExchangeRates;
-    if (Date.now() - parsed.timestamp < CACHE_DURATION) {
-      return parsed;
-    }
+    const parsed: ExchangeRates = JSON.parse(cached);
+    if (Date.now() - parsed.timestamp < CACHE_TTL) return parsed;
   }
-
   try {
-    // Using a free API for exchange rates. 
-    // Note: In a real app, you'd use a paid API with an API key.
-    const response = await fetch('https://open.er-api.com/v6/latest/USD');
-    const data = await response.json();
-    
-    const rates: ExchangeRates = {
-      base: data.base_code,
-      date: data.time_last_update_utc,
-      rates: data.rates,
-      timestamp: Date.now()
-    };
-
-    localStorage.setItem(CACHE_KEY, JSON.stringify(rates));
-    return rates;
-  } catch (error) {
-    console.error('Failed to fetch exchange rates:', error);
-    // Fallback rates if API fails
-    return {
-      base: 'USD',
-      date: new Date().toISOString(),
-      rates: { 'CAD': 1.35, 'EUR': 0.92, 'GBP': 0.79, 'JPY': 150, 'THB': 35 },
-      timestamp: Date.now()
-    };
+    const res = await fetch(`${FRANKFURTER_API}?from=${base}`);
+    let data: ExchangeRates | null = null;
+    if (res.ok) {
+      const json = await res.json();
+      data = { base: json.base, date: json.date, rates: { ...json.rates, [base]: 1 }, timestamp: Date.now() };
+    }
+    try {
+      const fb = await fetch(`${EXCHANGERATE_API}/${base}`);
+      if (fb.ok) {
+        const fj = await fb.json();
+        if (!data) data = { base: fj.base, date: fj.date, rates: fj.rates, timestamp: Date.now() };
+        else data.rates = { ...fj.rates, ...data.rates };
+      }
+    } catch {}
+    if (data) { localStorage.setItem(cacheKey, JSON.stringify(data)); return data; }
+    throw new Error('All APIs failed');
+  } catch {
+    if (cached) return JSON.parse(cached);
+    return null;
   }
-};
+}
 
-export const convertCurrency = (amount: number, from: string, to: string, rates: Record<string, number>): number => {
+export function formatCurrency(amount: number, currency: string): string {
+  try {
+    return new Intl.NumberFormat('en-CA', { style: 'currency', currency, maximumFractionDigits: 0 }).format(amount);
+  } catch {
+    return `${currency} ${Math.round(amount)}`;
+  }
+}
+
+export async function fetchRestCountryMeta(countryName: string): Promise<{ flag: string; capital: string } | null> {
+  const key = `budgey_rcmeta_${countryName}`;
+  const cached = localStorage.getItem(key);
+  if (cached) return JSON.parse(cached);
+  try {
+    const res = await fetch(`https://restcountries.com/v3.1/name/${encodeURIComponent(countryName)}?fullText=true&fields=flag,capital`);
+    if (!res.ok) return null;
+    const data = await res.json();
+    const result = { flag: data[0]?.flag || '', capital: data[0]?.capital?.[0] || '' };
+    localStorage.setItem(key, JSON.stringify(result));
+    return result;
+  } catch { return null; }
+}
+
+export function convertCurrency(amount: number, from: string, to: string, rates: Record<string, number>): number {
   if (from === to) return amount;
-  
-  // Convert to USD first (base)
-  const inUSD = from === 'USD' ? amount : amount / rates[from];
-  // Convert from USD to target
-  return to === 'USD' ? inUSD : inUSD * rates[to];
-};
+  const inBase = from === 'USD' ? amount / (rates['USD'] || 1) : amount / rates[from];
+  return to === 'USD' ? inBase * (rates['USD'] || 1) : inBase * rates[to];
+}

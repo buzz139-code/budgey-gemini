@@ -25,12 +25,12 @@ export const TripEstimator: React.FC<TripEstimatorProps> = ({ estimate, timing }
             {timing.discount > 0 ? (
               <div className="flex items-center gap-1.5 text-emerald-400 bg-emerald-400/10 px-3 py-1 rounded-full border border-emerald-400/20">
                 <TrendingDown className="w-3.5 h-3.5" />
-                <span className="text-xs font-bold">-{Math.round(timing.discount * 100)}% Saved</span>
+                <span className="text-xs font-bold">-{Math.round(timing.discount)}% Saved</span>
               </div>
             ) : timing.discount < 0 ? (
               <div className="flex items-center gap-1.5 text-rose-400 bg-rose-400/10 px-3 py-1 rounded-full border border-rose-400/20">
                 <TrendingUp className="w-3.5 h-3.5" />
-                <span className="text-xs font-bold">+{Math.round(Math.abs(timing.discount) * 100)}% Peak</span>
+                <span className="text-xs font-bold">+{Math.round(Math.abs(timing.discount))}% Peak</span>
               </div>
             ) : null}
           </div>

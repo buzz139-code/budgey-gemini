@@ -1,6 +1,7 @@
 export interface CountryData {
   id: string;
   name: string;
+  flag?: string;
   region: string;
   avgHotelCost: number;
   peakAvgCost: number;

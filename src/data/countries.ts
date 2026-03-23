@@ -1,9 +1,10 @@
 import { CountryData } from '../types';
 
 export const COUNTRIES_DATA: Record<string, CountryData> = {
-  THA: {
+  "Thailand": {
     id: 'THA',
     name: 'Thailand',
+    flag: '🇹🇭',
     region: 'South/Southeast Asia',
     avgHotelCost: 65,
     peakAvgCost: 104,
@@ -21,9 +22,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A tropical paradise known for its vibrant street life, ornate temples, and world-class beaches.',
     recommendedCities: ['Bangkok', 'Chiang Mai', 'Phuket', 'Krabi', 'Pai']
   },
-  PRT: {
+  "Portugal": {
     id: 'PRT',
     name: 'Portugal',
+    flag: '🇵🇹',
     region: 'Western Europe',
     avgHotelCost: 125,
     peakAvgCost: 200,
@@ -41,7 +43,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A coastal nation with a rich maritime history, stunning tiled buildings, and a relaxed atmosphere.',
     recommendedCities: ['Lisbon', 'Porto', 'Sintra', 'Lagos', 'Coimbra']
   },
-  VNM: {
+  "Vietnam": {
     id: 'VNM',
     name: 'Vietnam',
     region: 'South/Southeast Asia',
@@ -61,9 +63,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A land of breathtaking natural beauty and complex history, famous for its incredible cuisine.',
     recommendedCities: ['Hanoi', 'Ho Chi Minh City', 'Hoi An', 'Da Nang', 'Hue']
   },
-  MEX: {
+  "Mexico": {
     id: 'MEX',
     name: 'Mexico',
+    flag: '🇲🇽',
     region: 'North America / Caribbean',
     avgHotelCost: 85,
     peakAvgCost: 136,
@@ -81,9 +84,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A vibrant country offering a mix of ancient civilizations, colonial towns, and stunning coastlines.',
     recommendedCities: ['Mexico City', 'Oaxaca', 'Playa del Carmen', 'Tulum', 'Puerto Vallarta']
   },
-  GRC: {
+  "Greece": {
     id: 'GRC',
     name: 'Greece',
+    flag: '🇬🇷',
     region: 'Western Europe',
     avgHotelCost: 140,
     peakAvgCost: 224,
@@ -101,7 +105,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'The cradle of Western civilization, featuring iconic white-washed buildings and turquoise waters.',
     recommendedCities: ['Athens', 'Santorini', 'Mykonos', 'Crete', 'Rhodes']
   },
-  JPN: {
+  "Japan": {
     id: 'JPN',
     name: 'Japan',
     region: 'East Asia',
@@ -121,7 +125,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A seamless blend of ancient traditions and futuristic technology, known for its impeccable hospitality.',
     recommendedCities: ['Tokyo', 'Kyoto', 'Osaka', 'Nara', 'Hiroshima']
   },
-  IDN: {
+  "Indonesia": {
     id: 'IDN',
     name: 'Indonesia',
     region: 'South/Southeast Asia',
@@ -141,7 +145,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'An archipelago of thousands of islands, each offering unique cultures and stunning natural wonders.',
     recommendedCities: ['Ubud', 'Seminyak', 'Yogyakarta', 'Lombok', 'Jakarta']
   },
-  TUR: {
+  "Turkey": {
     id: 'TUR',
     name: 'Turkey',
     region: 'Middle East',
@@ -161,7 +165,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A bridge between East and West, rich in history, bustling bazaars, and unique landscapes.',
     recommendedCities: ['Istanbul', 'Cappadocia', 'Antalya', 'Bodrum', 'Izmir']
   },
-  COL: {
+  "Colombia": {
     id: 'COL',
     name: 'Colombia',
     region: 'South America',
@@ -181,7 +185,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A country of diverse landscapes, from Caribbean beaches to coffee-growing mountains.',
     recommendedCities: ['Medellin', 'Cartagena', 'Bogota', 'Santa Marta', 'Salento']
   },
-  MAR: {
+  "Morocco": {
     id: 'MAR',
     name: 'Morocco',
     region: 'Africa',
@@ -201,7 +205,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A sensory explosion of colors, scents, and sounds, from the Sahara to bustling medinas.',
     recommendedCities: ['Marrakech', 'Fes', 'Chefchaouen', 'Casablanca', 'Essaouira']
   },
-  ESP: {
+  "Spain": {
     id: 'ESP',
     name: 'Spain',
     region: 'Western Europe',
@@ -221,7 +225,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A passionate country known for its diverse regions, world-class art, and lively festivals.',
     recommendedCities: ['Barcelona', 'Madrid', 'Seville', 'Valencia', 'Bilbao']
   },
-  ITA: {
+  "Italy": {
     id: 'ITA',
     name: 'Italy',
     region: 'Western Europe',
@@ -241,7 +245,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A masterpiece of art, history, and culinary excellence, from the Alps to the Mediterranean.',
     recommendedCities: ['Rome', 'Florence', 'Venice', 'Milan', 'Amalfi']
   },
-  FRA: {
+  "France": {
     id: 'FRA',
     name: 'France',
     region: 'Western Europe',
@@ -261,7 +265,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'The world\'s most visited country, offering romantic cities, historic chateaus, and gourmet dining.',
     recommendedCities: ['Paris', 'Lyon', 'Bordeaux', 'Nice', 'Strasbourg']
   },
-  EGY: {
+  "Egypt": {
     id: 'EGY',
     name: 'Egypt',
     region: 'Africa',
@@ -281,7 +285,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'Home to one of the world\'s oldest civilizations, with awe-inspiring monuments and the life-giving Nile.',
     recommendedCities: ['Cairo', 'Luxor', 'Aswan', 'Alexandria', 'Sharm el-Sheikh']
   },
-  IND: {
+  "India": {
     id: 'IND',
     name: 'India',
     region: 'South/Southeast Asia',
@@ -301,7 +305,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A vast and diverse subcontinent offering a kaleidoscope of cultures, traditions, and landscapes.',
     recommendedCities: ['Delhi', 'Mumbai', 'Jaipur', 'Varanasi', 'Goa']
   },
-  BRA: {
+  "Brazil": {
     id: 'BRA',
     name: 'Brazil',
     region: 'South America',
@@ -321,7 +325,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A land of rhythmic music, lush rainforests, and some of the world\'s most famous beaches.',
     recommendedCities: ['Rio de Janeiro', 'Sao Paulo', 'Salvador', 'Florianopolis', 'Manaus']
   },
-  ARG: {
+  "Argentina": {
     id: 'ARG',
     name: 'Argentina',
     region: 'South America',
@@ -341,7 +345,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'From the cosmopolitan streets of Buenos Aires to the rugged beauty of Patagonia.',
     recommendedCities: ['Buenos Aires', 'Mendoza', 'Bariloche', 'Salta', 'Ushuaia']
   },
-  ZAF: {
+  "South Africa": {
     id: 'ZAF',
     name: 'South Africa',
     region: 'Africa',
@@ -361,7 +365,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A "World in One Country," offering incredible wildlife, stunning coastlines, and rich history.',
     recommendedCities: ['Cape Town', 'Johannesburg', 'Kruger', 'Durban', 'Stellenbosch']
   },
-  AUS: {
+  "Australia": {
     id: 'AUS',
     name: 'Australia',
     region: 'Oceania',
@@ -381,7 +385,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A massive continent of unique wildlife, ancient landscapes, and laid-back coastal cities.',
     recommendedCities: ['Sydney', 'Melbourne', 'Brisbane', 'Cairns', 'Perth']
   },
-  NZL: {
+  "New Zealand": {
     id: 'NZL',
     name: 'New Zealand',
     region: 'Oceania',
@@ -401,7 +405,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'The ultimate adventure destination, with dramatic fjords, volcanic plateaus, and lush forests.',
     recommendedCities: ['Auckland', 'Queenstown', 'Rotorua', 'Wellington', 'Christchurch']
   },
-  SGP: {
+  "Singapore": {
     id: 'SGP',
     name: 'Singapore',
     region: 'South/Southeast Asia',
@@ -421,7 +425,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A clean, efficient city-state where lush greenery meets futuristic skyscrapers and diverse food.',
     recommendedCities: ['Marina Bay', 'Sentosa', 'Chinatown', 'Little India', 'Orchard']
   },
-  MYS: {
+  "Malaysia": {
     id: 'MYS',
     name: 'Malaysia',
     region: 'South/Southeast Asia',
@@ -441,7 +445,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A multicultural melting pot with modern cities, colonial architecture, and pristine rainforests.',
     recommendedCities: ['Kuala Lumpur', 'Penang', 'Langkawi', 'Malacca', 'Kota Kinabalu']
   },
-  PHL: {
+  "Philippines": {
     id: 'PHL',
     name: 'Philippines',
     region: 'South/Southeast Asia',
@@ -461,7 +465,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'An archipelago of over 7,000 islands, famous for its friendly locals and world-class diving.',
     recommendedCities: ['Manila', 'Palawan', 'Cebu', 'Boracay', 'Davao']
   },
-  KOR: {
+  "South Korea": {
     id: 'KOR',
     name: 'South Korea',
     region: 'East Asia',
@@ -481,7 +485,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A dynamic blend of ancient palaces and cutting-edge technology, with a world-famous pop culture.',
     recommendedCities: ['Seoul', 'Busan', 'Jeju', 'Gyeongju', 'Incheon']
   },
-  TWN: {
+  "Taiwan": {
     id: 'TWN',
     name: 'Taiwan',
     region: 'East Asia',
@@ -501,7 +505,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A food lover\'s paradise with stunning mountain scenery and friendly, welcoming cities.',
     recommendedCities: ['Taipei', 'Tainan', 'Kaohsiung', 'Hualien', 'Taichung']
   },
-  KHM: {
+  "Cambodia": {
     id: 'KHM',
     name: 'Cambodia',
     region: 'South/Southeast Asia',
@@ -521,7 +525,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'Home to the magnificent Angkor Wat, Cambodia offers a deep dive into ancient and modern history.',
     recommendedCities: ['Siem Reap', 'Phnom Penh', 'Battambang', 'Sihanoukville', 'Kampot']
   },
-  NPL: {
+  "Nepal": {
     id: 'NPL',
     name: 'Nepal',
     region: 'South/Southeast Asia',
@@ -541,7 +545,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A spiritual and adventurous destination nestled in the heart of the Himalayas.',
     recommendedCities: ['Kathmandu', 'Pokhara', 'Chitwan', 'Lumbini', 'Nagarkot']
   },
-  LKA: {
+  "Sri Lanka": {
     id: 'LKA',
     name: 'Sri Lanka',
     region: 'South/Southeast Asia',
@@ -561,7 +565,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A lush island nation of ancient ruins, rolling tea hills, and abundant wildlife.',
     recommendedCities: ['Colombo', 'Kandy', 'Galle', 'Ella', 'Trincomalee']
   },
-  JOR: {
+  "Jordan": {
     id: 'JOR',
     name: 'Jordan',
     region: 'Middle East',
@@ -581,7 +585,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A land of ancient wonders, from the rose-red city of Petra to the Martian landscapes of Wadi Rum.',
     recommendedCities: ['Amman', 'Petra', 'Aqaba', 'Jerash', 'Madaba']
   },
-  KEN: {
+  "Kenya": {
     id: 'KEN',
     name: 'Kenya',
     region: 'Africa',
@@ -601,7 +605,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'The quintessential safari destination, offering vast savannas and the Great Migration.',
     recommendedCities: ['Nairobi', 'Mombasa', 'Kisumu', 'Malindi', 'Diani']
   },
-  TZA: {
+  "Tanzania": {
     id: 'TZA',
     name: 'Tanzania',
     region: 'Africa',
@@ -621,7 +625,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'Home to Africa\'s highest peak and the spice-scented islands of Zanzibar.',
     recommendedCities: ['Dar es Salaam', 'Zanzibar', 'Arusha', 'Moshi', 'Stone Town']
   },
-  ISL: {
+  "Iceland": {
     id: 'ISL',
     name: 'Iceland',
     region: 'Western Europe',
@@ -641,7 +645,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A land of fire and ice, featuring dramatic volcanic landscapes, glaciers, and hot springs.',
     recommendedCities: ['Reykjavik', 'Akureyri', 'Vik', 'Selfoss', 'Husavik']
   },
-  NOR: {
+  "Norway": {
     id: 'NOR',
     name: 'Norway',
     region: 'Western Europe',
@@ -661,7 +665,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'Known for its deep coastal fjords, mountainous terrain, and spectacular natural phenomena.',
     recommendedCities: ['Oslo', 'Bergen', 'Tromsø', 'Flam', 'Lofoten']
   },
-  SWE: {
+  "Sweden": {
     id: 'SWE',
     name: 'Sweden',
     region: 'Western Europe',
@@ -681,7 +685,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A Scandinavian nation of thousands of coastal islands and inland lakes, plus vast boreal forests.',
     recommendedCities: ['Stockholm', 'Gothenburg', 'Malmö', 'Uppsala', 'Kiruna']
   },
-  PER: {
+  "Peru": {
     id: 'PER',
     name: 'Peru',
     region: 'South America',
@@ -701,7 +705,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A land of ancient Incan treasures and world-renowned culinary innovation.',
     recommendedCities: ['Lima', 'Cusco', 'Arequipa', 'Puno', 'Iquitos']
   },
-  CRI: {
+  "Costa Rica": {
     id: 'CRI',
     name: 'Costa Rica',
     region: 'Central America',
@@ -721,7 +725,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A pioneer in eco-tourism, offering incredible biodiversity and a "Pura Vida" lifestyle.',
     recommendedCities: ['San Jose', 'Manuel Antonio', 'Monteverde', 'La Fortuna', 'Tamarindo']
   },
-  ARE: {
+  "United Arab Emirates": {
     id: 'ARE',
     name: 'United Arab Emirates',
     region: 'Middle East',
@@ -741,7 +745,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A desert nation of architectural marvels, luxury shopping, and traditional heritage.',
     recommendedCities: ['Dubai', 'Abu Dhabi', 'Sharjah', 'Ajman', 'Fujairah']
   },
-  CZE: {
+  "Czechia": {
     id: 'CZE',
     name: 'Czechia',
     region: 'Eastern Europe',
@@ -761,7 +765,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A landlocked country in Central Europe known for its ornate castles and native beers.',
     recommendedCities: ['Prague', 'Brno', 'Cesky Krumlov', 'Karlovy Vary', 'Olomouc']
   },
-  HUN: {
+  "Hungary": {
     id: 'HUN',
     name: 'Hungary',
     region: 'Eastern Europe',
@@ -781,7 +785,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'Famous for its thermal springs, grand architecture, and the majestic Danube River.',
     recommendedCities: ['Budapest', 'Eger', 'Pecs', 'Debrecen', 'Gyor']
   },
-  HRV: {
+  "Croatia": {
     id: 'HRV',
     name: 'Croatia',
     region: 'Eastern Europe',
@@ -801,7 +805,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A stunning coastal nation with medieval towns and crystal-clear Adriatic waters.',
     recommendedCities: ['Dubrovnik', 'Split', 'Zagreb', 'Hvar', 'Rovinj']
   },
-  POL: {
+  "Poland": {
     id: 'POL',
     name: 'Poland',
     region: 'Eastern Europe',
@@ -821,7 +825,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A country of resilient history, beautiful old towns, and hearty traditional cuisine.',
     recommendedCities: ['Krakow', 'Warsaw', 'Gdansk', 'Wroclaw', 'Zakopane']
   },
-  AUT: {
+  "Austria": {
     id: 'AUT',
     name: 'Austria',
     region: 'Western Europe',
@@ -841,7 +845,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A land of classical music, imperial history, and breathtaking Alpine scenery.',
     recommendedCities: ['Vienna', 'Salzburg', 'Innsbruck', 'Graz', 'Hallstatt']
   },
-  DEU: {
+  "Germany": {
     id: 'DEU',
     name: 'Germany',
     region: 'Western Europe',
@@ -861,7 +865,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A country of diverse landscapes, from the Black Forest to the vibrant streets of Berlin.',
     recommendedCities: ['Berlin', 'Munich', 'Hamburg', 'Cologne', 'Frankfurt']
   },
-  NLD: {
+  "Netherlands": {
     id: 'NLD',
     name: 'Netherlands',
     region: 'Western Europe',
@@ -881,7 +885,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A flat land of canals, tulip fields, windmills, and cycling-friendly cities.',
     recommendedCities: ['Amsterdam', 'Rotterdam', 'The Hague', 'Utrecht', 'Delft']
   },
-  CHE: {
+  "Switzerland": {
     id: 'CHE',
     name: 'Switzerland',
     region: 'Western Europe',
@@ -901,7 +905,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A mountainous Central European country, home to numerous lakes, villages, and the high peaks of the Alps.',
     recommendedCities: ['Zurich', 'Geneva', 'Bern', 'Lucerne', 'Zermatt']
   },
-  CHL: {
+  "Chile": {
     id: 'CHL',
     name: 'Chile',
     region: 'South America',
@@ -921,7 +925,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A long, narrow country stretching along South America\'s western edge, with diverse landscapes.',
     recommendedCities: ['Santiago', 'Valparaiso', 'Torres del Paine', 'San Pedro', 'Puerto Natales']
   },
-  ECU: {
+  "Ecuador": {
     id: 'ECU',
     name: 'Ecuador',
     region: 'South America',
@@ -941,7 +945,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A country straddling the equator on South America\'s west coast, offering diverse ecosystems.',
     recommendedCities: ['Quito', 'Guayaquil', 'Cuenca', 'Baños', 'Mindo']
   },
-  PAN: {
+  "Panama": {
     id: 'PAN',
     name: 'Panama',
     region: 'Central America',
@@ -961,7 +965,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A country on the isthmus linking Central and South America, famous for its canal.',
     recommendedCities: ['Panama City', 'Bocas del Toro', 'Boquete', 'Pedasi', 'Colon']
   },
-  GTM: {
+  "Guatemala": {
     id: 'GTM',
     name: 'Guatemala',
     region: 'Central America',
@@ -981,7 +985,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A Central American country south of Mexico, home to volcanoes, rainforests and ancient Mayan sites.',
     recommendedCities: ['Antigua', 'Guatemala City', 'Flores', 'Quetzaltenango', 'Livingston']
   },
-  CUB: {
+  "Cuba": {
     id: 'CUB',
     name: 'Cuba',
     region: 'North America / Caribbean',
@@ -1001,7 +1005,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A Caribbean island nation under communist rule, with white-sand beaches and tobacco fields.',
     recommendedCities: ['Havana', 'Varadero', 'Trinidad', 'Santiago de Cuba', 'Cienfuegos']
   },
-  JAM: {
+  "Jamaica": {
     id: 'JAM',
     name: 'Jamaica',
     region: 'North America / Caribbean',
@@ -1021,7 +1025,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A Caribbean island nation with a lush topography of mountains, rainforests and reef-lined beaches.',
     recommendedCities: ['Kingston', 'Montego Bay', 'Negril', 'Ocho Rios', 'Port Antonio']
   },
-  DOM: {
+  "Dominican Republic": {
     id: 'DOM',
     name: 'Dominican Republic',
     region: 'North America / Caribbean',
@@ -1041,7 +1045,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A Caribbean nation that shares the island of Hispaniola with Haiti to the west.',
     recommendedCities: ['Santo Domingo', 'Punta Cana', 'Puerto Plata', 'Samana', 'Jarabacoa']
   },
-  GEO: {
+  "Georgia": {
     id: 'GEO',
     name: 'Georgia',
     region: 'Eastern Europe',
@@ -1061,7 +1065,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A country at the intersection of Europe and Asia, home to Caucasus Mountain villages and Black Sea beaches.',
     recommendedCities: ['Tbilisi', 'Batumi', 'Kazbegi', 'Sighnaghi', 'Mtskheta']
   },
-  ARM: {
+  "Armenia": {
     id: 'ARM',
     name: 'Armenia',
     region: 'Eastern Europe',
@@ -1081,7 +1085,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A nation and former Soviet republic in the mountainous Caucasus region between Asia and Europe.',
     recommendedCities: ['Yerevan', 'Gyumri', 'Dilijan', 'Goris', 'Vanadzor']
   },
-  MNE: {
+  "Montenegro": {
     id: 'MNE',
     name: 'Montenegro',
     region: 'Eastern Europe',
@@ -1101,7 +1105,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A Balkan country with rugged mountains, medieval villages and a narrow strip of beaches along its Adriatic coastline.',
     recommendedCities: ['Kotor', 'Budva', 'Podgorica', 'Herceg Novi', 'Ulcinj']
   },
-  SRB: {
+  "Serbia": {
     id: 'SRB',
     name: 'Serbia',
     region: 'Eastern Europe',
@@ -1121,7 +1125,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A country on southeast Europe\'s Balkan peninsula with northern plateaus and mountains with ski resorts to the south.',
     recommendedCities: ['Belgrade', 'Novi Sad', 'Nis', 'Subotica', 'Zlatibor']
   },
-  ALB: {
+  "Albania": {
     id: 'ALB',
     name: 'Albania',
     region: 'Eastern Europe',
@@ -1141,7 +1145,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A country on Southeastern Europe\'s Balkan Peninsula, with Adriatic and Ionian coastlines and an interior crossed by the Albanian Alps.',
     recommendedCities: ['Tirana', 'Saranda', 'Berat', 'Shkoder', 'Gjirokaster']
   },
-  SVN: {
+  "Slovenia": {
     id: 'SVN',
     name: 'Slovenia',
     region: 'Eastern Europe',
@@ -1161,7 +1165,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A country in Central Europe, known for its mountains, ski resorts and lakes.',
     recommendedCities: ['Ljubljana', 'Bled', 'Piran', 'Maribor', 'Kranjska Gora']
   },
-  EST: {
+  "Estonia": {
     id: 'EST',
     name: 'Estonia',
     region: 'Eastern Europe',
@@ -1181,7 +1185,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A country in Northern Europe, borders the Baltic Sea and Gulf of Finland.',
     recommendedCities: ['Tallinn', 'Tartu', 'Parnu', 'Narva', 'Haapsalu']
   },
-  LVA: {
+  "Latvia": {
     id: 'LVA',
     name: 'Latvia',
     region: 'Eastern Europe',
@@ -1201,7 +1205,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A country on the Baltic Sea between Lithuania and Estonia.',
     recommendedCities: ['Riga', 'Jurmala', 'Sigulda', 'Cesis', 'Daugavpils']
   },
-  LTU: {
+  "Lithuania": {
     id: 'LTU',
     name: 'Lithuania',
     region: 'Eastern Europe',
@@ -1221,7 +1225,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A country and the southernmost of Europe’s Baltic states, a former Soviet republic bordering Poland, Latvia and Belarus.',
     recommendedCities: ['Vilnius', 'Kaunas', 'Klaipeda', 'Trakai', 'Siauliai']
   },
-  BGR: {
+  "Bulgaria": {
     id: 'BGR',
     name: 'Bulgaria',
     region: 'Eastern Europe',
@@ -1241,7 +1245,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A Balkan nation with diverse terrain encompassing Black Sea coastline, a mountainous interior and rivers, including the Danube.',
     recommendedCities: ['Sofia', 'Plovdiv', 'Varna', 'Sozopol', 'Bansko']
   },
-  ROU: {
+  "Romania": {
     id: 'ROU',
     name: 'Romania',
     region: 'Eastern Europe',
@@ -1261,7 +1265,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A southeastern European country known for the forested region of Transylvania, preserved medieval towns and many fortified churches and castles.',
     recommendedCities: ['Bucharest', 'Cluj', 'Brasov', 'Sibiu', 'Sinaia']
   },
-  SVK: {
+  "Slovakia": {
     id: 'SVK',
     name: 'Slovakia',
     region: 'Eastern Europe',
@@ -1281,7 +1285,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A Central European country known for its dramatic natural landscape and many castles.',
     recommendedCities: ['Bratislava', 'Kosice', 'Banska Bystrica', 'Presov', 'Zilina']
   },
-  DNK: {
+  "Denmark": {
     id: 'DNK',
     name: 'Denmark',
     region: 'Western Europe',
@@ -1301,7 +1305,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A Scandinavian country comprising the Jutland Peninsula and numerous islands.',
     recommendedCities: ['Copenhagen', 'Aarhus', 'Odense', 'Aalborg', 'Roskilde']
   },
-  FIN: {
+  "Finland": {
     id: 'FIN',
     name: 'Finland',
     region: 'Western Europe',
@@ -1321,7 +1325,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A Northern European nation bordering Sweden, Norway and Russia.',
     recommendedCities: ['Helsinki', 'Rovaniemi', 'Tampere', 'Turku', 'Oulu']
   },
-  ISR: {
+  "Israel": {
     id: 'ISR',
     name: 'Israel',
     region: 'Middle East',
@@ -1341,7 +1345,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A Middle Eastern country on the Mediterranean Sea, regarded by Jews, Christians and Muslims as the biblical Holy Land.',
     recommendedCities: ['Jerusalem', 'Tel Aviv', 'Haifa', 'Nazareth', 'Eilat']
   },
-  OMN: {
+  "Oman": {
     id: 'OMN',
     name: 'Oman',
     region: 'Middle East',
@@ -1361,7 +1365,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A country on the southeastern coast of the Arabian Peninsula.',
     recommendedCities: ['Muscat', 'Salalah', 'Nizwa', 'Sur', 'Khasab']
   },
-  RWA: {
+  "Rwanda": {
     id: 'RWA',
     name: 'Rwanda',
     region: 'Africa',
@@ -1381,7 +1385,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A landlocked country in the Great Rift Valley of Central Africa, where the African Great Lakes region and Southeast Africa converge.',
     recommendedCities: ['Kigali', 'Musanze', 'Gisenyi', 'Butare', 'Kibuye']
   },
-  MUS: {
+  "Mauritius": {
     id: 'MUS',
     name: 'Mauritius',
     region: 'Africa',
@@ -1401,7 +1405,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'An Indian Ocean island nation, known for its beaches, lagoons and reefs.',
     recommendedCities: ['Port Louis', 'Grand Baie', 'Flic en Flac', 'Mahebourg', 'Tamarin']
   },
-  SYC: {
+  "Seychelles": {
     id: 'SYC',
     name: 'Seychelles',
     region: 'Africa',
@@ -1421,7 +1425,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'An archipelago of 115 islands in the Indian Ocean, off East Africa.',
     recommendedCities: ['Victoria', 'Beau Vallon', 'Anse Lazio', 'La Digue', 'Praslin']
   },
-  BOL: {
+  "Bolivia": {
     id: 'BOL',
     name: 'Bolivia',
     region: 'South America',
@@ -1441,7 +1445,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A country in central South America, with a varied terrain spanning Andes Mountains, the Atacama Desert and Amazon Basin rainforest.',
     recommendedCities: ['La Paz', 'Santa Cruz', 'Sucre', 'Potosi', 'Uyuni']
   },
-  URY: {
+  "Uruguay": {
     id: 'URY',
     name: 'Uruguay',
     region: 'South America',
@@ -1461,7 +1465,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A South American country known for its verdant interior and beach-lined coast.',
     recommendedCities: ['Montevideo', 'Punta del Este', 'Colonia del Sacramento', 'Salto', 'Rivera']
   },
-  GHA: {
+  "Ghana": {
     id: 'GHA',
     name: 'Ghana',
     region: 'Africa',
@@ -1481,7 +1485,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A country on the Gulf of Guinea and the Atlantic Ocean, in the subregion of West Africa.',
     recommendedCities: ['Accra', 'Kumasi', 'Cape Coast', 'Tamale', 'Takoradi']
   },
-  SEN: {
+  "Senegal": {
     id: 'SEN',
     name: 'Senegal',
     region: 'Africa',
@@ -1501,7 +1505,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A country in West Africa, known for its French colonial heritage and natural beauty.',
     recommendedCities: ['Dakar', 'Saint-Louis', 'Ziguinchor', 'Touba', 'Mbour']
   },
-  ETH: {
+  "Ethiopia": {
     id: 'ETH',
     name: 'Ethiopia',
     region: 'Africa',
@@ -1521,7 +1525,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A landlocked country in the Horn of Africa, split by the Great Rift Valley.',
     recommendedCities: ['Addis Ababa', 'Lalibela', 'Axum', 'Gondar', 'Bahir Dar']
   },
-  NGA: {
+  "Nigeria": {
     id: 'NGA',
     name: 'Nigeria',
     region: 'Africa',
@@ -1541,7 +1545,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'An African country on the Gulf of Guinea, has many natural landmarks and wildlife reserves.',
     recommendedCities: ['Lagos', 'Abuja', 'Ibadan', 'Kano', 'Port Harcourt']
   },
-  PRY: {
+  "Paraguay": {
     id: 'PRY',
     name: 'Paraguay',
     region: 'South America',
@@ -1561,7 +1565,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A landlocked country between Argentina, Brazil and Bolivia, home to large swaths of swampland, subtropical forest and chaco.',
     recommendedCities: ['Asuncion', 'Ciudad del Este', 'Encarnacion', 'Concepcion', 'Pedro Juan Caballero']
   },
-  BHS: {
+  "Bahamas": {
     id: 'BHS',
     name: 'Bahamas',
     region: 'North America / Caribbean',
@@ -1581,7 +1585,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A coral-based archipelago in the Atlantic Ocean.',
     recommendedCities: ['Nassau', 'Freeport', 'Paradise Island', 'Exuma', 'Eleuthera']
   },
-  BRB: {
+  "Barbados": {
     id: 'BRB',
     name: 'Barbados',
     region: 'North America / Caribbean',
@@ -1601,7 +1605,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'An eastern Caribbean island and an independent British Commonwealth nation.',
     recommendedCities: ['Bridgetown', 'Speightstown', 'Holetown', 'Oistins', 'Bathsheba']
   },
-  BLZ: {
+  "Belize": {
     id: 'BLZ',
     name: 'Belize',
     region: 'Central America',
@@ -1621,7 +1625,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A nation on the eastern coast of Central America, with Caribbean Sea shorelines to the east and dense jungle to the west.',
     recommendedCities: ['Belize City', 'San Ignacio', 'Placencia', 'Ambergris Caye', 'Punta Gorda']
   },
-  SAU: {
+  "Saudi Arabia": {
     id: 'SAU',
     name: 'Saudi Arabia',
     region: 'Middle East',
@@ -1641,7 +1645,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A country on the Arabian Peninsula in Western Asia.',
     recommendedCities: ['Riyadh', 'Jeddah', 'AlUla', 'Abha', 'Dammam']
   },
-  QAT: {
+  "Qatar": {
     id: 'QAT',
     name: 'Qatar',
     region: 'Middle East',
@@ -1661,7 +1665,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A peninsular Arab country whose terrain comprises arid desert and a long Persian (Arabian) Gulf shoreline of beaches and dunes.',
     recommendedCities: ['Doha', 'Al Wakrah', 'Al Khor', 'Lusail', 'Dukhan']
   },
-  AZE: {
+  "Azerbaijan": {
     id: 'AZE',
     name: 'Azerbaijan',
     region: 'Eastern Europe',
@@ -1681,7 +1685,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A nation and former Soviet republic, bounded by the Caspian Sea and Caucasus Mountains, which span Asia and Europe.',
     recommendedCities: ['Baku', 'Sheki', 'Ganja', 'Lankaran', 'Gabala']
   },
-  LAO: {
+  "Laos": {
     id: 'LAO',
     name: 'Laos',
     region: 'South/Southeast Asia',
@@ -1701,7 +1705,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A Southeast Asian country traversed by the Mekong River and known for mountainous terrain, French colonial architecture, hill tribe settlements and Buddhist monasteries.',
     recommendedCities: ['Luang Prabang', 'Vientiane', 'Vang Vieng', 'Pakse', 'Savannakhet']
   },
-  MMR: {
+  "Myanmar": {
     id: 'MMR',
     name: 'Myanmar',
     region: 'South/Southeast Asia',
@@ -1721,7 +1725,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A Southeast Asian nation of more than 100 ethnic groups, bordering India, Bangladesh, China, Laos and Thailand.',
     recommendedCities: ['Yangon', 'Bagan', 'Inle Lake', 'Mandalay', 'Ngapali']
   },
-  LBN: {
+  "Lebanon": {
     id: 'LBN',
     name: 'Lebanon',
     region: 'Middle East',
@@ -1741,7 +1745,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A country in Western Asia, located on the eastern shore of the Mediterranean Sea.',
     recommendedCities: ['Beirut', 'Byblos', 'Tyre', 'Sidon', 'Baalbek']
   },
-  CAN: {
+  "Canada": {
     id: 'CAN',
     name: 'Canada',
     region: 'North America / Caribbean',
@@ -1761,7 +1765,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A country in North America, its ten provinces and three territories extend from the Atlantic Ocean to the Pacific Ocean and northward into the Arctic Ocean.',
     recommendedCities: ['Vancouver', 'Toronto', 'Montreal', 'Quebec City', 'Banff']
   },
-  USA: {
+  "United States of America": {
     id: 'USA',
     name: 'United States of America',
     region: 'North America / Caribbean',
@@ -1781,7 +1785,7 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     description: 'A country primarily located in North America, consisting of 50 states, a federal district, five major self-governing territories, and various possessions.',
     recommendedCities: ['New York', 'Los Angeles', 'Chicago', 'Miami', 'New Orleans']
   },
-  GBR: {
+  "United Kingdom": {
     id: 'GBR',
     name: 'United Kingdom',
     region: 'Western Europe',

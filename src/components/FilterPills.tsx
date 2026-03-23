@@ -1,18 +1,11 @@
 import React from 'react';
-import { clsx, type ClassValue } from 'clsx';
-import { twMerge } from 'tailwind-merge';
-
-function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
 
 interface FilterPillsProps {
-  selectedRegion: string;
-  onRegionChange: (region: string) => void;
+  activeFilter: string | null;
+  onFilterChange: (filter: string | null) => void;
 }
 
 const REGIONS = [
-  'All Regions',
   'Western Europe',
   'Eastern Europe',
   'South/Southeast Asia',
@@ -25,23 +18,57 @@ const REGIONS = [
   'Oceania'
 ];
 
-export const FilterPills: React.FC<FilterPillsProps> = ({ selectedRegion, onRegionChange }) => {
+export default function FilterPills({ activeFilter, onFilterChange }: FilterPillsProps) {
   return (
-    <div className="flex items-center gap-2 overflow-x-auto pb-4 no-scrollbar">
+    <div style={{ 
+      position: 'absolute', 
+      top: 16, 
+      left: 16, 
+      right: 16, 
+      zIndex: 30, 
+      display: 'flex', 
+      gap: 8, 
+      overflowX: 'auto', 
+      paddingBottom: 8,
+      scrollbarWidth: 'none'
+    }}>
+      <button
+        onClick={() => onFilterChange(null)}
+        style={{
+          padding: '6px 16px',
+          borderRadius: 20,
+          fontSize: 12,
+          fontWeight: 600,
+          whiteSpace: 'nowrap',
+          border: '1px solid rgba(0,0,0,0.06)',
+          background: activeFilter === null ? '#283618' : '#fff',
+          color: activeFilter === null ? '#fff' : '#283618',
+          cursor: 'pointer',
+          transition: 'all 0.2s'
+        }}
+      >
+        All Destinations
+      </button>
       {REGIONS.map((region) => (
         <button
           key={region}
-          onClick={() => onRegionChange(region)}
-          className={cn(
-            "px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-200 border",
-            selectedRegion === region
-              ? "bg-emerald-500 text-white border-emerald-500 shadow-md shadow-emerald-500/20"
-              : "bg-white text-zinc-600 border-black/5 hover:border-zinc-300"
-          )}
+          onClick={() => onFilterChange(region)}
+          style={{
+            padding: '6px 16px',
+            borderRadius: 20,
+            fontSize: 12,
+            fontWeight: 600,
+            whiteSpace: 'nowrap',
+            border: '1px solid rgba(0,0,0,0.06)',
+            background: activeFilter === region ? '#283618' : '#fff',
+            color: activeFilter === region ? '#fff' : '#283618',
+            cursor: 'pointer',
+            transition: 'all 0.2s'
+          }}
         >
           {region}
         </button>
       ))}
     </div>
   );
-};
+}

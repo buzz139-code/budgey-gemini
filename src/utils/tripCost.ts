@@ -1,63 +1,42 @@
-import { CountryData, TripParams, TripEstimate, TimingScore } from '../types';
-import { getTimingScore } from './timing';
+import { type CountryData, type TripEstimate, type TripParams } from '../types';
 
-export const calculateTripEstimate = (
-  country: CountryData,
-  params: TripParams,
-  rates: Record<string, number>
-): TripEstimate => {
+const FLIGHT_ESTIMATES: Record<string, number> = {
+  'North America / Caribbean': 400,
+  'Central America': 500,
+  'South America': 700,
+  'Western Europe': 900,
+  'Eastern Europe': 700,
+  'Middle East': 1000,
+  'Africa': 1200,
+  'South/Southeast Asia': 1100,
+  'East Asia': 1300,
+  'Oceania': 1500,
+};
+
+export function calculateTripCost(country: CountryData, params: TripParams, getCostInBase: (usd: number) => number): TripEstimate {
   const { nights, travellers } = params;
-  const timing = getTimingScore(country, params.months);
-  
-  // Base costs in USD (per person per night)
-  const baseHotel = country.avgHotelCost;
-  const baseFood = 30; // Average daily food cost
-  const baseTransport = 15; // Average daily local transport
-  const baseActivities = 20; // Average daily activities
-  
-  // Apply timing multipliers
-  let hotelMultiplier = 1;
-  if (timing.isPeak) hotelMultiplier = 1.6;
-  if (timing.isOffSeason) hotelMultiplier = 0.65;
-  
-  const dailyHotel = baseHotel * hotelMultiplier;
-  
-  // Convert to CAD
-  const usdToCad = rates['CAD'] || 1.35;
-  
-  const accommodationTotal = (dailyHotel * nights) * usdToCad;
-  const foodTotal = (baseFood * (nights + 1) * travellers) * usdToCad;
-  const transportTotal = (baseTransport * (nights + 1) * travellers) * usdToCad;
-  const activitiesTotal = (baseActivities * (nights + 1) * travellers) * usdToCad;
-  
-  // Estimated flights from Canada (rough averages by region)
-  const flightEstimates: Record<string, number> = {
-    'Western Europe': 900,
-    'Eastern Europe': 1100,
-    'South/Southeast Asia': 1400,
-    'East Asia': 1300,
-    'South America': 800,
-    'Central America': 500,
-    'North America / Caribbean': 400,
-    'Africa': 1500,
-    'Middle East': 1200,
-    'Oceania': 1800
-  };
-
-  const flightCostPerPerson = flightEstimates[country.region] || 1000;
-  const flightsTotal = flightCostPerPerson * travellers;
-  
-  const total = accommodationTotal + foodTotal + transportTotal + activitiesTotal + flightsTotal;
+  const style = 'standard';
+  const rooms = Math.ceil(travellers / 2);
+  const accommodation = country.avgHotelCost * rooms * nights;
+  const baseFood = country.avgHotelCost < 80 ? 25 : country.avgHotelCost >= 150 ? 70 : 45;
+  const food = baseFood * travellers * nights;
+  const baseTransport = country.transitScore >= 80 ? 8 : country.transitScore < 50 ? 25 : 15;
+  const transport = baseTransport * travellers * nights;
+  const activities = 25 * travellers * nights;
+  const flightPerPerson = FLIGHT_ESTIMATES[country.region] || 900;
+  const flights = flightPerPerson * travellers;
+  const total = accommodation + food + transport + activities + flights;
+  const totalExFlights = accommodation + food + transport + activities;
 
   return {
-    accommodation: Math.round(accommodationTotal),
-    food: Math.round(foodTotal),
-    transport: Math.round(transportTotal),
-    activities: Math.round(activitiesTotal),
-    flights: Math.round(flightsTotal),
-    total: Math.round(total),
-    perPerson: Math.round(total / travellers),
-    perDayExFlights: Math.round((total - flightsTotal) / (nights + 1) / travellers),
-    isRegionUnknown: !flightEstimates[country.region]
+    accommodation: getCostInBase(accommodation),
+    food: getCostInBase(food),
+    transport: getCostInBase(transport),
+    activities: getCostInBase(activities),
+    flights: getCostInBase(flights),
+    total: getCostInBase(total),
+    perPerson: getCostInBase(total / travellers),
+    perDayExFlights: getCostInBase(totalExFlights / nights),
+    isRegionUnknown: !FLIGHT_ESTIMATES[country.region],
   };
-};
+}

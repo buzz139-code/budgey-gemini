@@ -1,23 +1,36 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 import * as topojson from 'topojson-client';
-import { CountryData } from '../types';
+import { type CountryData, type TripParams } from '../types';
 import { COUNTRIES_DATA } from '../data/countries';
-import { motion, AnimatePresence } from 'motion/react';
 
 interface WorldMapProps {
+  countries: CountryData[];
+  tripParams: TripParams;
   onCountrySelect: (country: CountryData) => void;
-  selectedCountryId?: string;
-  hoveredCountryId?: string;
-  onCountryHover: (id?: string) => void;
+  onCountryHover: (country: CountryData | null) => void;
+  hoveredCountry: CountryData | null;
+  selectedCountry: CountryData | null;
+  isDesktop: boolean;
+  getCostInBase: (usd: number) => number;
+  formatCurrency: (amount: number, currency: string) => string;
+  baseCurrency: string;
+  getTimingScore: (country: CountryData, months: number[]) => any;
 }
 
-export const WorldMap: React.FC<WorldMapProps> = ({ 
+export default function WorldMap({ 
+  countries,
+  tripParams,
   onCountrySelect, 
-  selectedCountryId,
-  hoveredCountryId,
-  onCountryHover
-}) => {
+  onCountryHover,
+  hoveredCountry,
+  selectedCountry,
+  isDesktop,
+  getCostInBase,
+  formatCurrency,
+  baseCurrency,
+  getTimingScore
+}: WorldMapProps) {
   const svgRef = useRef<SVGSVGElement>(null);
   const [topology, setTopology] = useState<any>(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
@@ -53,40 +66,37 @@ export const WorldMap: React.FC<WorldMapProps> = ({
 
     const path = d3.geoPath().projection(projection);
 
-    const countries = topojson.feature(topology, topology.objects.countries) as any;
+    const countriesGeo = topojson.feature(topology, topology.objects.countries) as any;
 
     const g = svg.append('g');
 
     g.selectAll('path')
-      .data(countries.features)
+      .data(countriesGeo.features)
       .enter()
       .append('path')
       .attr('d', path)
-      .attr('class', (d: any) => {
-        const id = d.id;
-        const country = Object.values(COUNTRIES_DATA).find(c => c.id === id);
-        const isSupported = !!country;
-        const isSelected = selectedCountryId === id;
-        const isHovered = hoveredCountryId === id;
-        
-        return `transition-all duration-300 cursor-pointer outline-none
-          ${isSupported ? 'fill-zinc-200 stroke-white stroke-[0.5px] hover:fill-emerald-400' : 'fill-zinc-100 stroke-white stroke-[0.2px] pointer-events-none'}
-          ${isSelected ? 'fill-emerald-600 stroke-emerald-800 stroke-[1px]' : ''}
-          ${isHovered && isSupported ? 'fill-emerald-400' : ''}`;
+      .attr('fill', (d: any) => {
+        const country = Object.values(COUNTRIES_DATA).find(c => c.id === d.id);
+        if (!country) return '#f0f0f0';
+        if (selectedCountry?.id === country.id) return '#bc6c25';
+        if (hoveredCountry?.id === country.id) return '#dda15e';
+        return '#e9edc9';
       })
+      .attr('stroke', '#fff')
+      .attr('stroke-width', 0.5)
+      .style('cursor', (d: any) => Object.values(COUNTRIES_DATA).find(c => c.id === d.id) ? 'pointer' : 'default')
       .on('mouseenter', (event, d: any) => {
         const country = Object.values(COUNTRIES_DATA).find(c => c.id === d.id);
-        if (country) onCountryHover(country.id);
+        if (country) onCountryHover(country);
       })
       .on('mouseleave', () => {
-        onCountryHover(undefined);
+        onCountryHover(null);
       })
       .on('click', (event, d: any) => {
         const country = Object.values(COUNTRIES_DATA).find(c => c.id === d.id);
         if (country) onCountrySelect(country);
       });
 
-    // Add zoom behavior
     const zoom = d3.zoom()
       .scaleExtent([1, 8])
       .on('zoom', (event) => {
@@ -95,28 +105,41 @@ export const WorldMap: React.FC<WorldMapProps> = ({
 
     svg.call(zoom as any);
 
-  }, [topology, dimensions, selectedCountryId, hoveredCountryId]);
+  }, [topology, dimensions, selectedCountry, hoveredCountry]);
 
   return (
-    <div className="w-full h-full relative bg-zinc-50/50 rounded-3xl overflow-hidden border border-black/5">
+    <div style={{ width: '100%', height: '100%', position: 'relative', background: '#fefae0' }}>
       <svg 
         ref={svgRef} 
-        className="w-full h-full"
+        style={{ width: '100%', height: '100%' }}
         viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}
       />
       
-      <div className="absolute bottom-6 right-6 flex flex-col gap-2">
-        <div className="bg-white/80 backdrop-blur-md border border-black/5 p-3 rounded-2xl shadow-sm">
-          <div className="flex items-center gap-2 mb-1">
-            <div className="w-3 h-3 bg-emerald-500 rounded-full" />
-            <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-500">Supported</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 bg-zinc-200 rounded-full" />
-            <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-500">Coming Soon</span>
+      {hoveredCountry && (
+        <div style={{ 
+          position: 'absolute', 
+          bottom: 24, 
+          left: 24, 
+          background: '#fff', 
+          padding: '12px 16px', 
+          borderRadius: 16, 
+          boxShadow: '0 8px 24px rgba(40,54,24,0.12)',
+          border: '1px solid rgba(0,0,0,0.06)',
+          display: 'flex',
+          alignItems: 'center',
+          gap: 12,
+          pointerEvents: 'none',
+          zIndex: 40
+        }}>
+          <span style={{ fontSize: 24 }}>{hoveredCountry.flag || '📍'}</span>
+          <div>
+            <div style={{ fontSize: 14, fontWeight: 700, color: '#283618' }}>{hoveredCountry.name}</div>
+            <div style={{ fontSize: 11, color: '#bc6c25', fontWeight: 600 }}>
+              {getTimingScore(hoveredCountry, tripParams.months).label} • {getTimingScore(hoveredCountry, tripParams.months).discount}% off
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
-};
+}

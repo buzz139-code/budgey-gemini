@@ -1,56 +1,128 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Map, List, TrendingDown, Info } from 'lucide-react';
-import { clsx, type ClassValue } from 'clsx';
-import { twMerge } from 'tailwind-merge';
-
-function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
+import { Map, List, TrendingDown, Info, Calendar, Users, Wallet, ChevronRight } from 'lucide-react';
+import { type CountryData, type TripParams } from '../types';
 
 interface ContextRailProps {
-  activeTab: 'map' | 'list' | 'trends';
-  onTabChange: (tab: 'map' | 'list' | 'trends') => void;
+  isOpen: boolean;
+  isDesktop: boolean;
+  tripParams: TripParams;
+  onTripParamsChange: (params: TripParams) => void;
+  bestTimingCountries: CountryData[];
+  onCountrySelect: (country: CountryData) => void;
+  getCostInBase: (usd: number) => number;
+  formatCurrency: (amount: number, currency: string) => string;
+  baseCurrency: string;
+  MONTHS: string[];
+  getTimingScore: (country: CountryData, months: number[]) => any;
 }
 
-export const ContextRail: React.FC<ContextRailProps> = ({ activeTab, onTabChange }) => {
-  const items = [
-    { id: 'map', icon: Map, label: 'Explore' },
-    { id: 'list', icon: List, label: 'Directory' },
-    { id: 'trends', icon: TrendingDown, label: 'Savings' },
-  ] as const;
+export default function ContextRail({ 
+  isOpen, 
+  isDesktop, 
+  tripParams, 
+  onTripParamsChange,
+  bestTimingCountries,
+  onCountrySelect,
+  getCostInBase,
+  formatCurrency,
+  baseCurrency,
+  MONTHS,
+  getTimingScore
+}: ContextRailProps) {
+  if (!isOpen && isDesktop) return null;
 
   return (
-    <nav className="fixed left-6 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col gap-4">
-      {items.map((item) => (
-        <button
-          key={item.id}
-          onClick={() => onTabChange(item.id)}
-          className={cn(
-            "group relative w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-300",
-            activeTab === item.id 
-              ? "bg-zinc-900 text-white shadow-lg shadow-zinc-900/20" 
-              : "bg-white text-zinc-400 hover:text-zinc-600 border border-black/5"
-          )}
-        >
-          <item.icon className="w-5 h-5" />
-          <span className="absolute left-16 bg-zinc-900 text-white text-xs font-bold px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity whitespace-nowrap">
-            {item.label}
-          </span>
-          {activeTab === item.id && (
-            <motion.div
-              layoutId="rail-active"
-              className="absolute -left-2 w-1 h-6 bg-emerald-500 rounded-full"
-            />
-          )}
-        </button>
-      ))}
-      
-      <div className="mt-8 pt-8 border-t border-black/5">
-        <button className="w-12 h-12 rounded-2xl flex items-center justify-center text-zinc-400 hover:text-zinc-600 transition-colors">
-          <Info className="w-5 h-5" />
-        </button>
+    <aside style={{ 
+      width: isDesktop ? 320 : '100%', 
+      height: '100%', 
+      background: '#fff', 
+      borderRight: '1px solid rgba(0,0,0,0.06)', 
+      display: 'flex', 
+      flexDirection: 'column',
+      position: isDesktop ? 'relative' : 'absolute',
+      left: 0,
+      top: 0,
+      zIndex: 50,
+      transform: isOpen ? 'translateX(0)' : 'translateX(-100%)',
+      transition: 'transform 0.3s ease'
+    }}>
+      <div style={{ padding: 24, flex: 1, overflowY: 'auto' }}>
+        <section style={{ marginBottom: 32 }}>
+          <h3 style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: '#bc6c25', marginBottom: 16 }}>Trip Parameters</h3>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+            <div style={{ background: '#f5f0e8', padding: 12, borderRadius: 12 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
+                <Calendar size={14} color="#bc6c25" />
+                <span style={{ fontSize: 12, fontWeight: 600, color: '#283618' }}>Timing</span>
+              </div>
+              <select 
+                value={tripParams.months[0]} 
+                onChange={e => onTripParamsChange({ ...tripParams, months: [parseInt(e.target.value)] })}
+                style={{ width: '100%', background: 'none', border: 'none', fontSize: 13, color: '#283618', fontWeight: 500, outline: 'none' }}
+              >
+                {MONTHS.map((m, i) => <option key={m} value={i}>{m}</option>)}
+              </select>
+            </div>
+
+            <div style={{ background: '#f5f0e8', padding: 12, borderRadius: 12 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
+                <Wallet size={14} color="#bc6c25" />
+                <span style={{ fontSize: 12, fontWeight: 600, color: '#283618' }}>Budget ({baseCurrency})</span>
+              </div>
+              <input 
+                type="number" 
+                value={tripParams.totalBudgetCAD} 
+                onChange={e => onTripParamsChange({ ...tripParams, totalBudgetCAD: parseInt(e.target.value) || 0 })}
+                style={{ width: '100%', background: 'none', border: 'none', fontSize: 13, color: '#283618', fontWeight: 500, outline: 'none' }}
+              />
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h3 style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: '#bc6c25', marginBottom: 16 }}>Best Value Destinations</h3>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+            {bestTimingCountries.map(country => {
+              const score = getTimingScore(country, tripParams.months);
+              return (
+                <button 
+                  key={country.id}
+                  onClick={() => onCountrySelect(country)}
+                  style={{ 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    gap: 12, 
+                    padding: 12, 
+                    background: '#fff', 
+                    border: '1px solid rgba(0,0,0,0.06)', 
+                    borderRadius: 12, 
+                    cursor: 'pointer',
+                    textAlign: 'left',
+                    transition: 'all 0.2s'
+                  }}
+                >
+                  <div style={{ width: 32, height: 32, borderRadius: 8, background: '#f5f0e8', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16 }}>
+                    {country.flag || '📍'}
+                  </div>
+                  <div style={{ flex: 1 }}>
+                    <div style={{ fontSize: 13, fontWeight: 600, color: '#283618' }}>{country.name}</div>
+                    <div style={{ fontSize: 11, color: '#bc6c25', fontWeight: 500 }}>{score.label} • {score.discount}% off</div>
+                  </div>
+                  <ChevronRight size={14} color="#ccc" />
+                </button>
+              );
+            })}
+          </div>
+        </section>
       </div>
-    </nav>
+
+      <div style={{ padding: 16, borderTop: '1px solid rgba(0,0,0,0.06)', background: '#fcfaf7' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12, color: '#bc6c25' }}>
+          <Info size={16} />
+          <span style={{ fontSize: 11, fontWeight: 500 }}>Prices are estimates based on 2 travellers for {tripParams.nights} nights.</span>
+        </div>
+      </div>
+    </aside>
   );
-};
+}
