@@ -45,8 +45,16 @@ export function formatCurrency(amount: number, currency: string): string {
 
 export async function fetchRestCountryMeta(countryName: string): Promise<CountryMeta | null> {
   const key = `budgey_rcmeta_v2_${countryName}`;
+  const META_TTL = 7 * 24 * 60 * 60 * 1000; // 7 days
   const cached = localStorage.getItem(key);
-  if (cached) return JSON.parse(cached);
+  if (cached) {
+    try {
+      const parsed = JSON.parse(cached);
+      if (parsed.timestamp && Date.now() - parsed.timestamp < META_TTL) {
+        return parsed.data;
+      }
+    } catch {}
+  }
   try {
     const res = await fetch(
       `https://restcountries.com/v3.1/name/${encodeURIComponent(countryName)}?fullText=true&fields=flag,flags,capital,population,languages,borders,latlng`
@@ -63,15 +71,23 @@ export async function fetchRestCountryMeta(countryName: string): Promise<Country
       neighbours: c.borders || [],
       latlng: c.latlng || [0, 0],
     };
-    localStorage.setItem(key, JSON.stringify(result));
+    localStorage.setItem(key, JSON.stringify({ data: result, timestamp: Date.now() }));
     return result;
   } catch { return null; }
 }
 
 export async function fetchClimateData(lat: number, lon: number, countryId: string): Promise<ClimateData[] | null> {
   const key = `budgey_climate_${countryId}`;
+  const CLIMATE_TTL = 24 * 60 * 60 * 1000; // 24 hours
   const cached = localStorage.getItem(key);
-  if (cached) return JSON.parse(cached);
+  if (cached) {
+    try {
+      const parsed = JSON.parse(cached);
+      if (parsed.timestamp && Date.now() - parsed.timestamp < CLIMATE_TTL) {
+        return parsed.data;
+      }
+    } catch {}
+  }
   try {
     // Use Open-Meteo forecast API to get the next 16 days then aggregate by month
     // This gives us real current conditions rather than just historical averages
@@ -99,13 +115,8 @@ export async function fetchClimateData(lat: number, lon: number, countryId: stri
     }));
 
     // Cache for 24 hours — weather data doesn't need to be fresher than that
-    localStorage.setItem(key, JSON.stringify(result));
+    const cacheEntry = { data: result, timestamp: Date.now() };
+    localStorage.setItem(key, JSON.stringify(cacheEntry));
     return result;
   } catch { return null; }
-}
-
-export function convertCurrency(amount: number, from: string, to: string, rates: Record<string, number>): number {
-  if (from === to) return amount;
-  const inBase = from === 'USD' ? amount / (rates['USD'] || 1) : amount / rates[from];
-  return to === 'USD' ? inBase * (rates['USD'] || 1) : inBase * rates[to];
 }

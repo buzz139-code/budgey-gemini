@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, Minus, Plus, Plane, Heart, Shield, Cloud, Train, Info } from 'lucide-react';
-import { type CountryData, type TripParams, type ExchangeRates, type TripEstimate } from '../types';
+import { type CountryData, type TripParams, type TripEstimate } from '../types';
 import { fetchRestCountryMeta, fetchClimateData } from '../services/currencyService';
 import { type CountryMeta, type ClimateData } from '../types';
 import { SavingsCalendar } from './SavingsCalendar';
@@ -14,12 +14,12 @@ interface BottomSheetProps {
   getCostInBase: (usd: number) => number;
   formatCurrency: (amount: number, currency: string) => string;
   baseCurrency: string;
-  exchangeRates: ExchangeRates | null;
   calculateTripCost: (country: CountryData, params: TripParams, getCostInBase: (usd: number) => number) => TripEstimate;
   getTimingScore: (country: CountryData, months: number[]) => any;
   MONTHS: string[];
   onCompare: (country: CountryData) => void;
   isInCompare: boolean;
+  isDesktop: boolean;
 }
 
 export default function BottomSheet({
@@ -34,11 +34,11 @@ export default function BottomSheet({
   getTimingScore,
   MONTHS,
   onCompare,
-  isInCompare
+  isInCompare,
+  isDesktop
 }: BottomSheetProps) {
   const [meta, setMeta] = useState<CountryMeta | null>(null);
   const [climate, setClimate] = useState<ClimateData[] | null>(null);
-  const isDesktop = typeof window !== 'undefined' && window.innerWidth >= 1024;
 
   useEffect(() => {
     fetchRestCountryMeta(country.name).then((meta) => {
@@ -149,9 +149,10 @@ export default function BottomSheet({
             country={country}
             selectedMonths={tripParams.months}
             onMonthToggle={(month) => {
-              const newMonths = tripParams.months.includes(month)
-                ? tripParams.months.length > 1 ? tripParams.months.filter(m => m !== month) : tripParams.months
-                : [...tripParams.months, month].sort((a, b) => a - b);
+              const zeroIndexed = month - 1;
+              const newMonths = tripParams.months.includes(zeroIndexed)
+                ? tripParams.months.length > 1 ? tripParams.months.filter(m => m !== zeroIndexed) : tripParams.months
+                : [...tripParams.months, zeroIndexed].sort((a, b) => a - b);
               onTripParamsChange({ ...tripParams, months: newMonths });
             }}
           />

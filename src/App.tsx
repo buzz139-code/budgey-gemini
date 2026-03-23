@@ -82,12 +82,14 @@ export default function App() {
   }, [exchangeRates, baseCurrency]);
 
   const maxBudgetUSD = useMemo(() => {
-    if (!exchangeRates || baseCurrency === 'USD') return tripParams.totalBudgetCAD;
+    if (!exchangeRates) return tripParams.totalBudgetCAD * 0.74; // fallback CAD->USD approx
     const cadRate = exchangeRates.rates['CAD'];
-    const usdRate = exchangeRates.rates['USD'];
-    if (!cadRate || !usdRate) return tripParams.totalBudgetCAD;
-    return (tripParams.totalBudgetCAD / cadRate) * usdRate;
-  }, [tripParams.totalBudgetCAD, exchangeRates, baseCurrency]);
+    const usdRate = exchangeRates.rates['USD'] || 1;
+    if (!cadRate) return tripParams.totalBudgetCAD * 0.74;
+    // Convert CAD budget to USD: divide by CAD rate (relative to base) then multiply by USD rate
+    const budgetInBase = tripParams.totalBudgetCAD / cadRate;
+    return budgetInBase * usdRate;
+  }, [tripParams.totalBudgetCAD, exchangeRates]);
 
   const filteredCountries = useMemo(() => {
     return Object.values(COUNTRIES_DATA)
@@ -229,12 +231,12 @@ export default function App() {
               getCostInBase={getCostInBase}
               formatCurrency={formatCurrency}
               baseCurrency={baseCurrency}
-              exchangeRates={exchangeRates}
               calculateTripCost={calculateTripCost}
               getTimingScore={getTimingScore}
               MONTHS={MONTHS}
               onCompare={toggleCompare}
               isInCompare={!!compareList.find(c => c.id === selectedCountry.id)}
+              isDesktop={isDesktop}
             />
           )}
         </main>
