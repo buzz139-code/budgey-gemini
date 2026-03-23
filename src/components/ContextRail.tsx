@@ -56,13 +56,44 @@ export default function ContextRail({
                 <Calendar size={14} color="#bc6c25" />
                 <span style={{ fontSize: 12, fontWeight: 600, color: '#283618' }}>Timing</span>
               </div>
-              <select 
-                value={tripParams.months[0]} 
-                onChange={e => onTripParamsChange({ ...tripParams, months: [parseInt(e.target.value)] })}
-                style={{ width: '100%', background: 'none', border: 'none', fontSize: 13, color: '#283618', fontWeight: 500, outline: 'none' }}
-              >
-                {MONTHS.map((m, i) => <option key={m} value={i}>{m}</option>)}
-              </select>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8, marginTop: 8 }}>
+                {MONTHS.map((m, i) => {
+                  const isSelected = tripParams.months.includes(i);
+                  return (
+                    <button
+                      key={m}
+                      onClick={() => {
+                        let newMonths;
+                        if (isSelected) {
+                          if (tripParams.months.length > 1) {
+                            newMonths = tripParams.months.filter(month => month !== i);
+                          } else {
+                            return;
+                          }
+                        } else {
+                          newMonths = [...tripParams.months, i].sort((a, b) => a - b);
+                        }
+                        onTripParamsChange({ ...tripParams, months: newMonths });
+                      }}
+                      style={{
+                        padding: '6px 4px',
+                        borderRadius: 8,
+                        border: 'none',
+                        fontSize: 10,
+                        fontWeight: 700,
+                        cursor: 'pointer',
+                        background: isSelected ? '#bc6c25' : '#fff',
+                        color: isSelected ? '#fff' : '#283618',
+                        transition: 'all 0.2s',
+                        textTransform: 'uppercase',
+                        outline: 'none'
+                      }}
+                    >
+                      {m.substring(0, 3)}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
 
             <div style={{ background: '#f5f0e8', padding: 12, borderRadius: 12 }}>

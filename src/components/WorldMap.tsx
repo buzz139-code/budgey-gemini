@@ -1,8 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import * as d3 from 'd3';
 import * as topojson from 'topojson-client';
 import { type CountryData, type TripParams } from '../types';
 import { COUNTRIES_DATA } from '../data/countries';
+import { TIMING_FILLS } from '../utils/timing';
 
 interface WorldMapProps {
   countries: CountryData[];
@@ -18,6 +19,16 @@ interface WorldMapProps {
   getTimingScore: (country: CountryData, months: number[]) => any;
 }
 
+const NAME_MAPPING: Record<string, string> = { 
+  "United States of America": "United States of America", 
+  "Czech Rep.": "Czechia", 
+  "S. Korea": "South Korea", 
+  "Viet Nam": "Vietnam", 
+  "Lao PDR": "Laos", 
+  "Dominican Rep.": "Dominican Republic", 
+  "Bosnia and Herz.": "Bosnia and Herzegovina" 
+};
+
 export default function WorldMap({ 
   countries,
   tripParams,
@@ -31,21 +42,75 @@ export default function WorldMap({
   baseCurrency,
   getTimingScore
 }: WorldMapProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
   const [topology, setTopology] = useState<any>(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+  const isFirstRender = useRef(true);
+  const pointerDownPos = useRef<{ x: number, y: number } | null>(null);
+  const gRef = useRef<d3.Selection<SVGGElement, unknown, null, undefined> | null>(null);
+  const zoomRef = useRef<d3.ZoomBehavior<SVGSVGElement, unknown> | null>(null);
+
+  const onCountrySelectRef = useRef(onCountrySelect);
+  const onCountryHoverRef = useRef(onCountryHover);
+  const updateMapColoursRef = useRef<() => void>(() => {});
+
+  useEffect(() => { onCountrySelectRef.current = onCountrySelect; });
+  useEffect(() => { onCountryHoverRef.current = onCountryHover; });
+
+  const updateMapColours = useCallback(() => {
+    if (!gRef.current) return;
+
+    gRef.current.selectAll('path')
+      .style('fill', null)
+      .each(function(d: any) {
+        const mappedName = NAME_MAPPING[d.properties.name] || d.properties.name;
+        const country = COUNTRIES_DATA[mappedName];
+        
+        const selection = d3.select(this);
+        
+        if (!country) {
+          selection
+            .attr('fill', '#e5e5e5')
+            .attr('fill-opacity', 0.4);
+          return;
+        }
+
+        const score = getTimingScore(country, tripParams.months);
+        const isSelected = selectedCountry?.id === country.id;
+        const isHovered = hoveredCountry?.id === country.id;
+
+        let fill = TIMING_FILLS[score.colour as keyof typeof TIMING_FILLS] || '#e5e5e5';
+        
+        if (isSelected) fill = '#bc6c25';
+        else if (isHovered) fill = d3.color(fill)?.brighter(0.5).toString() || fill;
+
+        selection
+          .attr('fill', fill)
+          .attr('fill-opacity', 1);
+      });
+  }, [tripParams.months, selectedCountry, hoveredCountry, getTimingScore]);
 
   useEffect(() => {
-    const updateDimensions = () => {
-      if (svgRef.current?.parentElement) {
-        const { width, height } = svgRef.current.parentElement.getBoundingClientRect();
+    updateMapColoursRef.current = updateMapColours;
+  }, [updateMapColours]);
+
+  useEffect(() => {
+    updateMapColoursRef.current();
+  }, [tripParams.months, selectedCountry, hoveredCountry]);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    const observer = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        const { width, height } = entry.contentRect;
         setDimensions({ width, height });
       }
-    };
+    });
 
-    updateDimensions();
-    window.addEventListener('resize', updateDimensions);
-    return () => window.removeEventListener('resize', updateDimensions);
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
@@ -58,61 +123,111 @@ export default function WorldMap({
     if (!topology || !svgRef.current || dimensions.width === 0) return;
 
     const svg = d3.select(svgRef.current);
+    
+    // Preserve zoom transform if it exists
+    const currentTransform = gRef.current ? d3.zoomTransform(svgRef.current) : d3.zoomIdentity;
+
     svg.selectAll('*').remove();
 
-    const projection = d3.geoNaturalEarth1()
-      .scale(dimensions.width / 5.5)
-      .translate([dimensions.width / 2, dimensions.height / 1.8]);
+    const projection = d3.geoMercator()
+      .fitExtent([[20, 20], [dimensions.width - 20, dimensions.height - 20]], topojson.feature(topology, topology.objects.countries));
 
     const path = d3.geoPath().projection(projection);
-
     const countriesGeo = topojson.feature(topology, topology.objects.countries) as any;
 
     const g = svg.append('g');
+    gRef.current = g;
 
     g.selectAll('path')
       .data(countriesGeo.features)
       .enter()
       .append('path')
       .attr('d', path)
-      .attr('fill', (d: any) => {
-        const country = Object.values(COUNTRIES_DATA).find(c => c.id === d.id);
-        if (!country) return '#f0f0f0';
-        if (selectedCountry?.id === country.id) return '#bc6c25';
-        if (hoveredCountry?.id === country.id) return '#dda15e';
-        return '#e9edc9';
-      })
       .attr('stroke', '#fff')
       .attr('stroke-width', 0.5)
-      .style('cursor', (d: any) => Object.values(COUNTRIES_DATA).find(c => c.id === d.id) ? 'pointer' : 'default')
-      .on('mouseenter', (event, d: any) => {
-        const country = Object.values(COUNTRIES_DATA).find(c => c.id === d.id);
-        if (country) onCountryHover(country);
-      })
-      .on('mouseleave', () => {
-        onCountryHover(null);
-      })
-      .on('click', (event, d: any) => {
-        const country = Object.values(COUNTRIES_DATA).find(c => c.id === d.id);
-        if (country) onCountrySelect(country);
+      .style('cursor', (d: any) => {
+        const mappedName = NAME_MAPPING[d.properties.name] || d.properties.name;
+        return COUNTRIES_DATA[mappedName] ? 'pointer' : 'default';
       });
 
-    const zoom = d3.zoom()
+    const zoom = d3.zoom<SVGSVGElement, unknown>()
       .scaleExtent([1, 8])
       .on('zoom', (event) => {
         g.attr('transform', event.transform);
       });
+    
+    zoomRef.current = zoom;
+    svg.call(zoom);
 
-    svg.call(zoom as any);
+    if (!isFirstRender.current) {
+      svg.call(zoom.transform, currentTransform);
+    } else {
+      isFirstRender.current = false;
+    }
 
-  }, [topology, dimensions, selectedCountry, hoveredCountry]);
+    updateMapColours();
+  }, [topology, dimensions]);
+
+  useEffect(() => {
+    if (!svgRef.current) return;
+    const svg = d3.select(svgRef.current);
+
+    svg.on('pointerdown', (event) => {
+      if (!event.isPrimary) return;
+      pointerDownPos.current = { x: event.clientX, y: event.clientY };
+    });
+
+    svg.on('pointerup', (event) => {
+      if (!event.isPrimary || !pointerDownPos.current) return;
+      
+      const dx = Math.abs(event.clientX - pointerDownPos.current.x);
+      const dy = Math.abs(event.clientY - pointerDownPos.current.y);
+      
+      if (dx < 5 && dy < 5) {
+        const target = event.target as SVGPathElement;
+        if (target.tagName === 'path') {
+          const d = d3.select(target).datum() as any;
+          if (d && d.properties) {
+            const mappedName = NAME_MAPPING[d.properties.name] || d.properties.name;
+            const country = COUNTRIES_DATA[mappedName];
+            if (country) onCountrySelectRef.current(country);
+          }
+        }
+      }
+      pointerDownPos.current = null;
+    });
+
+    svg.on('pointercancel', () => {
+      pointerDownPos.current = null;
+    });
+
+    // Event delegation for hover
+    svg.on('mousemove', (event) => {
+      const target = event.target as SVGPathElement;
+      if (target.tagName === 'path') {
+        const d = d3.select(target).datum() as any;
+        if (d && d.properties) {
+          const mappedName = NAME_MAPPING[d.properties.name] || d.properties.name;
+          const country = COUNTRIES_DATA[mappedName];
+          if (country) {
+            onCountryHoverRef.current(country);
+            return;
+          }
+        }
+      }
+      onCountryHoverRef.current(null);
+    });
+
+    svg.on('mouseleave', () => {
+      onCountryHoverRef.current(null);
+    });
+  }, []);
 
   return (
-    <div style={{ width: '100%', height: '100%', position: 'relative', background: '#fefae0' }}>
+    <div ref={containerRef} style={{ width: '100%', height: '100%', position: 'relative', background: '#fefae0' }}>
       <svg 
         ref={svgRef} 
-        style={{ width: '100%', height: '100%' }}
-        viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}
+        style={{ width: '100%', height: '100%', touchAction: 'none' }}
       />
       
       {hoveredCountry && (
