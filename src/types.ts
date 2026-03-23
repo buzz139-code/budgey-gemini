@@ -31,6 +31,7 @@ export interface CountryMeta {
   population: number;
   languages: string[];
   neighbours: string[];
+  latlng: number[];
 }
 
 export interface ClimateData {

@@ -41,11 +41,13 @@ export default function BottomSheet({
   const isDesktop = typeof window !== 'undefined' && window.innerWidth >= 1024;
 
   useEffect(() => {
-    fetchRestCountryMeta(country.name).then(setMeta);
-    if (country.lat && country.lon) {
-      fetchClimateData(country.lat, country.lon, country.id).then(setClimate);
-    }
-  }, [country.name, country.id, country.lat, country.lon]);
+    fetchRestCountryMeta(country.name).then((meta) => {
+      setMeta(meta);
+      if (meta?.latlng && meta.latlng.length >= 2) {
+        fetchClimateData(meta.latlng[0], meta.latlng[1], country.id).then(setClimate);
+      }
+    });
+  }, [country.name, country.id]);
 
   const estimate = useMemo(() => calculateTripCost(country, tripParams, getCostInBase), [country, tripParams, getCostInBase]);
   const timing = useMemo(() => getTimingScore(country, tripParams.months), [country, tripParams.months]);
@@ -170,7 +172,9 @@ export default function BottomSheet({
           <div style={{ padding: 12, borderRadius: 12, border: '1px solid rgba(0,0,0,0.06)', display: 'flex', alignItems: 'center', gap: 10 }}>
             <Cloud size={18} color="#bc6c25" />
             <div>
-              <div style={{ fontSize: 10, color: 'rgba(40,54,24,0.5)', fontWeight: 600 }}>Weather now</div>
+              <div style={{ fontSize: 10, color: 'rgba(40,54,24,0.5)', fontWeight: 600 }}>
+                {meta?.capital || 'Weather'} in {['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][tripParams.months[0]]}
+              </div>
               {(() => {
                 const currentMonth = new Date().getMonth() + 1;
                 const selectedMonth = tripParams.months[0] + 1;

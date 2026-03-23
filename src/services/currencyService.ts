@@ -61,6 +61,7 @@ export async function fetchRestCountryMeta(countryName: string): Promise<Country
       population: c.population || 0,
       languages: Object.values(c.languages || {}) as string[],
       neighbours: c.borders || [],
+      latlng: c.latlng || [0, 0],
     };
     localStorage.setItem(key, JSON.stringify(result));
     return result;
