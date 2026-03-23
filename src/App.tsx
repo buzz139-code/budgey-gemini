@@ -93,11 +93,10 @@ export default function App() {
     return Object.values(COUNTRIES_DATA)
       .filter(c => {
         if (searchQuery && !c.name.toLowerCase().includes(searchQuery.toLowerCase())) return false;
-        const estimate = calculateTripCost(c, tripParams, getCostInBase);
-        return estimate.total <= tripParams.totalBudgetCAD;
+        return true;
       })
       .sort((a, b) => getTimingScore(b, tripParams.months).discount - getTimingScore(a, tripParams.months).discount);
-  }, [searchQuery, tripParams, getCostInBase, tripParams.totalBudgetCAD]);
+  }, [searchQuery, tripParams.months]);
 
   const bestTimingCountries = useMemo(() => {
     return Object.values(COUNTRIES_DATA)

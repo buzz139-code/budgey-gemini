@@ -59,6 +59,7 @@ export default function WorldMap({
   const tripParamsRef = useRef(tripParams);
   const selectedCountryRef = useRef(selectedCountry);
   const hoveredCountryRef = useRef(hoveredCountry);
+  const countriesRef = useRef(countries);
   const updateMapColoursRef = useRef<() => void>(() => {});
 
   useEffect(() => { onCountrySelectRef.current = onCountrySelect; });
@@ -66,6 +67,7 @@ export default function WorldMap({
   useEffect(() => { tripParamsRef.current = tripParams; });
   useEffect(() => { selectedCountryRef.current = selectedCountry; });
   useEffect(() => { hoveredCountryRef.current = hoveredCountry; });
+  useEffect(() => { countriesRef.current = countries; });
 
   const getCountryData = useCallback((topoName: string) => {
     const mappedName = NAME_MAPPING[topoName] || topoName;
@@ -101,12 +103,20 @@ export default function WorldMap({
     let activeCountryName: string | null = null;
 
     const updateMapColours = () => {
+      const matchedIds = new Set(countriesRef.current.map(c => c.id));
       g.selectAll('path').style('fill', null).each(function(d: any) {
         const data = getCountryData(d.properties.name);
         if (!data) { 
           d3.select(this).style('fill', '#e5e5e5').style('opacity', '0.4'); 
           return; 
         }
+        
+        const isMatched = matchedIds.has(data.id);
+        if (!isMatched) {
+          d3.select(this).style('fill', '#e5e5e5').style('opacity', '0.25');
+          return;
+        }
+
         const score = getTimingScore(data, tripParamsRef.current.months);
         const isSelected = selectedCountryRef.current?.id === data.id;
         const isHovered = hoveredCountryRef.current?.id === data.id;
