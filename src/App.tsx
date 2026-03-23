@@ -6,7 +6,6 @@ import { getTimingScore } from './utils/timing';
 import { calculateTripCost } from './utils/tripCost';
 import Header from './components/Header';
 import ContextRail from './components/ContextRail';
-import FilterPills from './components/FilterPills';
 import WorldMap from './components/WorldMap';
 import BottomSheet from './components/BottomSheet';
 
@@ -18,13 +17,13 @@ export default function App() {
     nights: 14,
     totalBudgetCAD: 3000,
     travellers: 2,
+    travelStyle: 'standard',
   });
 
   const [selectedCountry, setSelectedCountry] = useState<CountryData | null>(null);
   const [hoveredCountry, setHoveredCountry] = useState<CountryData | null>(null);
   const [compareList, setCompareList] = useState<CountryData[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
-  const [activeFilter, setActiveFilter] = useState<string | null>(null);
   const [baseCurrency, setBaseCurrency] = useState<string>(() => localStorage.getItem('budgey_currency') || 'CAD');
   const [exchangeRates, setExchangeRates] = useState<ExchangeRates | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -114,9 +113,10 @@ export default function App() {
           baseCurrency={baseCurrency}
           MONTHS={MONTHS}
           getTimingScore={getTimingScore}
+          matchCount={filteredCountries.length}
+          calculateTripCost={calculateTripCost}
         />
         <main style={{ flex: 1, position: 'relative', overflow: 'hidden', transition: 'margin-left 0.3s', marginLeft: isDesktop && isSidebarOpen ? 0 : 0 }}>
-          <FilterPills activeFilter={activeFilter} onFilterChange={setActiveFilter} />
           <WorldMap
             countries={filteredCountries}
             tripParams={tripParams}

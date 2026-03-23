@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import * as d3 from 'd3';
 import * as topojson from 'topojson-client';
+import { motion, AnimatePresence } from 'motion/react';
 import { type CountryData, type TripParams } from '../types';
 import { COUNTRIES_DATA } from '../data/countries';
 import { TIMING_FILLS } from '../utils/timing';
@@ -19,20 +20,24 @@ interface WorldMapProps {
   getTimingScore: (country: CountryData, months: number[]) => any;
 }
 
-const NAME_MAPPING: Record<string, string> = { 
-  "United States of America": "United States of America", 
-  "Czech Rep.": "Czechia", 
-  "S. Korea": "South Korea", 
-  "Viet Nam": "Vietnam", 
-  "Lao PDR": "Laos", 
-  "Dominican Rep.": "Dominican Republic", 
-  "Bosnia and Herz.": "Bosnia and Herzegovina" 
+const NAME_MAPPING: Record<string, string> = {
+  "United States of America": "United States of America",
+  "Czech Rep.": "Czechia", "Czech Republic": "Czechia",
+  "S. Korea": "South Korea", "South Korea": "South Korea",
+  "Dem. Rep. Congo": "DR Congo", "Bosnia and Herz.": "Bosnia and Herzegovina",
+  "Dominican Rep.": "Dominican Republic", "Eq. Guinea": "Equatorial Guinea",
+  "Solomon Is.": "Solomon Islands", "Falkland Is.": "Falkland Islands",
+  "W. Sahara": "Western Sahara", "Viet Nam": "Vietnam",
+  "Lao PDR": "Laos", "Myanmar": "Myanmar", "Tanzania": "Tanzania",
+  "Eswatini": "Eswatini", "North Macedonia": "North Macedonia",
+  "S. Sudan": "South Sudan", "Central African Rep.": "Central African Republic",
+  "Congo": "DR Congo", "Ivory Coast": "Ivory Coast",
 };
 
-export default function WorldMap({ 
+export default function WorldMap({
   countries,
   tripParams,
-  onCountrySelect, 
+  onCountrySelect,
   onCountryHover,
   hoveredCountry,
   selectedCountry,
@@ -44,217 +49,272 @@ export default function WorldMap({
 }: WorldMapProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
+  const gRef = useRef<SVGGElement>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [topology, setTopology] = useState<any>(null);
-  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-  const isFirstRender = useRef(true);
-  const pointerDownPos = useRef<{ x: number, y: number } | null>(null);
-  const gRef = useRef<d3.Selection<SVGGElement, unknown, null, undefined> | null>(null);
-  const zoomRef = useRef<d3.ZoomBehavior<SVGSVGElement, unknown> | null>(null);
 
   const onCountrySelectRef = useRef(onCountrySelect);
   const onCountryHoverRef = useRef(onCountryHover);
+  const tripParamsRef = useRef(tripParams);
+  const selectedCountryRef = useRef(selectedCountry);
+  const hoveredCountryRef = useRef(hoveredCountry);
   const updateMapColoursRef = useRef<() => void>(() => {});
 
   useEffect(() => { onCountrySelectRef.current = onCountrySelect; });
   useEffect(() => { onCountryHoverRef.current = onCountryHover; });
+  useEffect(() => { tripParamsRef.current = tripParams; });
+  useEffect(() => { selectedCountryRef.current = selectedCountry; });
+  useEffect(() => { hoveredCountryRef.current = hoveredCountry; });
 
-  const updateMapColours = useCallback(() => {
-    if (!gRef.current) return;
+  const getCountryData = useCallback((topoName: string) => {
+    const mappedName = NAME_MAPPING[topoName] || topoName;
+    return COUNTRIES_DATA[mappedName];
+  }, []);
 
-    gRef.current.selectAll('path')
-      .style('fill', null)
-      .each(function(d: any) {
-        const mappedName = NAME_MAPPING[d.properties.name] || d.properties.name;
-        const country = COUNTRIES_DATA[mappedName];
-        
-        const selection = d3.select(this);
-        
-        if (!country) {
-          selection
-            .attr('fill', '#e5e5e5')
-            .attr('fill-opacity', 0.4);
-          return;
-        }
-
-        const score = getTimingScore(country, tripParams.months);
-        const isSelected = selectedCountry?.id === country.id;
-        const isHovered = hoveredCountry?.id === country.id;
-
-        let fill = TIMING_FILLS[score.colour as keyof typeof TIMING_FILLS] || '#e5e5e5';
-        
-        if (isSelected) fill = '#bc6c25';
-        else if (isHovered) fill = d3.color(fill)?.brighter(0.5).toString() || fill;
-
-        selection
-          .attr('fill', fill)
-          .attr('fill-opacity', 1);
+  // Fetch topology
+  useEffect(() => {
+    fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json')
+      .then(res => {
+        if (!res.ok) throw new Error('Failed to fetch map data');
+        return res.json();
+      })
+      .then(data => {
+        setTopology(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        setError(err.message);
+        setLoading(false);
       });
-  }, [tripParams.months, selectedCountry, hoveredCountry, getTimingScore]);
-
-  useEffect(() => {
-    updateMapColoursRef.current = updateMapColours;
-  }, [updateMapColours]);
-
-  useEffect(() => {
-    updateMapColoursRef.current();
-  }, [tripParams.months, selectedCountry, hoveredCountry]);
-
-  useEffect(() => {
-    if (!containerRef.current) return;
-
-    const observer = new ResizeObserver((entries) => {
-      for (const entry of entries) {
-        const { width, height } = entry.contentRect;
-        setDimensions({ width, height });
-      }
-    });
-
-    observer.observe(containerRef.current);
-    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
-    fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
-      .then(res => res.json())
-      .then(data => setTopology(data));
-  }, []);
-
-  useEffect(() => {
-    if (!topology || !svgRef.current || dimensions.width === 0) return;
+    if (!topology || !svgRef.current || !containerRef.current || !gRef.current) return;
 
     const svg = d3.select(svgRef.current);
+    const g = d3.select(gRef.current);
     
-    // Preserve zoom transform if it exists
-    const currentTransform = gRef.current ? d3.zoomTransform(svgRef.current) : d3.zoomIdentity;
+    let isFirstRender = true;
+    let pointerDownPos = { x: 0, y: 0 };
+    let isTouchInteraction = false;
+    let activeCountryName: string | null = null;
 
-    svg.selectAll('*').remove();
+    const updateMapColours = () => {
+      g.selectAll('path').style('fill', null).each(function(d: any) {
+        const data = getCountryData(d.properties.name);
+        if (!data) { 
+          d3.select(this).style('fill', '#e5e5e5').style('opacity', '0.4'); 
+          return; 
+        }
+        const score = getTimingScore(data, tripParamsRef.current.months);
+        const isSelected = selectedCountryRef.current?.id === data.id;
+        const isHovered = hoveredCountryRef.current?.id === data.id;
+        
+        let fill = TIMING_FILLS[score.colour as keyof typeof TIMING_FILLS] || '#e5e5e5';
+        if (isSelected) fill = '#bc6c25';
+        else if (isHovered && !isTouchInteraction) fill = d3.color(fill)?.brighter(0.5).toString() || fill;
 
-    const projection = d3.geoMercator()
-      .fitExtent([[20, 20], [dimensions.width - 20, dimensions.height - 20]], topojson.feature(topology, topology.objects.countries));
+        d3.select(this).style('fill', fill).style('opacity', '1');
+      });
+    };
+    updateMapColoursRef.current = updateMapColours;
 
-    const path = d3.geoPath().projection(projection);
+    const renderMap = () => {
+      const width = containerRef.current?.clientWidth || 0;
+      const height = containerRef.current?.clientHeight || 0;
+      if (width === 0 || height === 0) return;
+
+      const projection = d3.geoMercator()
+        .fitExtent([[20, 20], [width - 20, height - 20]], topojson.feature(topology, topology.objects.countries));
+      
+      const pathGenerator = d3.geoPath().projection(projection);
+
+      const zoom = d3.zoom<SVGSVGElement, unknown>()
+        .scaleExtent([1, 8])
+        .on('zoom', (event) => {
+          g.attr('transform', event.transform);
+        });
+
+      svg.call(zoom);
+
+      if (isFirstRender) {
+        isFirstRender = false;
+      } else {
+        const t = d3.zoomTransform(svg.node() as Element);
+        g.attr('transform', t.toString());
+      }
+
+      g.selectAll('path').attr('d', pathGenerator as any);
+    };
+
+    // Initial setup
     const countriesGeo = topojson.feature(topology, topology.objects.countries) as any;
-
-    const g = svg.append('g');
-    gRef.current = g;
-
+    
     g.selectAll('path')
       .data(countriesGeo.features)
       .enter()
       .append('path')
-      .attr('d', path)
       .attr('stroke', '#fff')
       .attr('stroke-width', 0.5)
-      .style('cursor', (d: any) => {
-        const mappedName = NAME_MAPPING[d.properties.name] || d.properties.name;
-        return COUNTRIES_DATA[mappedName] ? 'pointer' : 'default';
+      .on('pointerenter', (event, d: any) => {
+        if (event.pointerType === 'touch') return;
+        const data = getCountryData(d.properties.name);
+        if (data) onCountryHoverRef.current(data);
+      })
+      .on('pointerleave', (event) => {
+        if (event.pointerType === 'touch') return;
+        onCountryHoverRef.current(null);
+      })
+      .on('pointerdown', (event, d: any) => {
+        if (!event.isPrimary) return;
+        pointerDownPos = { x: event.clientX, y: event.clientY };
+        isTouchInteraction = event.pointerType === 'touch';
+        activeCountryName = d.properties.name;
+        if (isTouchInteraction) {
+          const data = getCountryData(activeCountryName);
+          if (data) d3.select(event.currentTarget as Element).style('fill', '#283618');
+        }
       });
 
-    const zoom = d3.zoom<SVGSVGElement, unknown>()
-      .scaleExtent([1, 8])
-      .on('zoom', (event) => {
-        g.attr('transform', event.transform);
-      });
-    
-    zoomRef.current = zoom;
-    svg.call(zoom);
+    svg.on('pointerup.custom', (event) => {
+      if (!event.isPrimary || !activeCountryName) return;
+      const dx = Math.abs(event.clientX - pointerDownPos.x);
+      const dy = Math.abs(event.clientY - pointerDownPos.y);
+      if (dx > 5 || dy > 5) {
+        if (isTouchInteraction) updateMapColours();
+        activeCountryName = null;
+        return;
+      }
+      const data = getCountryData(activeCountryName);
+      if (data) {
+        onCountrySelectRef.current(data);
+        onCountryHoverRef.current(null);
+      }
+      activeCountryName = null;
+    }).on('pointercancel.custom', () => { 
+      updateMapColours(); 
+      activeCountryName = null; 
+    });
 
-    if (!isFirstRender.current) {
-      svg.call(zoom.transform, currentTransform);
-    } else {
-      isFirstRender.current = false;
-    }
-
+    renderMap();
     updateMapColours();
-  }, [topology, dimensions]);
 
+    const resizeObserver = new ResizeObserver(() => {
+      renderMap();
+    });
+    resizeObserver.observe(containerRef.current);
+
+    return () => {
+      resizeObserver.disconnect();
+      svg.on('pointerup.custom', null).on('pointercancel.custom', null);
+    };
+  }, [topology]);
+
+  // Update colours when params change
   useEffect(() => {
-    if (!svgRef.current) return;
-    const svg = d3.select(svgRef.current);
-
-    svg.on('pointerdown', (event) => {
-      if (!event.isPrimary) return;
-      pointerDownPos.current = { x: event.clientX, y: event.clientY };
-    });
-
-    svg.on('pointerup', (event) => {
-      if (!event.isPrimary || !pointerDownPos.current) return;
-      
-      const dx = Math.abs(event.clientX - pointerDownPos.current.x);
-      const dy = Math.abs(event.clientY - pointerDownPos.current.y);
-      
-      if (dx < 5 && dy < 5) {
-        const target = event.target as SVGPathElement;
-        if (target.tagName === 'path') {
-          const d = d3.select(target).datum() as any;
-          if (d && d.properties) {
-            const mappedName = NAME_MAPPING[d.properties.name] || d.properties.name;
-            const country = COUNTRIES_DATA[mappedName];
-            if (country) onCountrySelectRef.current(country);
-          }
-        }
-      }
-      pointerDownPos.current = null;
-    });
-
-    svg.on('pointercancel', () => {
-      pointerDownPos.current = null;
-    });
-
-    // Event delegation for hover
-    svg.on('mousemove', (event) => {
-      const target = event.target as SVGPathElement;
-      if (target.tagName === 'path') {
-        const d = d3.select(target).datum() as any;
-        if (d && d.properties) {
-          const mappedName = NAME_MAPPING[d.properties.name] || d.properties.name;
-          const country = COUNTRIES_DATA[mappedName];
-          if (country) {
-            onCountryHoverRef.current(country);
-            return;
-          }
-        }
-      }
-      onCountryHoverRef.current(null);
-    });
-
-    svg.on('mouseleave', () => {
-      onCountryHoverRef.current(null);
-    });
-  }, []);
+    updateMapColoursRef.current();
+  }, [tripParams.months, countries, baseCurrency, selectedCountry, hoveredCountry]);
 
   return (
-    <div ref={containerRef} style={{ width: '100%', height: '100%', position: 'relative', background: '#fefae0' }}>
-      <svg 
-        ref={svgRef} 
-        style={{ width: '100%', height: '100%', touchAction: 'none' }}
-      />
-      
-      {hoveredCountry && (
-        <div style={{ 
-          position: 'absolute', 
-          bottom: 24, 
-          left: 24, 
-          background: '#fff', 
-          padding: '12px 16px', 
-          borderRadius: 16, 
-          boxShadow: '0 8px 24px rgba(40,54,24,0.12)',
-          border: '1px solid rgba(0,0,0,0.06)',
-          display: 'flex',
-          alignItems: 'center',
-          gap: 12,
-          pointerEvents: 'none',
-          zIndex: 40
-        }}>
-          <span style={{ fontSize: 24 }}>{hoveredCountry.flag || '📍'}</span>
-          <div>
-            <div style={{ fontSize: 14, fontWeight: 700, color: '#283618' }}>{hoveredCountry.name}</div>
-            <div style={{ fontSize: 11, color: '#bc6c25', fontWeight: 600 }}>
-              {getTimingScore(hoveredCountry, tripParams.months).label} • {getTimingScore(hoveredCountry, tripParams.months).discount}% off
-            </div>
+    <div ref={containerRef} style={{ width: '100%', height: '100%', position: 'relative', background: '#fefae0', overflow: 'hidden' }}>
+      {loading && (
+        <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(254,250,224,0.8)', zIndex: 10 }}>
+          <div style={{ textAlign: 'center' }}>
+            <div style={{ width: 40, height: 40, border: '3px solid #bc6c25', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 1s linear infinite', margin: '0 auto 12px' }} />
+            <div style={{ fontSize: 14, fontWeight: 600, color: '#283618' }}>Loading World Atlas...</div>
           </div>
         </div>
       )}
+
+      {error && (
+        <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(254,250,224,0.8)', zIndex: 10 }}>
+          <div style={{ textAlign: 'center', color: '#bc6c25' }}>
+            <div style={{ fontSize: 14, fontWeight: 600 }}>Error loading map: {error}</div>
+          </div>
+        </div>
+      )}
+
+      <svg ref={svgRef} style={{ width: '100%', height: '100%', touchAction: 'none' }}>
+        <g ref={gRef} />
+      </svg>
+
+      {/* Destination Count Badge */}
+      <div style={{ position: 'absolute', top: 24, left: '50%', transform: 'translateX(-50%)', display: 'flex', alignItems: 'center', gap: 8, background: '#fff', padding: '8px 16px', borderRadius: 100, boxShadow: '0 4px 12px rgba(40,54,24,0.1)', border: '1px solid rgba(0,0,0,0.06)', zIndex: 20 }}>
+        <motion.div 
+          animate={{ scale: [1, 1.5, 1], opacity: [1, 0.5, 1] }}
+          transition={{ repeat: Infinity, duration: 2 }}
+          style={{ width: 8, height: 8, borderRadius: '50%', background: '#606c38' }} 
+        />
+        <span style={{ fontSize: 12, fontWeight: 700, color: '#283618' }}>
+          {countries.length} destinations match your months
+        </span>
+      </div>
+
+      {/* Map Legend */}
+      <div style={{ position: 'absolute', bottom: 24, right: 24, background: '#fff', padding: 12, borderRadius: 12, boxShadow: '0 4px 12px rgba(40,54,24,0.1)', border: '1px solid rgba(0,0,0,0.06)', zIndex: 20 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+          {[
+            { color: TIMING_FILLS.strong, label: '30%+ off' },
+            { color: TIMING_FILLS.good, label: '15%+ off' },
+            { color: TIMING_FILLS.shoulder, label: 'Shoulder' },
+            { color: TIMING_FILLS.peak, label: 'Peak' },
+          ].map(item => (
+            <div key={item.label} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <div style={{ width: 12, height: 12, borderRadius: 3, background: item.color }} />
+              <span style={{ fontSize: 10, fontWeight: 600, color: '#283618' }}>{item.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Hover Tooltip */}
+      <AnimatePresence>
+        {hoveredCountry && isDesktop && (
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            style={{ 
+              position: 'absolute', 
+              bottom: 48, 
+              left: '50%', 
+              transform: 'translateX(-50%)', 
+              background: '#fff', 
+              padding: '12px 16px', 
+              borderRadius: 16, 
+              boxShadow: '0 8px 24px rgba(40,54,24,0.12)',
+              border: '1px solid rgba(0,0,0,0.06)',
+              display: 'flex',
+              alignItems: 'center',
+              gap: 12,
+              pointerEvents: 'none',
+              zIndex: 40
+            }}
+          >
+            <span style={{ fontSize: 24 }}>{hoveredCountry.flag || '📍'}</span>
+            <div>
+              <div style={{ fontSize: 14, fontWeight: 700, color: '#283618' }}>{hoveredCountry.name}</div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                {getTimingScore(hoveredCountry, tripParams.months).discount > 0 && (
+                  <span style={{ fontSize: 11, color: '#606c38', fontWeight: 700 }}>
+                    {getTimingScore(hoveredCountry, tripParams.months).label}
+                  </span>
+                )}
+                <span style={{ fontSize: 11, color: '#bc6c25', fontWeight: 600 }}>
+                  {formatCurrency(getCostInBase(hoveredCountry.avgHotelCost), baseCurrency)}/night
+                </span>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <style>{`
+        @keyframes spin {
+          to { transform: rotate(360deg); }
+        }
+      `}</style>
     </div>
   );
 }

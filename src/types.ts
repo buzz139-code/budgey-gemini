@@ -26,6 +26,7 @@ export interface TripParams {
   nights: number;
   totalBudgetCAD: number;
   travellers: number;
+  travelStyle: 'budget' | 'standard' | 'luxury';
 }
 
 export interface TimingScore {

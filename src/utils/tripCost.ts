@@ -14,15 +14,15 @@ const FLIGHT_ESTIMATES: Record<string, number> = {
 };
 
 export function calculateTripCost(country: CountryData, params: TripParams, getCostInBase: (usd: number) => number): TripEstimate {
-  const { nights, travellers } = params;
-  const style = 'standard';
+  const { nights, travellers, travelStyle } = params;
+  const multiplier = travelStyle === 'budget' ? 0.6 : travelStyle === 'luxury' ? 2.5 : 1;
   const rooms = Math.ceil(travellers / 2);
-  const accommodation = country.avgHotelCost * rooms * nights;
+  const accommodation = country.avgHotelCost * rooms * nights * multiplier;
   const baseFood = country.avgHotelCost < 80 ? 25 : country.avgHotelCost >= 150 ? 70 : 45;
-  const food = baseFood * travellers * nights;
+  const food = baseFood * travellers * nights * multiplier;
   const baseTransport = country.transitScore >= 80 ? 8 : country.transitScore < 50 ? 25 : 15;
-  const transport = baseTransport * travellers * nights;
-  const activities = 25 * travellers * nights;
+  const transport = baseTransport * travellers * nights * (travelStyle === 'luxury' ? 2 : 1);
+  const activities = 25 * travellers * nights * multiplier;
   const flightPerPerson = FLIGHT_ESTIMATES[country.region] || 900;
   const flights = flightPerPerson * travellers;
   const total = accommodation + food + transport + activities + flights;
