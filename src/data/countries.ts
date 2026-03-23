@@ -20,6 +20,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [11, 12, 1, 2],
     highlights: ['Street food', 'Tropical beaches', 'Ancient temples'],
     description: 'A tropical paradise known for its vibrant street life, ornate temples, and world-class beaches.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: 13.8,
+    lon: 100.5,
     recommendedCities: ['Bangkok', 'Chiang Mai', 'Phuket', 'Krabi', 'Pai']
   },
   "Portugal": {
@@ -41,6 +45,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [6, 7, 8, 9],
     highlights: ['Historic architecture', 'Atlantic coastline', 'Port wine'],
     description: 'A coastal nation with a rich maritime history, stunning tiled buildings, and a relaxed atmosphere.',
+    advisoryLevel: 1,
+    travelAdvisory: 'Take normal security precautions. Portugal is generally safe for travellers.',
+    lat: 38.7,
+    lon: -9.1,
     recommendedCities: ['Lisbon', 'Porto', 'Sintra', 'Lagos', 'Coimbra']
   },
   "Vietnam": {
@@ -61,6 +69,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [11, 12, 1, 2],
     highlights: ['Ha Long Bay', 'Old Quarter Hanoi', 'Coffee culture'],
     description: 'A land of breathtaking natural beauty and complex history, famous for its incredible cuisine.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: 21,
+    lon: 105.8,
     recommendedCities: ['Hanoi', 'Ho Chi Minh City', 'Hoi An', 'Da Nang', 'Hue']
   },
   "Mexico": {
@@ -82,6 +94,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [12, 1, 2, 3],
     highlights: ['Mayan ruins', 'Culinary diversity', 'Caribbean beaches'],
     description: 'A vibrant country offering a mix of ancient civilizations, colonial towns, and stunning coastlines.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: 19.4,
+    lon: -99.1,
     recommendedCities: ['Mexico City', 'Oaxaca', 'Playa del Carmen', 'Tulum', 'Puerto Vallarta']
   },
   "Greece": {
@@ -103,6 +119,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [6, 7, 8],
     highlights: ['Santorini sunsets', 'Acropolis', 'Mediterranean diet'],
     description: 'The cradle of Western civilization, featuring iconic white-washed buildings and turquoise waters.',
+    advisoryLevel: 1,
+    travelAdvisory: 'Take normal security precautions. Greece is generally safe for travellers.',
+    lat: 37.9,
+    lon: 23.7,
     recommendedCities: ['Athens', 'Santorini', 'Mykonos', 'Crete', 'Rhodes']
   },
   "Japan": {
@@ -123,6 +143,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [3, 4, 10, 11],
     highlights: ['Cherry blossoms', 'Shinkansen', 'Sushi and Ramen'],
     description: 'A seamless blend of ancient traditions and futuristic technology, known for its impeccable hospitality.',
+    advisoryLevel: 1,
+    travelAdvisory: 'Take normal security precautions. Japan is generally safe for travellers.',
+    lat: 35.7,
+    lon: 139.7,
     recommendedCities: ['Tokyo', 'Kyoto', 'Osaka', 'Nara', 'Hiroshima']
   },
   "Indonesia": {
@@ -143,6 +167,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [6, 7, 8, 9],
     highlights: ['Bali beaches', 'Komodo dragons', 'Volcanic landscapes'],
     description: 'An archipelago of thousands of islands, each offering unique cultures and stunning natural wonders.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: -6.2,
+    lon: 106.8,
     recommendedCities: ['Ubud', 'Seminyak', 'Yogyakarta', 'Lombok', 'Jakarta']
   },
   "Turkey": {
@@ -163,6 +191,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [6, 7, 8, 9],
     highlights: ['Cappadocia balloons', 'Grand Bazaar', 'Bosphorus views'],
     description: 'A bridge between East and West, rich in history, bustling bazaars, and unique landscapes.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: 39.9,
+    lon: 32.9,
     recommendedCities: ['Istanbul', 'Cappadocia', 'Antalya', 'Bodrum', 'Izmir']
   },
   "Colombia": {
@@ -183,6 +215,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [12, 1, 7, 8],
     highlights: ['Coffee region', 'Cartagena Old Town', 'Andean peaks'],
     description: 'A country of diverse landscapes, from Caribbean beaches to coffee-growing mountains.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: 4.7,
+    lon: -74.1,
     recommendedCities: ['Medellin', 'Cartagena', 'Bogota', 'Santa Marta', 'Salento']
   },
   "Morocco": {
@@ -203,6 +239,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [3, 4, 5, 9, 10],
     highlights: ['Sahara Desert', 'Marrakech Souks', 'Atlas Mountains'],
     description: 'A sensory explosion of colors, scents, and sounds, from the Sahara to bustling medinas.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: 34,
+    lon: -6.8,
     recommendedCities: ['Marrakech', 'Fes', 'Chefchaouen', 'Casablanca', 'Essaouira']
   },
   "Spain": {
@@ -223,6 +263,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [6, 7, 8, 9],
     highlights: ['Sagrada Familia', 'Flamenco', 'Tapas culture'],
     description: 'A passionate country known for its diverse regions, world-class art, and lively festivals.',
+    advisoryLevel: 1,
+    travelAdvisory: 'Take normal security precautions. Spain is generally safe for travellers.',
+    lat: 40.4,
+    lon: -3.7,
     recommendedCities: ['Barcelona', 'Madrid', 'Seville', 'Valencia', 'Bilbao']
   },
   "Italy": {
@@ -243,6 +287,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [6, 7, 8, 9],
     highlights: ['Colosseum', 'Renaissance art', 'Pasta and gelato'],
     description: 'A masterpiece of art, history, and culinary excellence, from the Alps to the Mediterranean.',
+    advisoryLevel: 1,
+    travelAdvisory: 'Take normal security precautions. Italy is generally safe for travellers.',
+    lat: 41.9,
+    lon: 12.5,
     recommendedCities: ['Rome', 'Florence', 'Venice', 'Milan', 'Amalfi']
   },
   "France": {
@@ -263,6 +311,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [6, 7, 8, 9],
     highlights: ['Eiffel Tower', 'Wine regions', 'French cuisine'],
     description: 'The world\'s most visited country, offering romantic cities, historic chateaus, and gourmet dining.',
+    advisoryLevel: 1,
+    travelAdvisory: 'Take normal security precautions. France is generally safe for travellers.',
+    lat: 48.9,
+    lon: 2.3,
     recommendedCities: ['Paris', 'Lyon', 'Bordeaux', 'Nice', 'Strasbourg']
   },
   "Egypt": {
@@ -283,6 +335,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [10, 11, 12, 1, 2, 3],
     highlights: ['Pyramids of Giza', 'Nile River', 'Luxor temples'],
     description: 'Home to one of the world\'s oldest civilizations, with awe-inspiring monuments and the life-giving Nile.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: 30.1,
+    lon: 31.2,
     recommendedCities: ['Cairo', 'Luxor', 'Aswan', 'Alexandria', 'Sharm el-Sheikh']
   },
   "India": {
@@ -303,6 +359,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [10, 11, 12, 1, 2],
     highlights: ['Taj Mahal', 'Rajasthan forts', 'Street food'],
     description: 'A vast and diverse subcontinent offering a kaleidoscope of cultures, traditions, and landscapes.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: 28.6,
+    lon: 77.2,
     recommendedCities: ['Delhi', 'Mumbai', 'Jaipur', 'Varanasi', 'Goa']
   },
   "Brazil": {
@@ -323,6 +383,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [12, 1, 2, 3],
     highlights: ['Amazon rainforest', 'Carnival', 'Iguazu Falls'],
     description: 'A land of rhythmic music, lush rainforests, and some of the world\'s most famous beaches.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: -15.8,
+    lon: -47.9,
     recommendedCities: ['Rio de Janeiro', 'Sao Paulo', 'Salvador', 'Florianopolis', 'Manaus']
   },
   "Argentina": {
@@ -343,6 +407,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [12, 1, 2],
     highlights: ['Patagonia', 'Buenos Aires tango', 'Mendoza wine'],
     description: 'From the cosmopolitan streets of Buenos Aires to the rugged beauty of Patagonia.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: -34.6,
+    lon: -58.4,
     recommendedCities: ['Buenos Aires', 'Mendoza', 'Bariloche', 'Salta', 'Ushuaia']
   },
   "South Africa": {
@@ -363,6 +431,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [11, 12, 1, 2],
     highlights: ['Safari', 'Cape Town', 'Garden Route'],
     description: 'A "World in One Country," offering incredible wildlife, stunning coastlines, and rich history.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: -25.7,
+    lon: 28.2,
     recommendedCities: ['Cape Town', 'Johannesburg', 'Kruger', 'Durban', 'Stellenbosch']
   },
   "Australia": {
@@ -383,6 +455,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [12, 1, 2],
     highlights: ['Great Barrier Reef', 'Sydney Opera House', 'Outback'],
     description: 'A massive continent of unique wildlife, ancient landscapes, and laid-back coastal cities.',
+    advisoryLevel: 1,
+    travelAdvisory: 'Take normal security precautions. Australia is generally safe for travellers.',
+    lat: -33.9,
+    lon: 151.2,
     recommendedCities: ['Sydney', 'Melbourne', 'Brisbane', 'Cairns', 'Perth']
   },
   "New Zealand": {
@@ -403,6 +479,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [12, 1, 2],
     highlights: ['Fiordland', 'Hobbiton', 'Bungee jumping'],
     description: 'The ultimate adventure destination, with dramatic fjords, volcanic plateaus, and lush forests.',
+    advisoryLevel: 1,
+    travelAdvisory: 'Take normal security precautions. New Zealand is generally safe for travellers.',
+    lat: -41.3,
+    lon: 174.8,
     recommendedCities: ['Auckland', 'Queenstown', 'Rotorua', 'Wellington', 'Christchurch']
   },
   "Singapore": {
@@ -423,6 +503,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [6, 7, 12],
     highlights: ['Marina Bay', 'Hawker centres', 'Gardens by the Bay'],
     description: 'A clean, efficient city-state where lush greenery meets futuristic skyscrapers and diverse food.',
+    advisoryLevel: 1,
+    travelAdvisory: 'Take normal security precautions. Singapore is generally safe for travellers.',
+    lat: 1.3,
+    lon: 103.8,
     recommendedCities: ['Marina Bay', 'Sentosa', 'Chinatown', 'Little India', 'Orchard']
   },
   "Malaysia": {
@@ -443,6 +527,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [7, 8, 12],
     highlights: ['Petronas Towers', 'Langkawi', 'Street food'],
     description: 'A multicultural melting pot with modern cities, colonial architecture, and pristine rainforests.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: 3.1,
+    lon: 101.7,
     recommendedCities: ['Kuala Lumpur', 'Penang', 'Langkawi', 'Malacca', 'Kota Kinabalu']
   },
   "Philippines": {
@@ -463,6 +551,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [11, 12, 1, 2, 3, 4],
     highlights: ['El Nido', 'Chocolate Hills', 'Island hopping'],
     description: 'An archipelago of over 7,000 islands, famous for its friendly locals and world-class diving.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: 14.6,
+    lon: 121,
     recommendedCities: ['Manila', 'Palawan', 'Cebu', 'Boracay', 'Davao']
   },
   "South Korea": {
@@ -483,6 +575,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [3, 4, 10, 11],
     highlights: ['K-culture', 'Gyeongbokgung Palace', 'Korean BBQ'],
     description: 'A dynamic blend of ancient palaces and cutting-edge technology, with a world-famous pop culture.',
+    advisoryLevel: 1,
+    travelAdvisory: 'Take normal security precautions. South Korea is generally safe for travellers.',
+    lat: 37.6,
+    lon: 126.9,
     recommendedCities: ['Seoul', 'Busan', 'Jeju', 'Gyeongju', 'Incheon']
   },
   "Taiwan": {
@@ -503,6 +599,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [9, 10, 1, 2],
     highlights: ['Night markets', 'Taroko Gorge', 'Bubble tea culture'],
     description: 'A food lover\'s paradise with stunning mountain scenery and friendly, welcoming cities.',
+    advisoryLevel: 1,
+    travelAdvisory: 'Take normal security precautions. Taiwan is generally safe for travellers.',
+    lat: 25,
+    lon: 121.5,
     recommendedCities: ['Taipei', 'Tainan', 'Kaohsiung', 'Hualien', 'Taichung']
   },
   "Cambodia": {
@@ -523,6 +623,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [11, 12, 1, 2, 3],
     highlights: ['Angkor Wat', 'Mekong River', 'Phnom Penh'],
     description: 'Home to the magnificent Angkor Wat, Cambodia offers a deep dive into ancient and modern history.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: 11.6,
+    lon: 104.9,
     recommendedCities: ['Siem Reap', 'Phnom Penh', 'Battambang', 'Sihanoukville', 'Kampot']
   },
   "Nepal": {
@@ -543,6 +647,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [3, 4, 5, 10, 11],
     highlights: ['Everest Base Camp', 'Kathmandu temples', 'Pokhara'],
     description: 'A spiritual and adventurous destination nestled in the heart of the Himalayas.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: 27.7,
+    lon: 85.3,
     recommendedCities: ['Kathmandu', 'Pokhara', 'Chitwan', 'Lumbini', 'Nagarkot']
   },
   "Sri Lanka": {
@@ -563,6 +671,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [12, 1, 2, 3],
     highlights: ['Sigiriya Rock', 'Tea plantations', 'Safari'],
     description: 'A lush island nation of ancient ruins, rolling tea hills, and abundant wildlife.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: 6.9,
+    lon: 79.9,
     recommendedCities: ['Colombo', 'Kandy', 'Galle', 'Ella', 'Trincomalee']
   },
   "Jordan": {
@@ -583,6 +695,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [3, 4, 5, 10, 11],
     highlights: ['Petra', 'Wadi Rum', 'Dead Sea'],
     description: 'A land of ancient wonders, from the rose-red city of Petra to the Martian landscapes of Wadi Rum.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: 31.9,
+    lon: 35.9,
     recommendedCities: ['Amman', 'Petra', 'Aqaba', 'Jerash', 'Madaba']
   },
   "Kenya": {
@@ -603,6 +719,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [7, 8, 1, 2],
     highlights: ['Maasai Mara', 'Amboseli', 'Nairobi'],
     description: 'The quintessential safari destination, offering vast savannas and the Great Migration.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: -1.3,
+    lon: 36.8,
     recommendedCities: ['Nairobi', 'Mombasa', 'Kisumu', 'Malindi', 'Diani']
   },
   "Tanzania": {
@@ -623,6 +743,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [6, 7, 8, 9, 1, 2],
     highlights: ['Serengeti', 'Kilimanjaro', 'Zanzibar'],
     description: 'Home to Africa\'s highest peak and the spice-scented islands of Zanzibar.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: -6.8,
+    lon: 39.3,
     recommendedCities: ['Dar es Salaam', 'Zanzibar', 'Arusha', 'Moshi', 'Stone Town']
   },
   "Iceland": {
@@ -643,6 +767,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [6, 7, 8],
     highlights: ['Northern Lights', 'Blue Lagoon', 'Waterfalls'],
     description: 'A land of fire and ice, featuring dramatic volcanic landscapes, glaciers, and hot springs.',
+    advisoryLevel: 1,
+    travelAdvisory: 'Take normal security precautions. Iceland is generally safe for travellers.',
+    lat: 64.1,
+    lon: -21.9,
     recommendedCities: ['Reykjavik', 'Akureyri', 'Vik', 'Selfoss', 'Husavik']
   },
   "Norway": {
@@ -663,6 +791,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [6, 7, 8],
     highlights: ['Fjords', 'Northern Lights', 'Viking heritage'],
     description: 'Known for its deep coastal fjords, mountainous terrain, and spectacular natural phenomena.',
+    advisoryLevel: 1,
+    travelAdvisory: 'Take normal security precautions. Norway is generally safe for travellers.',
+    lat: 59.9,
+    lon: 10.7,
     recommendedCities: ['Oslo', 'Bergen', 'Tromsø', 'Flam', 'Lofoten']
   },
   "Sweden": {
@@ -683,6 +815,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [6, 7, 8],
     highlights: ['ABBA museum', 'Archipelago', 'Midsommar'],
     description: 'A Scandinavian nation of thousands of coastal islands and inland lakes, plus vast boreal forests.',
+    advisoryLevel: 1,
+    travelAdvisory: 'Take normal security precautions. Sweden is generally safe for travellers.',
+    lat: 59.3,
+    lon: 18.1,
     recommendedCities: ['Stockholm', 'Gothenburg', 'Malmö', 'Uppsala', 'Kiruna']
   },
   "Peru": {
@@ -703,6 +839,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [6, 7, 8, 12, 1],
     highlights: ['Machu Picchu', 'Amazon basin', 'Cusco'],
     description: 'A land of ancient Incan treasures and world-renowned culinary innovation.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: -12,
+    lon: -77,
     recommendedCities: ['Lima', 'Cusco', 'Arequipa', 'Puno', 'Iquitos']
   },
   "Costa Rica": {
@@ -723,6 +863,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [12, 1, 2, 3],
     highlights: ['Cloud forests', 'Wildlife', 'Volcanoes'],
     description: 'A pioneer in eco-tourism, offering incredible biodiversity and a "Pura Vida" lifestyle.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: 9.9,
+    lon: -84.1,
     recommendedCities: ['San Jose', 'Manuel Antonio', 'Monteverde', 'La Fortuna', 'Tamarindo']
   },
   "United Arab Emirates": {
@@ -743,6 +887,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [11, 12, 1, 2, 3],
     highlights: ['Burj Khalifa', 'Desert safari', 'Gold Souk'],
     description: 'A desert nation of architectural marvels, luxury shopping, and traditional heritage.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: 24.5,
+    lon: 54.4,
     recommendedCities: ['Dubai', 'Abu Dhabi', 'Sharjah', 'Ajman', 'Fujairah']
   },
   "Czechia": {
@@ -763,6 +911,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [5, 6, 7, 8, 9],
     highlights: ['Prague Castle', 'Beer culture', 'Bohemian architecture'],
     description: 'A landlocked country in Central Europe known for its ornate castles and native beers.',
+    advisoryLevel: 1,
+    travelAdvisory: 'Take normal security precautions. Czechia is generally safe for travellers.',
+    lat: 50.1,
+    lon: 14.4,
     recommendedCities: ['Prague', 'Brno', 'Cesky Krumlov', 'Karlovy Vary', 'Olomouc']
   },
   "Hungary": {
@@ -783,6 +935,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [6, 7, 8, 9],
     highlights: ['Thermal baths', 'Ruin bars', 'Danube views'],
     description: 'Famous for its thermal springs, grand architecture, and the majestic Danube River.',
+    advisoryLevel: 1,
+    travelAdvisory: 'Take normal security precautions. Hungary is generally safe for travellers.',
+    lat: 47.5,
+    lon: 19,
     recommendedCities: ['Budapest', 'Eger', 'Pecs', 'Debrecen', 'Gyor']
   },
   "Croatia": {
@@ -803,6 +959,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [7, 8],
     highlights: ['Dubrovnik walls', 'Plitvice Lakes', 'Adriatic islands'],
     description: 'A stunning coastal nation with medieval towns and crystal-clear Adriatic waters.',
+    advisoryLevel: 1,
+    travelAdvisory: 'Take normal security precautions. Croatia is generally safe for travellers.',
+    lat: 45.8,
+    lon: 16,
     recommendedCities: ['Dubrovnik', 'Split', 'Zagreb', 'Hvar', 'Rovinj']
   },
   "Poland": {
@@ -823,6 +983,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [6, 7, 8, 9],
     highlights: ['Wawel Castle', 'Auschwitz memorial', 'Pierogi'],
     description: 'A country of resilient history, beautiful old towns, and hearty traditional cuisine.',
+    advisoryLevel: 1,
+    travelAdvisory: 'Take normal security precautions. Poland is generally safe for travellers.',
+    lat: 52.2,
+    lon: 21,
     recommendedCities: ['Krakow', 'Warsaw', 'Gdansk', 'Wroclaw', 'Zakopane']
   },
   "Austria": {
@@ -843,6 +1007,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [6, 7, 8, 12],
     highlights: ['Vienna opera', 'Schönbrunn Palace', 'Alpine skiing'],
     description: 'A land of classical music, imperial history, and breathtaking Alpine scenery.',
+    advisoryLevel: 1,
+    travelAdvisory: 'Take normal security precautions. Austria is generally safe for travellers.',
+    lat: 48.2,
+    lon: 16.4,
     recommendedCities: ['Vienna', 'Salzburg', 'Innsbruck', 'Graz', 'Hallstatt']
   },
   "Germany": {
@@ -863,6 +1031,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [6, 7, 8, 9, 12],
     highlights: ['Neuschwanstein', 'Oktoberfest', 'Berlin Wall'],
     description: 'A country of diverse landscapes, from the Black Forest to the vibrant streets of Berlin.',
+    advisoryLevel: 1,
+    travelAdvisory: 'Take normal security precautions. Germany is generally safe for travellers.',
+    lat: 52.5,
+    lon: 13.4,
     recommendedCities: ['Berlin', 'Munich', 'Hamburg', 'Cologne', 'Frankfurt']
   },
   "Netherlands": {
@@ -883,6 +1055,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [4, 5, 6, 7, 8],
     highlights: ['Tulip fields', 'Van Gogh Museum', 'Canal houses'],
     description: 'A flat land of canals, tulip fields, windmills, and cycling-friendly cities.',
+    advisoryLevel: 1,
+    travelAdvisory: 'Take normal security precautions. Netherlands is generally safe for travellers.',
+    lat: 52.4,
+    lon: 4.9,
     recommendedCities: ['Amsterdam', 'Rotterdam', 'The Hague', 'Utrecht', 'Delft']
   },
   "Switzerland": {
@@ -903,6 +1079,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [7, 8, 12],
     highlights: ['Swiss Alps', 'Interlaken', 'Chocolate and watches'],
     description: 'A mountainous Central European country, home to numerous lakes, villages, and the high peaks of the Alps.',
+    advisoryLevel: 1,
+    travelAdvisory: 'Take normal security precautions. Switzerland is generally safe for travellers.',
+    lat: 46.9,
+    lon: 7.4,
     recommendedCities: ['Zurich', 'Geneva', 'Bern', 'Lucerne', 'Zermatt']
   },
   "Chile": {
@@ -923,6 +1103,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [1, 2, 12],
     highlights: ['Patagonia', 'Atacama Desert', 'Easter Island'],
     description: 'A long, narrow country stretching along South America\'s western edge, with diverse landscapes.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: -33.5,
+    lon: -70.6,
     recommendedCities: ['Santiago', 'Valparaiso', 'Torres del Paine', 'San Pedro', 'Puerto Natales']
   },
   "Ecuador": {
@@ -943,6 +1127,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [12, 1, 2, 7, 8],
     highlights: ['Galapagos Islands', 'Amazon', 'Quito old town'],
     description: 'A country straddling the equator on South America\'s west coast, offering diverse ecosystems.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: -0.2,
+    lon: -78.5,
     recommendedCities: ['Quito', 'Guayaquil', 'Cuenca', 'Baños', 'Mindo']
   },
   "Panama": {
@@ -963,6 +1151,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [12, 1, 2, 3],
     highlights: ['Panama Canal', 'Bocas del Toro', 'San Blas Islands'],
     description: 'A country on the isthmus linking Central and South America, famous for its canal.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: 9,
+    lon: -79.5,
     recommendedCities: ['Panama City', 'Bocas del Toro', 'Boquete', 'Pedasi', 'Colon']
   },
   "Guatemala": {
@@ -983,6 +1175,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [11, 12, 1, 2, 3],
     highlights: ['Tikal ruins', 'Lake Atitlan', 'Antigua'],
     description: 'A Central American country south of Mexico, home to volcanoes, rainforests and ancient Mayan sites.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: 14.6,
+    lon: -90.5,
     recommendedCities: ['Antigua', 'Guatemala City', 'Flores', 'Quetzaltenango', 'Livingston']
   },
   "Cuba": {
@@ -1003,6 +1199,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [12, 1, 2, 3],
     highlights: ['Old Havana', 'Classic cars', 'Salsa culture'],
     description: 'A Caribbean island nation under communist rule, with white-sand beaches and tobacco fields.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: 23.1,
+    lon: -82.4,
     recommendedCities: ['Havana', 'Varadero', 'Trinidad', 'Santiago de Cuba', 'Cienfuegos']
   },
   "Jamaica": {
@@ -1023,6 +1223,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [12, 1, 2, 3, 4],
     highlights: ['Blue Mountains', 'Bob Marley culture', 'Negril'],
     description: 'A Caribbean island nation with a lush topography of mountains, rainforests and reef-lined beaches.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: 18,
+    lon: -76.8,
     recommendedCities: ['Kingston', 'Montego Bay', 'Negril', 'Ocho Rios', 'Port Antonio']
   },
   "Dominican Republic": {
@@ -1043,6 +1247,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [12, 1, 2, 3, 4],
     highlights: ['Punta Cana beaches', 'Santo Domingo', 'Waterfalls'],
     description: 'A Caribbean nation that shares the island of Hispaniola with Haiti to the west.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: 18.5,
+    lon: -69.9,
     recommendedCities: ['Santo Domingo', 'Punta Cana', 'Puerto Plata', 'Samana', 'Jarabacoa']
   },
   "Georgia": {
@@ -1063,6 +1271,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [7, 8, 9],
     highlights: ['Caucasus Mountains', 'Wine culture', 'Tbilisi old town'],
     description: 'A country at the intersection of Europe and Asia, home to Caucasus Mountain villages and Black Sea beaches.',
+    advisoryLevel: 1,
+    travelAdvisory: 'Take normal security precautions. Georgia is generally safe for travellers.',
+    lat: 41.7,
+    lon: 44.8,
     recommendedCities: ['Tbilisi', 'Batumi', 'Kazbegi', 'Sighnaghi', 'Mtskheta']
   },
   "Armenia": {
@@ -1083,6 +1295,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [6, 7, 8, 9],
     highlights: ['Geghard monastery', 'Lake Sevan', 'Yerevan'],
     description: 'A nation and former Soviet republic in the mountainous Caucasus region between Asia and Europe.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: 40.2,
+    lon: 44.5,
     recommendedCities: ['Yerevan', 'Gyumri', 'Dilijan', 'Goris', 'Vanadzor']
   },
   "Montenegro": {
@@ -1103,6 +1319,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [7, 8],
     highlights: ['Bay of Kotor', 'Durmitor', 'Old Town Budva'],
     description: 'A Balkan country with rugged mountains, medieval villages and a narrow strip of beaches along its Adriatic coastline.',
+    advisoryLevel: 1,
+    travelAdvisory: 'Take normal security precautions. Montenegro is generally safe for travellers.',
+    lat: 42.4,
+    lon: 19.3,
     recommendedCities: ['Kotor', 'Budva', 'Podgorica', 'Herceg Novi', 'Ulcinj']
   },
   "Serbia": {
@@ -1123,6 +1343,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [6, 7, 8, 9],
     highlights: ['Belgrade nightlife', 'Novi Sad', 'Tara National Park'],
     description: 'A country on southeast Europe\'s Balkan peninsula with northern plateaus and mountains with ski resorts to the south.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: 44.8,
+    lon: 20.5,
     recommendedCities: ['Belgrade', 'Novi Sad', 'Nis', 'Subotica', 'Zlatibor']
   },
   "Albania": {
@@ -1143,6 +1367,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [7, 8],
     highlights: ['Albanian Riviera', 'Berat', 'Gjirokaster'],
     description: 'A country on Southeastern Europe\'s Balkan Peninsula, with Adriatic and Ionian coastlines and an interior crossed by the Albanian Alps.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: 41.3,
+    lon: 19.8,
     recommendedCities: ['Tirana', 'Saranda', 'Berat', 'Shkoder', 'Gjirokaster']
   },
   "Slovenia": {
@@ -1163,6 +1391,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [6, 7, 8, 9],
     highlights: ['Lake Bled', 'Triglav', 'Ljubljana'],
     description: 'A country in Central Europe, known for its mountains, ski resorts and lakes.',
+    advisoryLevel: 1,
+    travelAdvisory: 'Take normal security precautions. Slovenia is generally safe for travellers.',
+    lat: 46.1,
+    lon: 14.5,
     recommendedCities: ['Ljubljana', 'Bled', 'Piran', 'Maribor', 'Kranjska Gora']
   },
   "Estonia": {
@@ -1183,6 +1415,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [6, 7, 8],
     highlights: ['Tallinn Old Town', 'digital society', 'Lahemaa'],
     description: 'A country in Northern Europe, borders the Baltic Sea and Gulf of Finland.',
+    advisoryLevel: 1,
+    travelAdvisory: 'Take normal security precautions. Estonia is generally safe for travellers.',
+    lat: 59.4,
+    lon: 24.7,
     recommendedCities: ['Tallinn', 'Tartu', 'Parnu', 'Narva', 'Haapsalu']
   },
   "Latvia": {
@@ -1203,6 +1439,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [6, 7, 8],
     highlights: ['Riga Art Nouveau', 'Jurmala beach', 'Gauja valley'],
     description: 'A country on the Baltic Sea between Lithuania and Estonia.',
+    advisoryLevel: 1,
+    travelAdvisory: 'Take normal security precautions. Latvia is generally safe for travellers.',
+    lat: 56.9,
+    lon: 24.1,
     recommendedCities: ['Riga', 'Jurmala', 'Sigulda', 'Cesis', 'Daugavpils']
   },
   "Lithuania": {
@@ -1223,6 +1463,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [6, 7, 8],
     highlights: ['Vilnius old town', 'Hill of Crosses', 'Curonian Spit'],
     description: 'A country and the southernmost of Europe’s Baltic states, a former Soviet republic bordering Poland, Latvia and Belarus.',
+    advisoryLevel: 1,
+    travelAdvisory: 'Take normal security precautions. Lithuania is generally safe for travellers.',
+    lat: 54.7,
+    lon: 25.3,
     recommendedCities: ['Vilnius', 'Kaunas', 'Klaipeda', 'Trakai', 'Siauliai']
   },
   "Bulgaria": {
@@ -1243,6 +1487,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [6, 7, 8, 9],
     highlights: ['Rila Monastery', 'Black Sea coast', 'Sofia'],
     description: 'A Balkan nation with diverse terrain encompassing Black Sea coastline, a mountainous interior and rivers, including the Danube.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: 42.7,
+    lon: 23.3,
     recommendedCities: ['Sofia', 'Plovdiv', 'Varna', 'Sozopol', 'Bansko']
   },
   "Romania": {
@@ -1263,6 +1511,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [6, 7, 8, 9],
     highlights: ['Transylvania', 'Painted monasteries', 'Danube Delta'],
     description: 'A southeastern European country known for the forested region of Transylvania, preserved medieval towns and many fortified churches and castles.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: 44.4,
+    lon: 26.1,
     recommendedCities: ['Bucharest', 'Cluj', 'Brasov', 'Sibiu', 'Sinaia']
   },
   "Slovakia": {
@@ -1283,6 +1535,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [6, 7, 8, 9],
     highlights: ['High Tatras', 'Bratislava castle', 'Slovak folk culture'],
     description: 'A Central European country known for its dramatic natural landscape and many castles.',
+    advisoryLevel: 1,
+    travelAdvisory: 'Take normal security precautions. Slovakia is generally safe for travellers.',
+    lat: 48.1,
+    lon: 17.1,
     recommendedCities: ['Bratislava', 'Kosice', 'Banska Bystrica', 'Presov', 'Zilina']
   },
   "Denmark": {
@@ -1303,6 +1559,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [6, 7, 8],
     highlights: ['Copenhagen design', 'Legoland', 'Viking history'],
     description: 'A Scandinavian country comprising the Jutland Peninsula and numerous islands.',
+    advisoryLevel: 1,
+    travelAdvisory: 'Take normal security precautions. Denmark is generally safe for travellers.',
+    lat: 55.7,
+    lon: 12.6,
     recommendedCities: ['Copenhagen', 'Aarhus', 'Odense', 'Aalborg', 'Roskilde']
   },
   "Finland": {
@@ -1323,6 +1583,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [6, 7, 8, 12],
     highlights: ['Northern Lights', 'Sauna culture', 'Santa Claus village'],
     description: 'A Northern European nation bordering Sweden, Norway and Russia.',
+    advisoryLevel: 1,
+    travelAdvisory: 'Take normal security precautions. Finland is generally safe for travellers.',
+    lat: 60.2,
+    lon: 24.9,
     recommendedCities: ['Helsinki', 'Rovaniemi', 'Tampere', 'Turku', 'Oulu']
   },
   "Israel": {
@@ -1343,6 +1607,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [3, 4, 5, 9, 10, 11],
     highlights: ['Jerusalem', 'Tel Aviv beaches', 'Dead Sea'],
     description: 'A Middle Eastern country on the Mediterranean Sea, regarded by Jews, Christians and Muslims as the biblical Holy Land.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: 31.8,
+    lon: 35.2,
     recommendedCities: ['Jerusalem', 'Tel Aviv', 'Haifa', 'Nazareth', 'Eilat']
   },
   "Oman": {
@@ -1363,6 +1631,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [11, 12, 1, 2, 3],
     highlights: ['Wahiba Sands', 'Muscat', 'Wadi Shab'],
     description: 'A country on the southeastern coast of the Arabian Peninsula.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: 23.6,
+    lon: 58.6,
     recommendedCities: ['Muscat', 'Salalah', 'Nizwa', 'Sur', 'Khasab']
   },
   "Rwanda": {
@@ -1383,6 +1655,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [6, 7, 8, 1, 2],
     highlights: ['Gorilla trekking', 'Kigali', 'Nyungwe Forest'],
     description: 'A landlocked country in the Great Rift Valley of Central Africa, where the African Great Lakes region and Southeast Africa converge.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: -1.9,
+    lon: 30.1,
     recommendedCities: ['Kigali', 'Musanze', 'Gisenyi', 'Butare', 'Kibuye']
   },
   "Mauritius": {
@@ -1403,6 +1679,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [10, 11, 12, 1, 2],
     highlights: ['Luxury beaches', 'Le Morne', 'Chamarel'],
     description: 'An Indian Ocean island nation, known for its beaches, lagoons and reefs.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: -20.2,
+    lon: 57.5,
     recommendedCities: ['Port Louis', 'Grand Baie', 'Flic en Flac', 'Mahebourg', 'Tamarin']
   },
   "Seychelles": {
@@ -1423,6 +1703,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [7, 8, 12, 1],
     highlights: ['Pristine beaches', 'Giant tortoises', 'Coral reefs'],
     description: 'An archipelago of 115 islands in the Indian Ocean, off East Africa.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: -4.6,
+    lon: 55.5,
     recommendedCities: ['Victoria', 'Beau Vallon', 'Anse Lazio', 'La Digue', 'Praslin']
   },
   "Bolivia": {
@@ -1443,6 +1727,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [6, 7, 8, 12, 1],
     highlights: ['Salar de Uyuni', 'Amazon', 'Sucre'],
     description: 'A country in central South America, with a varied terrain spanning Andes Mountains, the Atacama Desert and Amazon Basin rainforest.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: -16.5,
+    lon: -68.1,
     recommendedCities: ['La Paz', 'Santa Cruz', 'Sucre', 'Potosi', 'Uyuni']
   },
   "Uruguay": {
@@ -1463,6 +1751,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [1, 2, 12],
     highlights: ['Montevideo', 'Punta del Este', 'Colonia'],
     description: 'A South American country known for its verdant interior and beach-lined coast.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: -34.9,
+    lon: -56.2,
     recommendedCities: ['Montevideo', 'Punta del Este', 'Colonia del Sacramento', 'Salto', 'Rivera']
   },
   "Ghana": {
@@ -1483,6 +1775,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [11, 12, 1, 2, 3],
     highlights: ['Volta Region', 'Cape Coast Castle', 'Accra'],
     description: 'A country on the Gulf of Guinea and the Atlantic Ocean, in the subregion of West Africa.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: 5.6,
+    lon: -0.2,
     recommendedCities: ['Accra', 'Kumasi', 'Cape Coast', 'Tamale', 'Takoradi']
   },
   "Senegal": {
@@ -1503,6 +1799,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [11, 12, 1, 2, 3],
     highlights: ['Dakar', 'Goree Island', 'Sine-Saloum Delta'],
     description: 'A country in West Africa, known for its French colonial heritage and natural beauty.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: 14.7,
+    lon: -17.5,
     recommendedCities: ['Dakar', 'Saint-Louis', 'Ziguinchor', 'Touba', 'Mbour']
   },
   "Ethiopia": {
@@ -1523,6 +1823,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [10, 11, 12, 1, 2, 3],
     highlights: ['Lalibela', 'Simien Mountains', 'Coffee origin'],
     description: 'A landlocked country in the Horn of Africa, split by the Great Rift Valley.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: 9,
+    lon: 38.7,
     recommendedCities: ['Addis Ababa', 'Lalibela', 'Axum', 'Gondar', 'Bahir Dar']
   },
   "Nigeria": {
@@ -1543,6 +1847,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [11, 12, 1, 2, 3],
     highlights: ['Lagos culture', 'Yankari Game Reserve', 'Benin bronzes'],
     description: 'An African country on the Gulf of Guinea, has many natural landmarks and wildlife reserves.',
+    advisoryLevel: 3,
+    travelAdvisory: 'Avoid non-essential travel due to ongoing instability and security risks.',
+    lat: 9.1,
+    lon: 7.4,
     recommendedCities: ['Lagos', 'Abuja', 'Ibadan', 'Kano', 'Port Harcourt']
   },
   "Paraguay": {
@@ -1563,6 +1871,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [12, 1, 2, 7, 8],
     highlights: ['Jesuit missions', 'Pantanal', 'Asuncion'],
     description: 'A landlocked country between Argentina, Brazil and Bolivia, home to large swaths of swampland, subtropical forest and chaco.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: -25.3,
+    lon: -57.6,
     recommendedCities: ['Asuncion', 'Ciudad del Este', 'Encarnacion', 'Concepcion', 'Pedro Juan Caballero']
   },
   "Bahamas": {
@@ -1583,6 +1895,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [12, 1, 2, 3, 4],
     highlights: ['Pink sand beaches', 'Swimming pigs', 'Nassau'],
     description: 'A coral-based archipelago in the Atlantic Ocean.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: 25,
+    lon: -77.3,
     recommendedCities: ['Nassau', 'Freeport', 'Paradise Island', 'Exuma', 'Eleuthera']
   },
   "Barbados": {
@@ -1603,6 +1919,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [12, 1, 2, 3, 4],
     highlights: ['Harrison Cave', 'Crop Over Festival', 'Rum distilleries'],
     description: 'An eastern Caribbean island and an independent British Commonwealth nation.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: 13.1,
+    lon: -59.6,
     recommendedCities: ['Bridgetown', 'Speightstown', 'Holetown', 'Oistins', 'Bathsheba']
   },
   "Belize": {
@@ -1623,6 +1943,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [12, 1, 2, 3],
     highlights: ['Great Blue Hole', 'Mayan ruins', 'Caye Caulker'],
     description: 'A nation on the eastern coast of Central America, with Caribbean Sea shorelines to the east and dense jungle to the west.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: 17.3,
+    lon: -88.8,
     recommendedCities: ['Belize City', 'San Ignacio', 'Placencia', 'Ambergris Caye', 'Punta Gorda']
   },
   "Saudi Arabia": {
@@ -1643,6 +1967,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [10, 11, 12, 1, 2, 3],
     highlights: ['AlUla', 'Diriyah', 'Jeddah old town'],
     description: 'A country on the Arabian Peninsula in Western Asia.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: 24.7,
+    lon: 46.7,
     recommendedCities: ['Riyadh', 'Jeddah', 'AlUla', 'Abha', 'Dammam']
   },
   "Qatar": {
@@ -1663,6 +1991,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [10, 11, 12, 1, 2, 3],
     highlights: ['Museum of Islamic Art', 'Souq Waqif', 'Desert'],
     description: 'A peninsular Arab country whose terrain comprises arid desert and a long Persian (Arabian) Gulf shoreline of beaches and dunes.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: 25.3,
+    lon: 51.5,
     recommendedCities: ['Doha', 'Al Wakrah', 'Al Khor', 'Lusail', 'Dukhan']
   },
   "Azerbaijan": {
@@ -1683,6 +2015,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [6, 7, 8, 9],
     highlights: ['Baku old city', 'Mud volcanoes', 'Caucasus'],
     description: 'A nation and former Soviet republic, bounded by the Caspian Sea and Caucasus Mountains, which span Asia and Europe.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: 40.4,
+    lon: 49.9,
     recommendedCities: ['Baku', 'Sheki', 'Ganja', 'Lankaran', 'Gabala']
   },
   "Laos": {
@@ -1703,6 +2039,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [11, 12, 1, 2, 3],
     highlights: ['Luang Prabang', 'Mekong', 'Bolaven Plateau'],
     description: 'A Southeast Asian country traversed by the Mekong River and known for mountainous terrain, French colonial architecture, hill tribe settlements and Buddhist monasteries.',
+    advisoryLevel: 2,
+    travelAdvisory: 'Exercise a high degree of caution due to crime and security risks.',
+    lat: 18,
+    lon: 102.6,
     recommendedCities: ['Luang Prabang', 'Vientiane', 'Vang Vieng', 'Pakse', 'Savannakhet']
   },
   "Myanmar": {
@@ -1723,6 +2063,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [11, 12, 1, 2, 3],
     highlights: ['Bagan temples', 'Inle Lake', 'Mandalay'],
     description: 'A Southeast Asian nation of more than 100 ethnic groups, bordering India, Bangladesh, China, Laos and Thailand.',
+    advisoryLevel: 3,
+    travelAdvisory: 'Avoid non-essential travel due to ongoing instability and security risks.',
+    lat: 16.8,
+    lon: 96.2,
     recommendedCities: ['Yangon', 'Bagan', 'Inle Lake', 'Mandalay', 'Ngapali']
   },
   "Lebanon": {
@@ -1743,6 +2087,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [6, 7, 8, 9],
     highlights: ['Baalbek', 'Jeita Grotto', 'Beirut nightlife'],
     description: 'A country in Western Asia, located on the eastern shore of the Mediterranean Sea.',
+    advisoryLevel: 3,
+    travelAdvisory: 'Avoid non-essential travel due to ongoing instability and security risks.',
+    lat: 33.9,
+    lon: 35.5,
     recommendedCities: ['Beirut', 'Byblos', 'Tyre', 'Sidon', 'Baalbek']
   },
   "Canada": {
@@ -1763,6 +2111,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [6, 7, 8, 9],
     highlights: ['Banff', 'Niagara Falls', 'Northern Lights'],
     description: 'A country in North America, its ten provinces and three territories extend from the Atlantic Ocean to the Pacific Ocean and northward into the Arctic Ocean.',
+    advisoryLevel: 1,
+    travelAdvisory: 'Take normal security precautions. Canada is generally safe for travellers.',
+    lat: 45.4,
+    lon: -75.7,
     recommendedCities: ['Vancouver', 'Toronto', 'Montreal', 'Quebec City', 'Banff']
   },
   "United States of America": {
@@ -1783,6 +2135,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [6, 7, 8, 12],
     highlights: ['Grand Canyon', 'NYC', 'National Parks'],
     description: 'A country primarily located in North America, consisting of 50 states, a federal district, five major self-governing territories, and various possessions.',
+    advisoryLevel: 1,
+    travelAdvisory: 'Take normal security precautions. United States of America is generally safe for travellers.',
+    lat: 38.9,
+    lon: -77,
     recommendedCities: ['New York', 'Los Angeles', 'Chicago', 'Miami', 'New Orleans']
   },
   "United Kingdom": {
@@ -1803,6 +2159,10 @@ export const COUNTRIES_DATA: Record<string, CountryData> = {
     peakSeasonMonths: [6, 7, 8, 9],
     highlights: ['London', 'Scottish Highlands', 'Stonehenge'],
     description: 'An island nation in northwestern Europe, made up of England, Scotland, Wales and Northern Ireland.',
+    advisoryLevel: 1,
+    travelAdvisory: 'Take normal security precautions. United Kingdom is generally safe for travellers.',
+    lat: 51.5,
+    lon: -0.1,
     recommendedCities: ['London', 'Edinburgh', 'Bath', 'Oxford', 'Liverpool']
   }
 };

@@ -2,7 +2,8 @@ import React, { useEffect, useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, Minus, Plus, Plane, Heart, Shield, Cloud, Train, Info } from 'lucide-react';
 import { type CountryData, type TripParams, type ExchangeRates, type TripEstimate } from '../types';
-import { fetchRestCountryMeta } from '../services/currencyService';
+import { fetchRestCountryMeta, fetchClimateData } from '../services/currencyService';
+import { type CountryMeta, type ClimateData } from '../types';
 import { SavingsCalendar } from './SavingsCalendar';
 
 interface BottomSheetProps {
@@ -35,12 +36,16 @@ export default function BottomSheet({
   onCompare,
   isInCompare
 }: BottomSheetProps) {
-  const [meta, setMeta] = useState<{ flag: string; capital: string } | null>(null);
+  const [meta, setMeta] = useState<CountryMeta | null>(null);
+  const [climate, setClimate] = useState<ClimateData[] | null>(null);
   const isDesktop = typeof window !== 'undefined' && window.innerWidth >= 1024;
 
   useEffect(() => {
     fetchRestCountryMeta(country.name).then(setMeta);
-  }, [country.name]);
+    if (country.lat && country.lon) {
+      fetchClimateData(country.lat, country.lon, country.id).then(setClimate);
+    }
+  }, [country.name, country.id, country.lat, country.lon]);
 
   const estimate = useMemo(() => calculateTripCost(country, tripParams, getCostInBase), [country, tripParams, getCostInBase]);
   const timing = useMemo(() => getTimingScore(country, tripParams.months), [country, tripParams.months]);
@@ -81,10 +86,18 @@ export default function BottomSheet({
       {/* Sticky Header */}
       <div style={{ padding: '20px 24px', borderBottom: '1px solid rgba(0,0,0,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#fff', zIndex: 10 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <span style={{ fontSize: 32 }}>{meta?.flag || country.flag || '📍'}</span>
+          {meta?.flagSvgUrl ? (
+            <img src={meta.flagSvgUrl} alt={`${country.name} flag`}
+              style={{ width: 40, height: 26, objectFit: 'cover', borderRadius: 4, border: '1px solid rgba(0,0,0,0.08)', flexShrink: 0 }} />
+          ) : (
+            <span style={{ fontSize: 32 }}>{meta?.flag || country.flag || '📍'}</span>
+          )}
           <div>
             <h2 style={{ fontSize: 20, fontWeight: 800, color: '#283618', margin: 0 }}>{country.name}</h2>
-            <div style={{ fontSize: 11, color: 'rgba(40,54,24,0.5)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{country.region}</div>
+            <div style={{ fontSize: 11, color: 'rgba(40,54,24,0.5)', fontWeight: 600 }}>
+              {meta?.capital ? `${meta.capital} · ` : ''}{country.region}
+              {meta?.population ? ` · Pop. ${(meta.population / 1_000_000).toFixed(1)}M` : ''}
+            </div>
           </div>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -148,14 +161,29 @@ export default function BottomSheet({
             <Shield size={18} color="#606c38" />
             <div>
               <div style={{ fontSize: 10, color: 'rgba(40,54,24,0.5)', fontWeight: 600 }}>Safety</div>
-              <div style={{ fontSize: 13, fontWeight: 700, color: '#283618' }}>{country.safetyScore}/100</div>
+              <div style={{ fontSize: 13, fontWeight: 700, color: '#283618' }}>
+                {country.safetyScore >= 90 ? 'Excellent' : country.safetyScore >= 75 ? 'Good' : country.safetyScore >= 60 ? 'Fair' : 'Use caution'}
+              </div>
+              <div style={{ fontSize: 10, color: 'rgba(40,54,24,0.4)' }}>{country.safetyScore}/100</div>
             </div>
           </div>
           <div style={{ padding: 12, borderRadius: 12, border: '1px solid rgba(0,0,0,0.06)', display: 'flex', alignItems: 'center', gap: 10 }}>
             <Cloud size={18} color="#bc6c25" />
             <div>
-              <div style={{ fontSize: 10, color: 'rgba(40,54,24,0.5)', fontWeight: 600 }}>Weather</div>
-              <div style={{ fontSize: 13, fontWeight: 700, color: '#283618' }}>{country.weatherScore}%</div>
+              <div style={{ fontSize: 10, color: 'rgba(40,54,24,0.5)', fontWeight: 600 }}>Weather now</div>
+              {(() => {
+                const currentMonth = new Date().getMonth() + 1;
+                const selectedMonth = tripParams.months[0] + 1;
+                const monthClimate = climate?.find(c => c.month === selectedMonth) || climate?.find(c => c.month === currentMonth);
+                if (monthClimate) {
+                  return (
+                    <div style={{ fontSize: 13, fontWeight: 700, color: '#283618' }}>
+                      {monthClimate.avgTempC}°C · {monthClimate.sunshineHours}h sun
+                    </div>
+                  );
+                }
+                return <div style={{ fontSize: 13, fontWeight: 700, color: '#283618' }}>{country.weatherScore}%</div>;
+              })()}
             </div>
           </div>
           <div style={{ padding: 12, borderRadius: 12, border: '1px solid rgba(0,0,0,0.06)', display: 'flex', alignItems: 'center', gap: 10 }}>
@@ -175,12 +203,26 @@ export default function BottomSheet({
         </div>
 
         {/* Travel Advisory */}
-        {country.travelAdvisory && country.travelAdvisory !== 'Normal security precautions' && (
-          <div style={{ padding: 16, borderRadius: 16, background: '#fefae0', border: '1px solid #dda15e', marginBottom: 32, display: 'flex', gap: 12 }}>
-            <Info size={20} color="#bc6c25" />
-            <div style={{ fontSize: 13, color: '#283618', fontWeight: 500 }}>{country.travelAdvisory}</div>
-          </div>
-        )}
+        {(() => {
+          const level = country.advisoryLevel || 1;
+          const colours = {
+            1: { bg: 'rgba(96,108,56,0.08)', border: 'rgba(96,108,56,0.2)', text: '#3B6D11', label: 'Safe to visit' },
+            2: { bg: 'rgba(221,161,94,0.1)', border: 'rgba(221,161,94,0.3)', text: '#854F0B', label: 'Exercise caution' },
+            3: { bg: 'rgba(220,38,38,0.08)', border: 'rgba(220,38,38,0.2)', text: '#991b1b', label: 'Avoid non-essential travel' },
+            4: { bg: 'rgba(220,38,38,0.12)', border: 'rgba(220,38,38,0.3)', text: '#7f1d1d', label: 'Avoid all travel' },
+          };
+          const c = colours[level as keyof typeof colours] || colours[1];
+          return (
+            <div style={{ padding: 14, borderRadius: 12, background: c.bg, border: `1px solid ${c.border}`, marginBottom: 24 }}>
+              <div style={{ fontSize: 10, fontWeight: 700, color: c.text, textTransform: 'uppercase', letterSpacing: '0.07em', marginBottom: 4 }}>
+                Canadian Advisory · {c.label}
+              </div>
+              <div style={{ fontSize: 12, color: '#283618', fontWeight: 500, lineHeight: 1.5 }}>
+                {country.travelAdvisory || 'Take normal security precautions.'}
+              </div>
+            </div>
+          );
+        })()}
 
         {/* Trip Estimator */}
         <div style={{ marginBottom: 32 }}>

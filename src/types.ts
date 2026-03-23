@@ -17,8 +17,27 @@ export interface CountryData {
   peakSeasonMonths?: number[];
   highlights?: string[];
   description: string;
+  advisoryLevel?: number;
   travelAdvisory?: string;
+  lat?: number;
+  lon?: number;
   recommendedCities?: string[];
+}
+
+export interface CountryMeta {
+  flag: string;
+  flagSvgUrl: string;
+  capital: string;
+  population: number;
+  languages: string[];
+  neighbours: string[];
+}
+
+export interface ClimateData {
+  month: number;
+  avgTempC: number;
+  precipMm: number;
+  sunshineHours: number;
 }
 
 export interface TripParams {

@@ -62,18 +62,11 @@ export default function ContextRail({
             color: '#fff',
             boxShadow: '0 4px 12px rgba(40,54,24,0.15)'
           }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
-              <h3 style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', opacity: 0.6 }}>Active Trip</h3>
-              <div style={{ 
-                background: '#bc6c25', 
-                color: '#fff', 
-                fontSize: 10, 
-                fontWeight: 700, 
-                padding: '2px 8px', 
-                borderRadius: 100 
-              }}>
-                {matchCount} Matches
-              </div>
+            <div style={{ marginBottom: 12 }}>
+              <h3 style={{ fontSize: 13, fontWeight: 700, margin: '0 0 4px' }}>Plan your trip</h3>
+              <p style={{ fontSize: 10, opacity: 0.7, margin: 0, lineHeight: 1.4 }}>
+                Set your nights and group size to estimate costs
+              </p>
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
@@ -97,18 +90,6 @@ export default function ContextRail({
                     type="number" 
                     value={tripParams.travellers} 
                     onChange={e => onTripParamsChange({ ...tripParams, travellers: Math.max(1, parseInt(e.target.value) || 1) })}
-                    style={{ background: 'none', border: 'none', color: '#fff', fontSize: 14, fontWeight: 600, width: '100%', outline: 'none' }}
-                  />
-                </div>
-              </div>
-              <div style={{ gridColumn: 'span 2' }}>
-                <div style={{ fontSize: 9, textTransform: 'uppercase', opacity: 0.5, marginBottom: 4 }}>Budget ({baseCurrency})</div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-                  <Wallet size={12} opacity={0.6} />
-                  <input 
-                    type="number" 
-                    value={tripParams.totalBudgetCAD} 
-                    onChange={e => onTripParamsChange({ ...tripParams, totalBudgetCAD: Math.max(0, parseInt(e.target.value) || 0) })}
                     style={{ background: 'none', border: 'none', color: '#fff', fontSize: 14, fontWeight: 600, width: '100%', outline: 'none' }}
                   />
                 </div>

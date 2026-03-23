@@ -98,15 +98,15 @@ export default function App() {
       .sort((a, b) => getTimingScore(b, tripParams.months).discount - getTimingScore(a, tripParams.months).discount);
   }, [searchQuery, tripParams.months]);
 
-  const bestTimingCountries = useMemo(() => {
+  const offSeasonCountries = useMemo(() => {
     return Object.values(COUNTRIES_DATA)
       .filter(c => {
-        const s = getTimingScore(c, tripParams.months);
-        return s.isOffSeason || s.isShoulder;
+        if (searchQuery && !c.name.toLowerCase().includes(searchQuery.toLowerCase())) return false;
+        const score = getTimingScore(c, tripParams.months);
+        return !score.isPeak;
       })
-      .sort((a, b) => getTimingScore(b, tripParams.months).discount - getTimingScore(a, tripParams.months).discount)
-      .slice(0, 6);
-  }, [tripParams.months]);
+      .sort((a, b) => getTimingScore(b, tripParams.months).discount - getTimingScore(a, tripParams.months).discount);
+  }, [searchQuery, tripParams.months]);
 
   const toggleCompare = (country: CountryData) => {
     setCompareList(prev => {
@@ -135,7 +135,7 @@ export default function App() {
           isDesktop={isDesktop}
           tripParams={tripParams}
           onTripParamsChange={setTripParams}
-          bestTimingCountries={bestTimingCountries}
+          bestTimingCountries={offSeasonCountries.slice(0, 6)}
           onCountrySelect={(c) => { setSelectedCountry(c); if (!isDesktop) setIsSidebarOpen(false); }}
           getCostInBase={getCostInBase}
           formatCurrency={formatCurrency}
@@ -149,7 +149,7 @@ export default function App() {
           {/* Mobile Tab Content */}
           <div style={{ flex: 1, position: 'relative', display: mobileTab === 'map' ? 'block' : 'none' }}>
             <WorldMap
-              countries={filteredCountries}
+              countries={offSeasonCountries}
               tripParams={tripParams}
               onCountrySelect={setSelectedCountry}
               onCountryHover={setHoveredCountry}

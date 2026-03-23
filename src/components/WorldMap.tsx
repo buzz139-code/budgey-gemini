@@ -4,7 +4,7 @@ import * as topojson from 'topojson-client';
 import { motion, AnimatePresence } from 'motion/react';
 import { type CountryData, type TripParams } from '../types';
 import { COUNTRIES_DATA } from '../data/countries';
-import { TIMING_FILLS } from '../utils/timing';
+import { TIMING_FILLS, MONTHS } from '../utils/timing';
 
 interface WorldMapProps {
   countries: CountryData[];
@@ -259,7 +259,7 @@ export default function WorldMap({
           />
         )}
         <span style={{ fontSize: 12, fontWeight: 700, color: '#283618' }}>
-          {countries.length === 0 ? 'No destinations match your filters' : `${countries.length} destinations match your months`}
+          {countries.length === 0 ? 'All destinations are at peak pricing for these months — try adjusting your travel months' : `${countries.length} destinations off-peak this ${MONTHS[tripParams.months[0]].substring(0, 3)}`}
         </span>
       </div>
 
@@ -269,7 +269,7 @@ export default function WorldMap({
           <div style={{ background: '#fff', padding: '24px 32px', borderRadius: 24, boxShadow: '0 20px 40px rgba(40,54,24,0.1)', border: '1px solid rgba(0,0,0,0.05)', textAlign: 'center', maxWidth: 300, pointerEvents: 'auto' }}>
             <div style={{ fontSize: 40, marginBottom: 16 }}>🏜️</div>
             <h3 style={{ fontSize: 18, fontWeight: 800, color: '#283618', marginBottom: 8 }}>No matches found</h3>
-            <p style={{ fontSize: 14, color: 'rgba(40,54,24,0.6)', lineHeight: 1.5 }}>Try increasing your budget or selecting different months to see more destinations.</p>
+            <p style={{ fontSize: 14, color: 'rgba(40,54,24,0.6)', lineHeight: 1.5 }}>All destinations are at peak pricing for these months — try adjusting your travel months.</p>
           </div>
         </div>
       )}
